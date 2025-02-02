@@ -34,6 +34,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.SetPass
             passwordManager.CreatePasswordHash(request.NewPassword, out var newPasswordHash, out var newPasswordSalt);
             user.PasswordHash = newPasswordHash;
             user.PasswordSalt = newPasswordSalt;
+            user.ShouldChangePassword = false;
 
             await unitOfWork.CommitAsync();
 
