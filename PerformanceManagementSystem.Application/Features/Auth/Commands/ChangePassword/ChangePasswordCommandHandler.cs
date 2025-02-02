@@ -12,6 +12,11 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ChangeP
     {
         public async Task<Result<ChangePasswordDtoResponse>> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
         {
+            var Validator = new ChangePasswordCommandValidator();
+            var validationResult = Validator.Validate(request);
+            if (!validationResult.IsValid)
+                return Result<ChangePasswordDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
+
             var userId = contextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await unitOfWork.UserRepository.GetByIdAsync(int.Parse(userId));
             if (user is null)

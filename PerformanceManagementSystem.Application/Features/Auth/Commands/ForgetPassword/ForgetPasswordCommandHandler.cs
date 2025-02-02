@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using PerformanceManagementSystem.Application.Common.Results;
+using PerformanceManagementSystem.Application.Features.Auth.Commands.ChangePassword;
 using PerformanceManagementSystem.Application.Features.Auth.Commands.Login;
 using PerformanceManagementSystem.Application.Interfaces.Identity;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
@@ -11,6 +12,11 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetP
     {
         public async Task<Result<ForgetPasswordDtoResponse>> Handle(ForgetPasswordCommand request, CancellationToken cancellationToken)
         {
+            var Validator = new ForgetPasswordCommandValidator();
+            var validationResult = Validator.Validate(request);
+            if (!validationResult.IsValid)
+                return Result<ForgetPasswordDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
+
             var user = await unitOfWork.UserRepository.GetUser(request.Email);
             if (user is null) return Result<ForgetPasswordDtoResponse>.NotFound("Invalid username or password");
             var newPassword = "12345678";

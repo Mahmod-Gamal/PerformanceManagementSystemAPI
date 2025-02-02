@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using PerformanceManagementSystem.Application.Common.Results;
+using PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetPassword;
 using PerformanceManagementSystem.Application.Interfaces.Identity;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
 using System;
@@ -15,6 +16,12 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.Login
     {
         public async Task<Result<LoginDtoResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
+            var Validator = new LoginCommandValidator();
+            var validationResult = Validator.Validate(request);
+            if (!validationResult.IsValid)
+                return Result<LoginDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
+
+
             var user = await unitOfWork.UserRepository.GetUser(request.Email);
             if (user is null) return Result<LoginDtoResponse>.UnAuthorized("Invalid username or password");
             if (passwordManager.Verfiy(request.Password, user.PasswordHash, user.PasswordSalt))

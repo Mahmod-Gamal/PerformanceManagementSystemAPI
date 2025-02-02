@@ -12,6 +12,9 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ChangeP
 
             RuleFor(x => x.NewPassword)
                 .NotEmpty().WithMessage("New password is required.");
+
+            RuleFor(x => x.NewPassword)
+                .MinimumLength(8).WithMessage("New password is too short.");
         }
     }
 }
