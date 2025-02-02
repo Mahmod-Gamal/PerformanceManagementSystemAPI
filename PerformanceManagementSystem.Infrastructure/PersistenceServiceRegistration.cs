@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using PerformanceManagementSystem.Application.Interfaces.Identity;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
+using PerformanceManagementSystem.Application.Interfaces.Email;
+using PerformanceManagementSystem.Infrastructure.Email;
 using PerformanceManagementSystem.Infrastructure.Identity;
 using PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer;
 using PerformanceManagementSystem.Infrastructure.Persistence.Repositories;
@@ -33,6 +35,7 @@ namespace PerformanceManagementSystem.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IJwtProvider, JwtProvider>();
+            services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IPasswordManager, PasswordManager>();
             services.AddHttpContextAccessor();
 

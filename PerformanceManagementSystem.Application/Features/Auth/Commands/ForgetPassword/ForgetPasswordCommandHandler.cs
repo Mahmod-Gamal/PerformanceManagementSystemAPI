@@ -2,13 +2,14 @@
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.Features.Auth.Commands.ChangePassword;
 using PerformanceManagementSystem.Application.Features.Auth.Commands.Login;
+using PerformanceManagementSystem.Application.Interfaces.Email;
 using PerformanceManagementSystem.Application.Interfaces.Identity;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
 
 
 namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetPassword
 {
-    public class ForgetPasswordCommandHandler(IUnitOfWork unitOfWork, IPasswordManager passwordManager) : IRequestHandler<ForgetPasswordCommand, Result<ForgetPasswordDtoResponse>>
+    public class ForgetPasswordCommandHandler(IUnitOfWork unitOfWork, IPasswordManager passwordManager,IEmailService emailService) : IRequestHandler<ForgetPasswordCommand, Result<ForgetPasswordDtoResponse>>
     {
         public async Task<Result<ForgetPasswordDtoResponse>> Handle(ForgetPasswordCommand request, CancellationToken cancellationToken)
         {
@@ -27,6 +28,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetP
             user.ShouldChangePassword = true;
 
             // Send Mail With New Password
+            emailService.SendEmail(user.Email, "Forget Password Request", $"Your OTP is : {newPassword}");
 
             var forgetPasswordDtoResponse = new ForgetPasswordDtoResponse()
             {
