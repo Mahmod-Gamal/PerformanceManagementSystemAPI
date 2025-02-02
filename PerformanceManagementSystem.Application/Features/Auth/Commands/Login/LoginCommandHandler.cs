@@ -22,7 +22,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.Login
                 return Result<LoginDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
 
-            var user = await unitOfWork.UserRepository.GetUser(request.Email);
+            var user = await unitOfWork.UserRepository.GetUser(request.EmailOrUsername);
             if (user is null) return Result<LoginDtoResponse>.UnAuthorized("Invalid username or password");
             if (passwordManager.Verfiy(request.Password, user.PasswordHash, user.PasswordSalt))
             {

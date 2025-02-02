@@ -17,8 +17,8 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetP
             if (!validationResult.IsValid)
                 return Result<ForgetPasswordDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
-            var user = await unitOfWork.UserRepository.GetUser(request.Email);
-            if (user is null) return Result<ForgetPasswordDtoResponse>.NotFound("Invalid username or password");
+            var user = await unitOfWork.UserRepository.GetUserByEmail(request.Email);
+            if (user is null) return Result<ForgetPasswordDtoResponse>.NotFound("Email not found");
             var newPassword = "12345678";
 
             passwordManager.CreatePasswordHash(newPassword, out var newPasswordHash, out var newPasswordSalt);

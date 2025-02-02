@@ -6,7 +6,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.Login
     {
         public LoginCommandValidator()
         {
-            RuleFor(x => x.Email)
+            RuleFor(x => x.EmailOrUsername)
                 .NotEmpty().WithMessage("Email is required.");
 
             RuleFor(x => x.Password)
