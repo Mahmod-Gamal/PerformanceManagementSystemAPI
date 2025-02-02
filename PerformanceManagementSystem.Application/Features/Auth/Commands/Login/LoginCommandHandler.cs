@@ -26,6 +26,9 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.Login
                     Token = jwtProvider.GenerateToken(user),
                     UserId = user.ID,
                     Username = user.UserName,
+                    UserType = user.UserType.Name,
+                    ShouldChangePassword = user.ShouldChangePassword,
+                    UserTypeId = user.UserTypeId,
                 };
                 return Result<LoginDtoResponse>.Ok(loginDtoResponse);
             }

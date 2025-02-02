@@ -11,5 +11,8 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.Login
         public int UserId { get; set; }
         public string Username { get; set; }
         public string Token { get; set; }
+        public bool ShouldChangePassword { get; set; }
+        public int UserTypeId { get; set; }
+        public string UserType { get; set; }
     }
 }

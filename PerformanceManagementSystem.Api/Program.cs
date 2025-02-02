@@ -28,6 +28,7 @@ namespace PerformanceManagementSystem.Api
 
             var app = builder.Build();
 
+            app.UseCors(x=>x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
