@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PerformanceManagementSystem.Domain.Enums
 {
-    public enum UserType
+    public enum UserTypes
     {
         SuperAdmin = 1,
         Admin = 2,

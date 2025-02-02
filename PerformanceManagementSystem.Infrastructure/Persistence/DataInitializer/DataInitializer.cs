@@ -1,4 +1,5 @@
 ﻿using PerformanceManagementSystem.Domain.Entities;
+using PerformanceManagementSystem.Domain.Enums;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -31,6 +32,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                 new CompetencyType { ID = 2, Name = "Behavioral" }
             };
         }
+
+
         public List<User> UsersSeed()
         {
              CreatePasswordHash("12345678", out var hash, out var salt);
@@ -46,13 +49,67 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     PasswordSalt = salt,
                     UserName = "superadmin",
                     ShouldChangePassword = true,
-                    UserTypeId = 1,   
+                    UserTypeId = (int)UserTypes.SuperAdmin,   
                     StatusID = 1,     
                     CreatedAt = DateTime.Now,
                     CreatedBy = 1,
                     ModifiedAt = DateTime.Now,
                     ModifiedBy = 1
-                }
+                },
+
+                new User
+                {
+                    ID = 2,
+                    Name = "Admin",
+                    Email = "admin@example.com",
+                    Phone = "1234567890",
+                    PasswordHash = hash,
+                    PasswordSalt = salt,
+                    UserName = "admin",
+                    ShouldChangePassword = true,
+                    UserTypeId = (int)UserTypes.Admin,
+                    StatusID = 1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = 1,
+                    ModifiedAt = DateTime.Now,
+                    ModifiedBy = 1
+                },
+
+                new User
+                {
+                    ID = 3,
+                    Name = "Manager",
+                    Email = "manager@example.com",
+                    Phone = "1234567890",
+                    PasswordHash = hash,
+                    PasswordSalt = salt,
+                    UserName = "manager",
+                    ShouldChangePassword = true,
+                    UserTypeId = (int)UserTypes.Manager,
+                    StatusID = 1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = 1,
+                    ModifiedAt = DateTime.Now,
+                    ModifiedBy = 1
+                },
+
+                new User
+                {
+                    ID = 1,
+                    Name = "Employee",
+                    Email = "employee@example.com",
+                    Phone = "1234567890",
+                    PasswordHash = hash,
+                    PasswordSalt = salt,
+                    UserName = "employee",
+                    ShouldChangePassword = true,
+                    UserTypeId = (int)UserTypes.Employee,
+                    StatusID = 1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = 1,
+                    ModifiedAt = DateTime.Now,
+                    ModifiedBy = 1
+                },
             };
         }
 
