@@ -95,7 +95,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
 
                 new User
                 {
-                    ID = 1,
+                    ID = 4,
                     Name = "Employee",
                     Email = "employee@example.com",
                     Phone = "1234567890",

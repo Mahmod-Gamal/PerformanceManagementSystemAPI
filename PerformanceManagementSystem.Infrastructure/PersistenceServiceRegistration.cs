@@ -45,6 +45,7 @@ namespace PerformanceManagementSystem.Infrastructure
         IConfiguration configuration)
         {
             services.Configure<JwtOptions>(configuration.GetSection("JWTOptions"));
+            services.Configure<SmtpSettings>(configuration.GetSection("SmtpSettings"));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
                 AddJwtBearer(options =>
                 {

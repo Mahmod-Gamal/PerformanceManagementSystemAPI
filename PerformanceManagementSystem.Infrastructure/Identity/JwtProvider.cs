@@ -30,7 +30,8 @@ namespace PerformanceManagementSystem.Infrastructure.Identity
             var claims = new[]{
                 new Claim(ClaimTypes.NameIdentifier , user.ID.ToString()),
                 new Claim(ClaimTypes.Name , user.UserName),
-                new Claim(ClaimTypes.Role , user.UserTypeId.ToString())
+                new Claim(ClaimTypes.Role , user.UserTypeId.ToString()),
+                new Claim(ClaimTypes.UserData , user.ShouldChangePassword.ToString())
             };
 
             // GetSecretKey

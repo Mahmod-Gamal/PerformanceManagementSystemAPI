@@ -26,8 +26,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.Login
             if (user is null) return Result<LoginDtoResponse>.UnAuthorized("Invalid username or password");
             if (passwordManager.Verfiy(request.Password, user.PasswordHash, user.PasswordSalt))
             {
-                if (user.ShouldChangePassword)
-                    return Result<LoginDtoResponse>.Fail("Invalid username or password", Status.ChangePassword);
+              
                 var loginDtoResponse = new LoginDtoResponse
                 {
                     Token = jwtProvider.GenerateToken(user),
