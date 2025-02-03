@@ -32,7 +32,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetP
             // Send Mail With New Password
             //emailService.SendEmail(user.Email, "Forget Password Request", $"Your OTP is : {newPassword}");
 
-            emailService.SendEmail("mahmoud.s.marwad@gmail.com", "Forget Password Request", $"Your OTP is : {newPassword}");
+            emailService.SendEmail(user.Email, "Forget Password Request", $"Your OTP is : {newPassword}");
 
             var forgetPasswordDtoResponse = new ForgetPasswordDtoResponse()
             {
