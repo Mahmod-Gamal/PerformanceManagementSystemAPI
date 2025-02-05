@@ -21,6 +21,11 @@ namespace  PerformanceManagementSystem.Infrastructure.Persistence.Configurations
                 .HasForeignKey(u => u.StatusID)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasOne(u => u.Duration)
+              .WithMany(u => u.Users)
+              .HasForeignKey(u => u.DurationID)
+              .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasOne(u => u.Creator)
               .WithMany(u => u.CreatedUsers)
               .HasForeignKey(u => u.CreatedBy)
