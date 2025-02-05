@@ -1,6 +1,6 @@
 ﻿
 using PerformanceManagementSystem.Domain.Entities;
-using PerformanceManagementSystem.Infrastructure.Identity;
+using PerformanceManagementSystem.Application.DTOs;
 
 namespace PerformanceManagementSystem.Application.Interfaces.Identity
 {

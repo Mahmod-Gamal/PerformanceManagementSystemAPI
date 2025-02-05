@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetPassword
+namespace PerformanceManagementSystem.Application.Features.Duration.Queries.GetDurationByID
 {
-    public class ForgetPasswordCommand : IRequest<Result<AcknowledgmentDtoResponse>>
+    public class GetDurationByIDQuery : IRequest<Result<DurationDtoResponse>>
     {
-        public string Email { get; set; }
+        public int ID { get; set; }
     }
 }

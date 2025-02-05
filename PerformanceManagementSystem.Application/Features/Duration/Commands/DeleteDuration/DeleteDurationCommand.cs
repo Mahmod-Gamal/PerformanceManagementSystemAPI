@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetPassword
+namespace PerformanceManagementSystem.Application.Features.Duration.Commands.DeleteDuration
 {
-    public class ForgetPasswordCommand : IRequest<Result<AcknowledgmentDtoResponse>>
+    public class DeleteDurationCommand : IRequest<Result<AcknowledgmentDtoResponse>>
     {
-        public string Email { get; set; }
+        public int ID { get; set; }
     }
 }

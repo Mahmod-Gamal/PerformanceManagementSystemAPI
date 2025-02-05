@@ -32,6 +32,12 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                 new CompetencyType { ID = 2, Name = "Behavioral" }
             };
         }
+        public List<Duration> DurationsSeed()
+        {
+            return new List<Duration>() {
+                new Duration { ID = 1, Name = "Main 2025",Start = new DateTime(year:2025,month:1,day:1),End = new DateTime(year:2025,month:5,day:31) }
+            };
+        }
 
 
         public List<User> UsersSeed()
@@ -50,7 +56,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     UserName = "superadmin",
                     ShouldChangePassword = true,
                     UserTypeId = (int)UserTypes.SuperAdmin,       
-                    StatusID = 1,     
+                    StatusID = 1,
+                    DurationID = 1,
                     CreatedAt = DateTime.Now,
                     CreatedBy = 1,
                     ModifiedAt = DateTime.Now,
@@ -69,6 +76,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     ShouldChangePassword = true,
                     UserTypeId = (int)UserTypes.Admin,
                     StatusID = 1,
+                    DurationID = 1,
                     CreatedAt = DateTime.Now,
                     CreatedBy = 1,
                     ModifiedAt = DateTime.Now,
@@ -87,6 +95,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     ShouldChangePassword = true,
                     UserTypeId = (int)UserTypes.Manager,
                     StatusID = 1,
+                    DurationID = 1,
                     CreatedAt = DateTime.Now,
                     CreatedBy = 1,
                     ModifiedAt = DateTime.Now,
@@ -105,6 +114,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     ShouldChangePassword = true,
                     UserTypeId = (int)UserTypes.Employee,
                     StatusID = 1,
+                    DurationID = 1,
                     CreatedAt = DateTime.Now,
                     CreatedBy = 1,
                     ModifiedAt = DateTime.Now,

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using PerformanceManagementSystem.Application.Common.Results;
+using PerformanceManagementSystem.Application.DTOs;
 using PerformanceManagementSystem.Application.Interfaces.Identity;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
 using System.Security.Claims;
@@ -8,22 +9,22 @@ using System.Security.Claims;
 
 namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ChangePassword
 {
-    public class ChangePasswordCommandHandler(IUnitOfWork unitOfWork, IPasswordManager passwordManager, IHttpContextAccessor contextAccessor) : IRequestHandler<ChangePasswordCommand, Result<ChangePasswordDtoResponse>>
+    public class ChangePasswordCommandHandler(IUnitOfWork unitOfWork, IPasswordManager passwordManager, IHttpContextAccessor contextAccessor) : IRequestHandler<ChangePasswordCommand, Result<AcknowledgmentDtoResponse>>
     {
-        public async Task<Result<ChangePasswordDtoResponse>> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
+        public async Task<Result<AcknowledgmentDtoResponse>> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
         {
             var Validator = new ChangePasswordCommandValidator();
             var validationResult = Validator.Validate(request);
             if (!validationResult.IsValid)
-                return Result<ChangePasswordDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
+                return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
             var userId = contextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await unitOfWork.UserRepository.GetByIdAsync(int.Parse(userId));
             if (user is null)
-                return Result<ChangePasswordDtoResponse>.UnAuthorized("User not found");
+                return Result<AcknowledgmentDtoResponse>.UnAuthorized("User not found");
 
             if (!passwordManager.Verfiy(request.OldPassword, user.PasswordHash, user.PasswordSalt))
-                return Result<ChangePasswordDtoResponse>.UnAuthorized("Current password is incorrect");
+                return Result<AcknowledgmentDtoResponse>.UnAuthorized("Current password is incorrect");
 
             passwordManager.CreatePasswordHash(request.NewPassword, out var newPasswordHash, out var newPasswordSalt);
             user.PasswordHash = newPasswordHash;
@@ -31,11 +32,11 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ChangeP
 
             await unitOfWork.CommitAsync();
 
-            var changePasswordDtoResponse = new ChangePasswordDtoResponse
+            var acknowledgmentDtoResponse = new AcknowledgmentDtoResponse
             {
-                SuccessMessage = "Password updated successfully"
+                Message = "Password updated successfully"
             };
-            return Result<ChangePasswordDtoResponse>.Ok(changePasswordDtoResponse);
+            return Result<AcknowledgmentDtoResponse>.Ok(acknowledgmentDtoResponse);
         }
     }
 }

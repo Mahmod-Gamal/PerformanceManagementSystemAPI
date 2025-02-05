@@ -17,6 +17,8 @@ namespace PerformanceManagementSystem.Domain.Entities
         public Department Department { get; set; }
         public int StatusID { get; set; }
         public Status Status { get; set; }
+        public int DurationID { get; set; }
+        public Duration Duration { get; set; }
         public DateTime CreatedAt { get; set; }
         public int? CreatedBy { get; set; }
         public User Creator { get; set; }

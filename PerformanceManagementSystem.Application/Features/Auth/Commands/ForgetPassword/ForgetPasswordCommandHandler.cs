@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using PerformanceManagementSystem.Application.Common.Results;
-using PerformanceManagementSystem.Application.Features.Auth.Commands.ChangePassword;
-using PerformanceManagementSystem.Application.Features.Auth.Commands.Login;
+using PerformanceManagementSystem.Application.DTOs;
 using PerformanceManagementSystem.Application.Interfaces.Email;
 using PerformanceManagementSystem.Application.Interfaces.Identity;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
@@ -9,17 +8,17 @@ using PerformanceManagementSystem.Application.Interfaces.Persistence;
 
 namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetPassword
 {
-    public class ForgetPasswordCommandHandler(IUnitOfWork unitOfWork, IPasswordManager passwordManager,IEmailService emailService) : IRequestHandler<ForgetPasswordCommand, Result<ForgetPasswordDtoResponse>>
+    public class ForgetPasswordCommandHandler(IUnitOfWork unitOfWork, IPasswordManager passwordManager,IEmailService emailService) : IRequestHandler<ForgetPasswordCommand, Result<AcknowledgmentDtoResponse>>
     {
-        public async Task<Result<ForgetPasswordDtoResponse>> Handle(ForgetPasswordCommand request, CancellationToken cancellationToken)
+        public async Task<Result<AcknowledgmentDtoResponse>> Handle(ForgetPasswordCommand request, CancellationToken cancellationToken)
         {
             var Validator = new ForgetPasswordCommandValidator();
             var validationResult = Validator.Validate(request);
             if (!validationResult.IsValid)
-                return Result<ForgetPasswordDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
+                return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
             var user = await unitOfWork.UserRepository.GetUserByEmail(request.Email);
-            if (user is null) return Result<ForgetPasswordDtoResponse>.NotFound("Email not found");
+            if (user is null) return Result<AcknowledgmentDtoResponse>.NotFound("Email not found");
             var newPassword = "12345678";
 
             passwordManager.CreatePasswordHash(newPassword, out var newPasswordHash, out var newPasswordSalt);
@@ -34,11 +33,11 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetP
 
             emailService.SendEmail(user.Email, "Forget Password Request", $"Your OTP is : {newPassword}");
 
-            var forgetPasswordDtoResponse = new ForgetPasswordDtoResponse()
+            var acknowledgmentDtoResponse = new AcknowledgmentDtoResponse()
             {
                 Message = "Forgetted Password"
             };
-            return Result<ForgetPasswordDtoResponse>.Ok(forgetPasswordDtoResponse);
+            return Result<AcknowledgmentDtoResponse>.Ok(acknowledgmentDtoResponse);
         }
     }
 

@@ -1,5 +1,4 @@
-﻿
-namespace PerformanceManagementSystem.Infrastructure.Identity
+﻿namespace PerformanceManagementSystem.Application.DTOs
 {
     public class UserClaims
     {
