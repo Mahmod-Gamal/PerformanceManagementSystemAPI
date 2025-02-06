@@ -25,6 +25,8 @@
   <ItemGroup>
     <Folder Include="Features\Auth\Qureies\" />
     <Folder Include="Features\Auth\Qureies\" />
+    <Folder Include="Features\Department\Commands\" />
+    <Folder Include="Features\Department\Queries\" />
   </ItemGroup>
 
 </Project>
