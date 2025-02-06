@@ -13,7 +13,7 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.U
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public int? ManagerID { get; set; }
+        public int StatusID { get; set; }
     }
 }

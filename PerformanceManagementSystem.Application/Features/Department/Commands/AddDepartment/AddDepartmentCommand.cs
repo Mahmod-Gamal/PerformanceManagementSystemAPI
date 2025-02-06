@@ -8,7 +8,6 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.A
     public class AddDepartmentCommand : IRequest<Result<DepartmentDtoResponse>>
     {
         public string Name { get; set; }
-        public DateTime Start{ get; set; }
-        public DateTime End{ get; set; }
+        public int? ManagerID{ get; set; }
     }
 }
