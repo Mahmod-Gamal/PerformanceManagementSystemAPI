@@ -8,6 +8,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
         List<Status> StatusesSeed();
         List<UserType> UserTypesSeed();
         List<User> UsersSeed();
+        List<Duration> DurationsSeed();
 
     }
 }
