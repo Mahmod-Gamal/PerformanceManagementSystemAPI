@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using PerformanceManagementSystem.Api.Controllers;
 using PerformanceManagementSystem.Application.DTOs;
 using PerformanceManagementSystem.Application.Features.Duration.Commands.AddDuration;
+using PerformanceManagementSystem.Application.Features.Duration.Commands.DeleteDuration;
 using PerformanceManagementSystem.Application.Features.Duration.Commands.UpdateDuration;
 using PerformanceManagementSystem.Application.Features.Duration.Queries.GetAllDurations;
 using PerformanceManagementSystem.Application.Features.Duration.Queries.GetDurationByID;
@@ -28,7 +29,7 @@ namespace PerformanceManagementSystem.Api.Controllers
 
         [Authorize]
         [HttpDelete("DeleteDuration")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> DeleteDuration(AddDurationCommand command)
+        public async Task<ActionResult<AcknowledgmentDtoResponse>> DeleteDuration(DeleteDurationCommand command)
             => HandelResult(await mediator.Send(command));
 
         [Authorize]
