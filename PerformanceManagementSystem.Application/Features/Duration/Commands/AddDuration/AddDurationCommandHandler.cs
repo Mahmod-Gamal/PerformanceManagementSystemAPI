@@ -1,9 +1,11 @@
-﻿using MediatR;
+﻿using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
 using PerformanceManagementSystem.Application.Interfaces.Identity;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
+using PerformanceManagementSystem.Domain.Entities;
 using System.Security.Claims;
 
 
@@ -17,9 +19,12 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Add
             var validationResult = Validator.Validate(request);
             if (!validationResult.IsValid)
                 return Result<DurationDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
+            var duration = request.Adapt<Domain.Entities.Duration>();
 
-          var addDurationDtoResponse = new DurationDtoResponse();
-            return Result<DurationDtoResponse>.Ok(addDurationDtoResponse);
+            await unitOfWork.DurationRepository.AddAsync(duration);
+            unitOfWork.CommitAsync();
+
+            return Result<DurationDtoResponse>.Ok(duration.Adapt<DurationDtoResponse>());
         }
     }
 }

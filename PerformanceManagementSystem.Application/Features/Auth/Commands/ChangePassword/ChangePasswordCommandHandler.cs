@@ -37,11 +37,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ChangeP
 
             await unitOfWork.CommitAsync();
 
-            var acknowledgmentDtoResponse = new AcknowledgmentDtoResponse
-            {
-                Message = "Password updated successfully"
-            };
-            return Result<AcknowledgmentDtoResponse>.Ok(acknowledgmentDtoResponse);
+            return Result<AcknowledgmentDtoResponse>.Ok(new("Password updated successfully"));
         }
     }
 }

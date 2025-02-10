@@ -21,9 +21,13 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Del
             var validationResult = Validator.Validate(request);
             if (!validationResult.IsValid)
                 return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
+            var duration = unitOfWork.DurationRepository.GetByIdAsync(request.ID).Result;
+            if (duration is null)
+                return Result<AcknowledgmentDtoResponse>.NotFound("Duration Not Found");
+            unitOfWork.DurationRepository.Remove(duration);
+            unitOfWork.CommitAsync();
 
-            var acknowledgmentDtoResponse = new AcknowledgmentDtoResponse();
-            return Result<AcknowledgmentDtoResponse>.Ok(acknowledgmentDtoResponse);
+            return Result<AcknowledgmentDtoResponse>.Ok(new ("Deleted Successfully"));
         }
     }
 }

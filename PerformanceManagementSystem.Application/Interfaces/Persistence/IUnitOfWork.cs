@@ -9,6 +9,7 @@ namespace PerformanceManagementSystem.Application.Interfaces.Persistence
     public interface IUnitOfWork
     {
         IUserRepository UserRepository { get; }
+        IDurationRepository DurationRepository { get; }
         Task<int> CommitAsync(CancellationToken cancellationToken = default);
     }
 }

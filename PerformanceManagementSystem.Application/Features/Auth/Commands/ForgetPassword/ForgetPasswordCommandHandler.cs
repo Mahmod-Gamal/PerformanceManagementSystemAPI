@@ -27,11 +27,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetP
             //emailService.SendEmail(user.Email, "Forget Password Request", $"Your OTP is : {user.OTP}");
             emailService.SendEmail("mahmoud.s.marwad@gmail.com", "Forget Password Request", $"Please Got to this Link to reset your Password : localhost/SetPassword/{OTT}");
 
-            var acknowledgmentDtoResponse = new AcknowledgmentDtoResponse()
-            {
-                Message = "OTP Sent to Your Mail"
-            };
-            return Result<AcknowledgmentDtoResponse>.Ok(acknowledgmentDtoResponse);
+            return Result<AcknowledgmentDtoResponse>.Ok(new("Check Your Mail"));
         }
     }
 
