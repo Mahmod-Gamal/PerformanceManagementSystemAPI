@@ -26,11 +26,12 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.SetPass
                 return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
             //var tokenVersion = contextAccessor.HttpContext?.User.FindFirst(ClaimTypes.UserData)?.Value;
-            var user = await unitOfWork.UserRepository.GetUser(request.EmailOrUsername);
+            var (username,otp) = passwordManager.DecodeOTT(request.OTT);
+            var user = await unitOfWork.UserRepository.GetUser(username);
             if (user is null)
                 return Result<AcknowledgmentDtoResponse>.UnAuthorized("User not found");
      
-            if (user.OTP != request.OTP)
+            if (user.OTP != otp)
                 return Result<AcknowledgmentDtoResponse>.UnAuthorized("OTP is not Correct");
 
             passwordManager.CreatePasswordHash(request.NewPassword, out var newPasswordHash, out var newPasswordSalt);
