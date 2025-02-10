@@ -10,6 +10,8 @@ namespace PerformanceManagementSystem.Application.Interfaces.Persistence
     {
         IUserRepository UserRepository { get; }
         IDurationRepository DurationRepository { get; }
+        IDepartmentRepository DepartmentRepository { get; }
+        ICompetencyRepository CompetencyRepository { get; }
         Task<int> CommitAsync(CancellationToken cancellationToken = default);
     }
 }
