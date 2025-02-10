@@ -20,11 +20,12 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetP
             var user = await unitOfWork.UserRepository.GetUserByEmail(request.Email);
             if (user is null) return Result<AcknowledgmentDtoResponse>.NotFound("Email not found");
             user.OTP = passwordManager.GenerateRandomOTP();
+            string OTT = passwordManager.EncodeOTT(user.UserName,user.OTP);
 
             unitOfWork.CommitAsync();
 
             //emailService.SendEmail(user.Email, "Forget Password Request", $"Your OTP is : {user.OTP}");
-            emailService.SendEmail("mahmoud.s.marwad@gmail.com", "Forget Password Request", $"Your OTP is : {user.OTP}");
+            emailService.SendEmail("mahmoud.s.marwad@gmail.com", "Forget Password Request", $"Please Got to this Link to reset your Password : localhost/SetPassword/{OTT}");
 
             var acknowledgmentDtoResponse = new AcknowledgmentDtoResponse()
             {

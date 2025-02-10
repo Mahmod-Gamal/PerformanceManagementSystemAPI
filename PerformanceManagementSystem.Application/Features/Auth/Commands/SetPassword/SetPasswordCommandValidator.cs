@@ -6,17 +6,15 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.SetPass
     {
         public SetPasswordCommandValidator()
         {
-            RuleFor(x => x.EmailOrUsername)
+
+            RuleFor(x => x.OTT)
                 .NotEmpty().WithMessage("New password is required.");
 
-            RuleFor(x => x.OTP)
-                .NotEmpty().WithMessage("New password is required.");
+            //RuleFor(x => x.OTT)
+            //    .Must(x=> x.Split(':').Length == 2).WithMessage("Invalid OTT");
 
             RuleFor(x => x.NewPassword)
                 .NotEmpty().WithMessage("New password is required.");
-
-            RuleFor(x => x.OTP)
-                .NotEqual(x => x.NewPassword).WithMessage("Can't use OTP as New Password.");
 
             RuleFor(x => x.NewPassword)
                 .MinimumLength(8).WithMessage("New password is too short.");

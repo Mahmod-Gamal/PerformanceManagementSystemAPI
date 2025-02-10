@@ -6,6 +6,7 @@ namespace PerformanceManagementSystem.Infrastructure.Identity
 {
     public class PasswordManager : IPasswordManager
     {
+        private const string _EncryptionKey = "P56fF87*+$pzx";
         public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512())
@@ -49,6 +50,51 @@ namespace PerformanceManagementSystem.Infrastructure.Identity
                 otp[i] = GetRandomChar(allChars, rng);
             }
             return new string(otp.OrderBy(_ => GetRandomInt(rng)).ToArray());
+        }
+
+        public string EncodeOTT(string username, string OTP)
+        {
+            string combinedData = $"{username}:{OTP}";
+            return Encrypt(combinedData);
+        }
+
+        public (string username, string OTP) DecodeOTT(string OTT)
+        {
+            string decryptedData = Decrypt(OTT);
+            string[] parts = decryptedData.Split(':');
+
+            if (parts.Length == 2)
+                return (parts[0], parts[1]);
+
+            throw new Exception("Invalid OTT format");
+        }
+
+        private string Encrypt(string plainText)
+        {
+            byte[] keyBytes = Encoding.UTF8.GetBytes(_EncryptionKey);
+            using Aes aes = Aes.Create();
+            aes.Key = keyBytes;
+            aes.IV = new byte[16]; // Zero IV (for simplicity)
+
+            using var encryptor = aes.CreateEncryptor();
+            byte[] plainBytes = Encoding.UTF8.GetBytes(plainText);
+            byte[] encryptedBytes = encryptor.TransformFinalBlock(plainBytes, 0, plainBytes.Length);
+
+            return Convert.ToBase64String(encryptedBytes);
+        }
+
+        private string Decrypt(string cipherText)
+        {
+            byte[] keyBytes = Encoding.UTF8.GetBytes(_EncryptionKey);
+            using Aes aes = Aes.Create();
+            aes.Key = keyBytes;
+            aes.IV = new byte[16];
+
+            using var decryptor = aes.CreateDecryptor();
+            byte[] encryptedBytes = Convert.FromBase64String(cipherText);
+            byte[] plainBytes = decryptor.TransformFinalBlock(encryptedBytes, 0, encryptedBytes.Length);
+
+            return Encoding.UTF8.GetString(plainBytes);
         }
 
         private char GetRandomChar(string characterSet, RandomNumberGenerator rng)

@@ -12,8 +12,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.SetPass
 {
     public class SetPasswordCommand : IRequest<Result<AcknowledgmentDtoResponse>>
     {
-        public string OTP { get; set; }
-        public string EmailOrUsername { get; set; }
+        public string OTT { get; set; }
         public string NewPassword { get; set; }
     }
 }
