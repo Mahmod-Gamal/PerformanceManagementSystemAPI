@@ -25,15 +25,19 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.SetPass
             if (!validationResult.IsValid)
                 return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
-            var userId = contextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var user = await unitOfWork.UserRepository.GetByIdAsync(int.Parse(userId));
+            //var tokenVersion = contextAccessor.HttpContext?.User.FindFirst(ClaimTypes.UserData)?.Value;
+            var user = await unitOfWork.UserRepository.GetUser(request.EmailOrUsername);
             if (user is null)
                 return Result<AcknowledgmentDtoResponse>.UnAuthorized("User not found");
      
+            if (user.OTP != request.OTP)
+                return Result<AcknowledgmentDtoResponse>.UnAuthorized("OTP is not Correct");
+
             passwordManager.CreatePasswordHash(request.NewPassword, out var newPasswordHash, out var newPasswordSalt);
             user.PasswordHash = newPasswordHash;
             user.PasswordSalt = newPasswordSalt;
-            user.ShouldChangePassword = false;
+            user.OTP = null;
+            user.TokenVersion = Guid.NewGuid();
 
             await unitOfWork.CommitAsync();
 

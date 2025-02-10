@@ -14,13 +14,13 @@ namespace PerformanceManagementSystem.Api.Controllers
 
         [Authorize]
         [HttpPost("AddCompetency")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> AddCompetency(AddCompetencyCommand command)
+        public async Task<ActionResult<CompetencyDtoResponse>> AddCompetency(AddCompetencyCommand command)
             => HandelResult(await mediator.Send(command));
 
 
         [Authorize]
         [HttpPut("UpdateCompetency")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> UpdateCompetency(UpdateCompetencyCommand command)
+        public async Task<ActionResult<CompetencyDtoResponse>> UpdateCompetency(UpdateCompetencyCommand command)
             => HandelResult(await mediator.Send(command));
 
         [Authorize]
@@ -30,12 +30,12 @@ namespace PerformanceManagementSystem.Api.Controllers
 
         [Authorize]
         [HttpGet("GetAllCompetencies")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> GetAllCompetencies()
+        public async Task<ActionResult<IEnumerable<CompetencyDtoResponse>>> GetAllCompetencies()
             => HandelResult(await mediator.Send(new GetAllCompetenciesQuery()));
 
         [Authorize]
         [HttpGet("GetCompetency/{ID}")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> GetCompetency(int ID)
+        public async Task<ActionResult<CompetencyDtoResponse>> GetCompetency(int ID)
             => HandelResult(await mediator.Send(new GetCompetencyByIDQuery() { ID = ID }));
 
 

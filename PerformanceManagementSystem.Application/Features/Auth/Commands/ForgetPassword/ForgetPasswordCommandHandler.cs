@@ -19,23 +19,16 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetP
 
             var user = await unitOfWork.UserRepository.GetUserByEmail(request.Email);
             if (user is null) return Result<AcknowledgmentDtoResponse>.NotFound("Email not found");
-            var newPassword = "12345678";
-
-            passwordManager.CreatePasswordHash(newPassword, out var newPasswordHash, out var newPasswordSalt);
-            user.PasswordHash = newPasswordHash;
-            user.PasswordSalt = newPasswordSalt;
-            user.ShouldChangePassword = true;
+            user.OTP = passwordManager.GenerateRandomOTP();
 
             unitOfWork.CommitAsync();
 
-            // Send Mail With New Password
-            //emailService.SendEmail(user.Email, "Forget Password Request", $"Your OTP is : {newPassword}");
-
-            emailService.SendEmail(user.Email, "Forget Password Request", $"Your OTP is : {newPassword}");
+            //emailService.SendEmail(user.Email, "Forget Password Request", $"Your OTP is : {user.OTP}");
+            emailService.SendEmail("mahmoud.s.marwad@gmail.com", "Forget Password Request", $"Your OTP is : {user.OTP}");
 
             var acknowledgmentDtoResponse = new AcknowledgmentDtoResponse()
             {
-                Message = "Forgetted Password"
+                Message = "OTP Sent to Your Mail"
             };
             return Result<AcknowledgmentDtoResponse>.Ok(acknowledgmentDtoResponse);
         }

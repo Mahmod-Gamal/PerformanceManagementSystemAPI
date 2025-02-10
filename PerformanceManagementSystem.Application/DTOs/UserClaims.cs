@@ -6,5 +6,6 @@
         public string UserType { get; set; }
         public string Username { get; set; }
         public bool AccessMode { get; set; }
+        public Guid TokenVersion { get; set; }
     }
 }

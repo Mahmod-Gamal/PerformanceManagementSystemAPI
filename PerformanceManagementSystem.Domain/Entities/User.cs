@@ -10,10 +10,11 @@ namespace PerformanceManagementSystem.Domain.Entities
         public string Phone { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+        public string? OTP { get; set; }
+        public Guid TokenVersion { get; set; }
         public int UserTypeId { get; set; }
         public UserType UserType { get; set; }
         public int? DepartmentID { get; set; }
-        public bool ShouldChangePassword { get; set; } // Indicates if the user must change password.
         public Department Department { get; set; }
         public int StatusID { get; set; }
         public Status Status { get; set; }

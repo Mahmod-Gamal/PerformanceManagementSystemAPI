@@ -6,6 +6,7 @@ using PerformanceManagementSystem.Application.Features.Auth.Commands.ChangePassw
 using PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetPassword;
 using PerformanceManagementSystem.Application.Features.Auth.Commands.Login;
 using PerformanceManagementSystem.Application.Features.Auth.Commands.SetPassword;
+using Swashbuckle.AspNetCore.Annotations;
 
 
 namespace PerformanceManagementSystem.Api.Controllers
@@ -15,6 +16,8 @@ namespace PerformanceManagementSystem.Api.Controllers
     {
 
         [HttpPost("Login")]
+        [SwaggerOperation(
+        OperationId = nameof(Login))]
         public async Task<ActionResult<LoginDtoResponse>> Login(LoginCommand loginCommand)
             => HandelResult(await mediator.Send(loginCommand));
 

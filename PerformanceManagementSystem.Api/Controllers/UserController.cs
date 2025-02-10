@@ -14,13 +14,13 @@ namespace PerformanceManagementSystem.Api.Controllers
 
         [Authorize]
         [HttpPost("AddUser")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> AddUser(AddUserCommand command)
+        public async Task<ActionResult<UserDtoResponse>> AddUser(AddUserCommand command)
             => HandelResult(await mediator.Send(command));
 
 
         [Authorize]
         [HttpPut("UpdateUser")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> UpdateUser(UpdateUserCommand command)
+        public async Task<ActionResult<UserDtoResponse>> UpdateUser(UpdateUserCommand command)
             => HandelResult(await mediator.Send(command));
 
         [Authorize]
@@ -30,12 +30,12 @@ namespace PerformanceManagementSystem.Api.Controllers
 
         [Authorize]
         [HttpGet("GetAllUsers")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> GetAllUsers()
+        public async Task<ActionResult<IEnumerable<UserDtoResponse>>> GetAllUsers()
             => HandelResult(await mediator.Send(new GetAllUsersQuery()));
 
         [Authorize]
         [HttpGet("GetUser/{ID}")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> GetUser(int ID)
+        public async Task<ActionResult<UserDtoResponse>> GetUser(int ID)
             => HandelResult(await mediator.Send(new GetUserByIDQuery() { ID = ID }));
 
 

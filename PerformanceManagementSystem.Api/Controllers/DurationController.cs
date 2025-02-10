@@ -17,13 +17,13 @@ namespace PerformanceManagementSystem.Api.Controllers
 
         [Authorize]
         [HttpPost("AddDuration")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> AddDuration(AddDurationCommand command)
+        public async Task<ActionResult<DurationDtoResponse>> AddDuration(AddDurationCommand command)
             => HandelResult(await mediator.Send(command));
 
 
         [Authorize]
         [HttpPut("UpdateDuration")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> UpdateDuration(UpdateDurationCommand command)
+        public async Task<ActionResult<DurationDtoResponse>> UpdateDuration(UpdateDurationCommand command)
             => HandelResult(await mediator.Send(command));
 
         [Authorize]
@@ -33,12 +33,12 @@ namespace PerformanceManagementSystem.Api.Controllers
 
         [Authorize]
         [HttpGet("GetAllDurations")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> GetAllDurations()
+        public async Task<ActionResult<IEnumerable<DurationDtoResponse>>> GetAllDurations()
             => HandelResult(await mediator.Send(new GetAllDurationsQuery()));
 
         [Authorize]
         [HttpGet("GetDuration/{ID}")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> GetDuration(int ID)
+        public async Task<ActionResult<DurationDtoResponse>> GetDuration(int ID)
             => HandelResult(await mediator.Send(new GetDurationByIDQuery() {ID = ID}));
 
 

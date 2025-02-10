@@ -32,7 +32,7 @@ namespace PerformanceManagementSystem.Infrastructure.Identity
                 new Claim(ClaimTypes.NameIdentifier , user.ID.ToString()),
                 new Claim(ClaimTypes.Name , user.UserName),
                 new Claim(ClaimTypes.Role , user.UserTypeId.ToString()),
-                new Claim(ClaimTypes.UserData , user.ShouldChangePassword.ToString())
+                new Claim(ClaimTypes.UserData , user.TokenVersion.ToString())
             };
 
             // GetSecretKey
@@ -66,7 +66,8 @@ namespace PerformanceManagementSystem.Infrastructure.Identity
             {
                 Id = int.Parse(securityToken.Claims.FirstOrDefault(c => c.Type == "nameid")?.Value),
                 AccessMode = bool.Parse(securityToken.Claims.FirstOrDefault(c => c.Type == "AccessMode")?.Value),
-                UserType = securityToken.Claims.FirstOrDefault(c => c.Type == "role")?.Value
+                UserType = securityToken.Claims.FirstOrDefault(c => c.Type == "role")?.Value,
+                TokenVersion = Guid.Parse(securityToken.Claims.FirstOrDefault(c => c.Type == "UserData")?.Value)
             };
             return userClaims;
         }

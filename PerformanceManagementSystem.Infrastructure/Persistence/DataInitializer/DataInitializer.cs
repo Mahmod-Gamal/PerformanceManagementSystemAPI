@@ -42,7 +42,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
 
         public List<User> UsersSeed()
         {
-             CreatePasswordHash("12345678", out var hash, out var salt);
+            //CreatePasswordHash("12345678", out var hash, out var salt);
+            string otp = GenerateRandomOTP(10);
             return new List<User>()
             {
                 new User
@@ -51,11 +52,10 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     Name = "SuperAdmin",
                     Email = "i.mahmoud.gamal@gmail.com",
                     Phone = "1234567890",
-                    PasswordHash = hash,
-                    PasswordSalt = salt,
                     UserName = "superadmin",
-                    ShouldChangePassword = true,
-                    UserTypeId = (int)UserTypes.SuperAdmin,       
+                    OTP = otp,
+                    TokenVersion = Guid.NewGuid(),
+                    UserTypeId = (int)UserTypes.SuperAdmin,
                     StatusID = 1,
                     DurationID = 1,
                     CreatedAt = DateTime.Now,
@@ -70,10 +70,9 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     Name = "Admin",
                     Email = "admin@example.com",
                     Phone = "1234567890",
-                    PasswordHash = hash,
-                    PasswordSalt = salt,
+                    OTP = otp,
                     UserName = "admin",
-                    ShouldChangePassword = true,
+                    TokenVersion = Guid.NewGuid(),
                     UserTypeId = (int)UserTypes.Admin,
                     StatusID = 1,
                     DurationID = 1,
@@ -89,10 +88,9 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     Name = "Manager",
                     Email = "manager@example.com",
                     Phone = "1234567890",
-                    PasswordHash = hash,
-                    PasswordSalt = salt,
+                    OTP = otp,
                     UserName = "manager",
-                    ShouldChangePassword = true,
+                    TokenVersion = Guid.NewGuid(),
                     UserTypeId = (int)UserTypes.Manager,
                     StatusID = 1,
                     DurationID = 1,
@@ -108,10 +106,9 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     Name = "Employee",
                     Email = "employee@example.com",
                     Phone = "1234567890",
-                    PasswordHash = hash,
-                    PasswordSalt = salt,
+                    OTP = otp,
                     UserName = "employee",
-                    ShouldChangePassword = true,
+                    TokenVersion = Guid.NewGuid(),
                     UserTypeId = (int)UserTypes.Employee,
                     StatusID = 1,
                     DurationID = 1,
@@ -131,7 +128,39 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
+        public string GenerateRandomOTP(int length)
+        {
+            const string upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+            const string lowerChars = "abcdefghijklmnopqrstuvwxyz";
+            const string digitChars = "0123456789";
+            const string specialChars = "!@#$%^&*";
+            const string allChars = upperChars + lowerChars + digitChars + specialChars;
+            char[] otp = new char[length];
+            RandomNumberGenerator rng = RandomNumberGenerator.Create();
 
+            otp[0] = GetRandomChar(upperChars, rng);
+            otp[1] = GetRandomChar(lowerChars, rng);
+            otp[2] = GetRandomChar(digitChars, rng);
+            otp[3] = GetRandomChar(specialChars, rng); 
+            for (int i = 4; i < length; i++)
+            {
+                otp[i] = GetRandomChar(allChars, rng);
+            }
+            return new string(otp.OrderBy(_ => GetRandomInt(rng)).ToArray());
+        }
+
+        private char GetRandomChar(string characterSet, RandomNumberGenerator rng)
+        {
+            byte[] randomByte = new byte[1];
+            rng.GetBytes(randomByte);
+            return characterSet[randomByte[0] % characterSet.Length];
+        }
+
+        private int GetRandomInt(RandomNumberGenerator rng)
+        {
+            byte[] randomBytes = new byte[4];
+            rng.GetBytes(randomBytes);
+            return BitConverter.ToInt32(randomBytes, 0);
+        }
     }
 }
-

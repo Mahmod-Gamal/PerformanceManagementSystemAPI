@@ -28,5 +28,42 @@ namespace PerformanceManagementSystem.Infrastructure.Identity
             }
             return true;
         }
+
+        public string GenerateRandomOTP()
+        {
+            int length = 8;
+            const string upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lowerChars = "abcdefghijklmnopqrstuvwxyz";
+            const string digitChars = "0123456789";
+            const string specialChars = "!@#$%^&*";
+            const string allChars = upperChars + lowerChars + digitChars + specialChars;
+            char[] otp = new char[length];
+            RandomNumberGenerator rng = RandomNumberGenerator.Create();
+
+            otp[0] = GetRandomChar(upperChars, rng);
+            otp[1] = GetRandomChar(lowerChars, rng);
+            otp[2] = GetRandomChar(digitChars, rng);
+            otp[3] = GetRandomChar(specialChars, rng);
+            for (int i = 4; i < length; i++)
+            {
+                otp[i] = GetRandomChar(allChars, rng);
+            }
+            return new string(otp.OrderBy(_ => GetRandomInt(rng)).ToArray());
+        }
+
+        private char GetRandomChar(string characterSet, RandomNumberGenerator rng)
+        {
+            byte[] randomByte = new byte[1];
+            rng.GetBytes(randomByte);
+            return characterSet[randomByte[0] % characterSet.Length];
+        }
+
+        private int GetRandomInt(RandomNumberGenerator rng)
+        {
+            byte[] randomBytes = new byte[4];
+            rng.GetBytes(randomBytes);
+            return BitConverter.ToInt32(randomBytes, 0);
+        }
+
     }
 }
