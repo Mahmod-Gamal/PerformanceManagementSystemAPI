@@ -7,6 +7,6 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.A
     public class AddDepartmentCommand : IRequest<Result<DepartmentDtoResponse>>
     {
         public string Name { get; set; }
-        public int? ManagerID{ get; set; }
+        public int? ManagerId { get; set; }
     }
 }
