@@ -1,3 +1,4 @@
+using Mapster;
 using MediatR;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
@@ -13,9 +14,9 @@ namespace PerformanceManagementSystem.Application.Features.User.Queries.GetAllUs
 {
     public class GetAllUsersQueryHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetAllUsersQuery, Result<IEnumerable<UserDtoResponse>>>
     {
-        public Task<Result<IEnumerable<UserDtoResponse>>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+        public async Task<Result<IEnumerable<UserDtoResponse>>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Result<IEnumerable<UserDtoResponse>>.Ok(unitOfWork.UserRepository.GetAllAsync().Result.Adapt<IEnumerable<UserDtoResponse>>());
         }
     }
 }

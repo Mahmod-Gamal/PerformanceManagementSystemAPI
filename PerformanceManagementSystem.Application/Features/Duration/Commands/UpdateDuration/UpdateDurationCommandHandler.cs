@@ -19,6 +19,7 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Upd
                 return Result<DurationDtoResponse>.NotFound("Duration Not found");
 
             request.Adapt(duration);
+            unitOfWork.CommitAsync();
 
             return Result<DurationDtoResponse>.Ok(duration.Adapt<DurationDtoResponse>());
         }

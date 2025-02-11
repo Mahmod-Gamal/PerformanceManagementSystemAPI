@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
@@ -18,8 +19,12 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.A
             if (!validationResult.IsValid)
                 return Result<DepartmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
-          var addDepartmentDtoResponse = new DepartmentDtoResponse();
-            return Result<DepartmentDtoResponse>.Ok(addDepartmentDtoResponse);
+            var department = request.Adapt<Domain.Entities.Department>();
+
+            await unitOfWork.DepartmentRepository.AddAsync(department);
+            unitOfWork.CommitAsync();
+
+            return Result<DepartmentDtoResponse>.Ok(department.Adapt<DepartmentDtoResponse>());
         }
     }
 }

@@ -1,7 +1,9 @@
+using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
+using PerformanceManagementSystem.Application.Features.Duration.Commands.AddDuration;
 using PerformanceManagementSystem.Application.Interfaces.Identity;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
 using System.Security.Claims;
@@ -18,8 +20,13 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Commands.A
             if (!validationResult.IsValid)
                 return Result<CompetencyDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
-          var addCompetencyDtoResponse = new CompetencyDtoResponse();
-            return Result<CompetencyDtoResponse>.Ok(addCompetencyDtoResponse);
+         
+            var competency = request.Adapt<Domain.Entities.Competency>();
+
+            await unitOfWork.CompetencyRepository.AddAsync(competency);
+            unitOfWork.CommitAsync();
+
+            return Result<DurationDtoResponse>.Ok(competency.Adapt<CompetencyDtoResponse>());
         }
     }
 }

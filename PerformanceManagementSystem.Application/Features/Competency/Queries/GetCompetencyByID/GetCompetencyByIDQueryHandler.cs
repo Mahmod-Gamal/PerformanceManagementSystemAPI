@@ -1,3 +1,4 @@
+using Mapster;
 using MediatR;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
@@ -13,9 +14,15 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Queries.Ge
 {
     public class GetCompetencyByIDQueryHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetCompetencyByIDQuery, Result<CompetencyDtoResponse>>
     {
-        public Task<Result<CompetencyDtoResponse>> Handle(GetCompetencyByIDQuery request, CancellationToken cancellationToken)
+        public async Task<Result<CompetencyDtoResponse>> Handle(GetCompetencyByIDQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var competency = unitOfWork.CompetencyRepository.GetByIdAsync(request.ID).Result;
+            if (competency == null)
+                return Result<CompetencyDtoResponse>.NotFound("Competency Not found");
+
+            request.Adapt(competency);
+
+            return Result<CompetencyDtoResponse>.Ok(competency.Adapt<CompetencyDtoResponse>());
         }
     }
 }

@@ -22,8 +22,14 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.D
             if (!validationResult.IsValid)
                 return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
-            var acknowledgmentDtoResponse = new AcknowledgmentDtoResponse();
-            return Result<AcknowledgmentDtoResponse>.Ok(acknowledgmentDtoResponse);
+            var department = unitOfWork.DepartmentRepository.GetByIdAsync(request.ID).Result;
+            if (department is null)
+                return Result<AcknowledgmentDtoResponse>.NotFound("Department Not Found");
+
+            unitOfWork.DepartmentRepository.Remove(department);
+            unitOfWork.CommitAsync();
+
+            return Result<AcknowledgmentDtoResponse>.Ok(new("Deleted Successfully"));
         }
     }
 }

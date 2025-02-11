@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Mapster;
+using MediatR;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
 using PerformanceManagementSystem.Application.Features.Department.Queries.GetDepartmentByID;
@@ -13,9 +14,15 @@ namespace PerformanceManagementSystem.Application.Features.Department.Queries.Ge
 {
     public class GetDepartmentByIDQueryHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetDepartmentByIDQuery, Result<DepartmentDtoResponse>>
     {
-        public Task<Result<DepartmentDtoResponse>> Handle(GetDepartmentByIDQuery request, CancellationToken cancellationToken)
+        public async Task<Result<DepartmentDtoResponse>> Handle(GetDepartmentByIDQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var department = unitOfWork.DepartmentRepository.GetByIdAsync(request.ID).Result;
+            if (department == null)
+                return Result<DepartmentDtoResponse>.NotFound("Department Not found");
+
+            request.Adapt(department);
+
+            return Result<DepartmentDtoResponse>.Ok(department.Adapt<DepartmentDtoResponse>());
         }
     }
 }

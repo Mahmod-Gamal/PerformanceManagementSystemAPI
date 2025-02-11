@@ -1,3 +1,4 @@
+using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using PerformanceManagementSystem.Application.Common.Results;
@@ -18,8 +19,12 @@ namespace PerformanceManagementSystem.Application.Features.User.Commands.AddUser
             if (!validationResult.IsValid)
                 return Result<UserDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
-          var addUserDtoResponse = new UserDtoResponse();
-            return Result<UserDtoResponse>.Ok(addUserDtoResponse);
+            var user = request.Adapt<Domain.Entities.User>();
+
+            await unitOfWork.UserRepository.AddAsync(user);
+            unitOfWork.CommitAsync();
+
+            return Result<UserDtoResponse>.Ok(user.Adapt<UserDtoResponse>());
         }
     }
 }

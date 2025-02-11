@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
 using PerformanceManagementSystem.Application.Features.Competency.Commands.AddCompetency;
+using PerformanceManagementSystem.Application.Features.Duration.Commands.DeleteDuration;
 using PerformanceManagementSystem.Application.Interfaces.Identity;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
 using System;
@@ -22,8 +23,15 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Commands.D
             if (!validationResult.IsValid)
                 return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
-            var acknowledgmentDtoResponse = new AcknowledgmentDtoResponse();
-            return Result<AcknowledgmentDtoResponse>.Ok(acknowledgmentDtoResponse);
+
+            var competency = unitOfWork.CompetencyRepository.GetByIdAsync(request.ID).Result;
+            if (competency is null)
+                return Result<AcknowledgmentDtoResponse>.NotFound("Competency Not Found");
+
+            unitOfWork.CompetencyRepository.Remove(competency);
+            unitOfWork.CommitAsync();
+
+            return Result<AcknowledgmentDtoResponse>.Ok(new("Deleted Successfully"));
         }
     }
 }

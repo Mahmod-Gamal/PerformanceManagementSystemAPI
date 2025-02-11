@@ -22,8 +22,14 @@ namespace PerformanceManagementSystem.Application.Features.User.Commands.DeleteU
             if (!validationResult.IsValid)
                 return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
-            var acknowledgmentDtoResponse = new AcknowledgmentDtoResponse();
-            return Result<AcknowledgmentDtoResponse>.Ok(acknowledgmentDtoResponse);
+            var user = unitOfWork.UserRepository.GetByIdAsync(request.ID).Result;
+            if (user is null)
+                return Result<AcknowledgmentDtoResponse>.NotFound("User Not Found");
+
+            unitOfWork.UserRepository.Remove(user);
+            unitOfWork.CommitAsync();
+
+            return Result<AcknowledgmentDtoResponse>.Ok(new("Deleted Successfully"));
         }
     }
 }
