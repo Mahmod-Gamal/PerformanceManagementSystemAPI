@@ -30,7 +30,6 @@ namespace PerformanceManagementSystem.Api.Controllers
         public async Task<ActionResult<AcknowledgmentDtoResponse>> ChangePassword(ChangePasswordCommand changePasswordCommand)
             => HandelResult(await mediator.Send(changePasswordCommand));
 
-        [Authorize]
         [HttpPost("SetPassword")]
         public async Task<ActionResult<AcknowledgmentDtoResponse>> SetPassword(SetPasswordCommand setPasswordCommand)
             => HandelResult(await mediator.Send(setPasswordCommand));
