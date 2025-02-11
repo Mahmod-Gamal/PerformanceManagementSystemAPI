@@ -6,7 +6,7 @@ namespace PerformanceManagementSystem.Infrastructure.Identity
 {
     public class PasswordManager : IPasswordManager
     {
-        private const string _EncryptionKey = "P56fF87*+$pzx";
+        private const string _EncryptionKey = "P56fF87*+$pzxtre";
         public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512())

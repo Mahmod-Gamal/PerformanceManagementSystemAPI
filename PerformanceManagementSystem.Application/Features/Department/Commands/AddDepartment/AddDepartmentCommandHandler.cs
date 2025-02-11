@@ -21,7 +21,7 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.A
             var department = request.Adapt<Domain.Entities.Department>();
 
             await unitOfWork.DepartmentRepository.AddAsync(department);
-            unitOfWork.CommitAsync();
+            await unitOfWork.CommitAsync();
 
             return Result<DepartmentDtoResponse>.Ok(department.Adapt<DepartmentDtoResponse>());
         }
