@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PerformanceManagementSystem.Application.DTOs;
 using PerformanceManagementSystem.Application.Features.Department.Commands.AddDepartment;
+using PerformanceManagementSystem.Application.Features.Department.Commands.DeleteDepartment;
 using PerformanceManagementSystem.Application.Features.Department.Commands.UpdateDepartment;
 using PerformanceManagementSystem.Application.Features.Department.Queries.GetAllDepartments;
 using PerformanceManagementSystem.Application.Features.Department.Queries.GetDepartmentByID;
@@ -25,7 +26,7 @@ namespace PerformanceManagementSystem.Api.Controllers
 
         [Authorize]
         [HttpDelete("DeleteDepartment")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> DeleteDepartment(AddDepartmentCommand command)
+        public async Task<ActionResult<AcknowledgmentDtoResponse>> DeleteDepartment(DeleteDepartmentCommand command)
             => HandelResult(await mediator.Send(command));
 
         [Authorize]

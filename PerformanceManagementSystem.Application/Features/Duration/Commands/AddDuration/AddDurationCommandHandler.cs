@@ -17,7 +17,7 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Add
             var duration = request.Adapt<Domain.Entities.Duration>();
 
             await unitOfWork.DurationRepository.AddAsync(duration);
-            unitOfWork.CommitAsync();
+            await unitOfWork.CommitAsync();
 
             return Result<DurationDtoResponse>.Ok(duration.Adapt<DurationDtoResponse>());
         }
