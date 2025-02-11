@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using PerformanceManagementSystem.Domain.Entities;
 using PerformanceManagementSystem.Infrastructure.Persistence.Configurations;
 using PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer;

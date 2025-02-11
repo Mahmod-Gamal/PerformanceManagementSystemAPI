@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
-using PerformanceManagementSystem.Application.Features.Duration.Commands.AddDuration;
 
 namespace PerformanceManagementSystem.Application.Features.Duration.Commands.AddDuration
 {

@@ -1,6 +1,4 @@
-﻿
-
-namespace PerformanceManagementSystem.Application.Common.Results
+﻿namespace PerformanceManagementSystem.Application.Common.Results
 {
     public enum Status
     {

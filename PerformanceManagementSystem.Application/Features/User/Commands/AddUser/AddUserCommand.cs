@@ -1,7 +1,6 @@
 using MediatR;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
-using PerformanceManagementSystem.Application.Features.User.Commands.AddUser;
 
 namespace PerformanceManagementSystem.Application.Features.User.Commands.AddUser
 {

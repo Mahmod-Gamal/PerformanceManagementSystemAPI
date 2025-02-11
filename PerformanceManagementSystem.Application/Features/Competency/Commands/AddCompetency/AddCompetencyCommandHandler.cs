@@ -1,13 +1,8 @@
 using Mapster;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
-using PerformanceManagementSystem.Application.Features.Duration.Commands.AddDuration;
-using PerformanceManagementSystem.Application.Interfaces.Identity;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
-using System.Security.Claims;
-
 
 namespace PerformanceManagementSystem.Application.Features.Competency.Commands.AddCompetency
 {

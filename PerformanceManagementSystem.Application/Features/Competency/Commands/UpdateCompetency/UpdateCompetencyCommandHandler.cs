@@ -2,7 +2,6 @@ using Mapster;
 using MediatR;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
-using PerformanceManagementSystem.Application.Features.Duration.Commands.UpdateDuration;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
 
 namespace PerformanceManagementSystem.Application.Features.Competency.Commands.UpdateCompetency

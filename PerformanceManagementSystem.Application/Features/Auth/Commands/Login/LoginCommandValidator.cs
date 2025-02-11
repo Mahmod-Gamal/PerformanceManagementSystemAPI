@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-
 namespace PerformanceManagementSystem.Application.Features.Auth.Commands.Login
 {
     public class LoginCommandValidator : AbstractValidator<LoginCommand>

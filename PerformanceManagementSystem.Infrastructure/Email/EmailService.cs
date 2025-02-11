@@ -1,12 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
-using PerformanceManagementSystem.Infrastructure.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using PerformanceManagementSystem.Application.Interfaces.Email;
 
 namespace PerformanceManagementSystem.Infrastructure.Email

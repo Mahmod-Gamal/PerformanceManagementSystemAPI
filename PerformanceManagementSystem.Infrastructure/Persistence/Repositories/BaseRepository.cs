@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-
 namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
 {
     public class BaseRepository<TEntity>(PerformanceManagementDbContext context) : IBaseRepository<TEntity> where TEntity : class

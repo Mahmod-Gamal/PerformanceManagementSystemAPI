@@ -1,6 +1,4 @@
-﻿
-
-namespace PerformanceManagementSystem.Domain.Entities
+﻿namespace PerformanceManagementSystem.Domain.Entities
 {
     public class User : BaseEntity
     {
@@ -8,8 +6,8 @@ namespace PerformanceManagementSystem.Domain.Entities
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Phone { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
+        public byte[]? PasswordHash { get; set; }
+        public byte[]? PasswordSalt { get; set; }
         public string? OTP { get; set; }
         public Guid TokenVersion { get; set; }
         public int UserTypeId { get; set; }

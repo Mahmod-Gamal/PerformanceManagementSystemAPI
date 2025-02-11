@@ -1,5 +1,4 @@
-﻿
-using PerformanceManagementSystem.Domain.Entities;
+﻿using PerformanceManagementSystem.Domain.Entities;
 using PerformanceManagementSystem.Application.DTOs;
 
 namespace PerformanceManagementSystem.Application.Interfaces.Identity

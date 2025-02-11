@@ -1,6 +1,4 @@
-﻿
-
-namespace PerformanceManagementSystem.Application.Interfaces.Identity
+﻿namespace PerformanceManagementSystem.Application.Interfaces.Identity
 {
     public interface IPasswordManager
     {

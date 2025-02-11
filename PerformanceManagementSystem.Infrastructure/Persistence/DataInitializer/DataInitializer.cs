@@ -35,7 +35,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
         public List<Duration> DurationsSeed()
         {
             return new List<Duration>() {
-                new Duration { ID = 1, Name = "Main 2025",Start = new DateTime(year:2025,month:1,day:1),End = new DateTime(year:2025,month:5,day:31) }
+                new Duration { ID = 1, Name = "Main 2025",Start = DateTime.Now.Date.AddDays(1-DateTime.Now.DayOfYear),End = DateTime.Now.Date.AddDays((-DateTime.Now.DayOfYear) + 31 ) }
             };
         }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-
-namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
+﻿namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
 {
         public interface IBaseRepository<TEntity> where TEntity : class
         {
