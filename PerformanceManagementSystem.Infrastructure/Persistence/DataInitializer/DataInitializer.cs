@@ -34,10 +34,18 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
         }
         public List<Duration> DurationsSeed()
         {
-            return new List<Duration>() {
-                new Duration { ID = 1, Name = "Main 2025",Start = DateTime.Now.Date.AddDays(1-DateTime.Now.DayOfYear),End = DateTime.Now.Date.AddDays((-DateTime.Now.DayOfYear) + 31 ) }
-            };
+            return new List<Duration>()
+                {
+                    new Duration
+                    {
+                        ID = 1,
+                        Name = "Main 2025",
+                        Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 1, 1)),  // First day of next year
+                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 1, 31))   // Last day of January next year
+                     }
+               };
         }
+
 
 
         public List<User> UsersSeed()
@@ -130,7 +138,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
         }
         public string GenerateRandomOTP(int length)
         {
-            const string upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+            const string upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lowerChars = "abcdefghijklmnopqrstuvwxyz";
             const string digitChars = "0123456789";
             const string specialChars = "!@#$%^&*";
@@ -141,7 +149,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
             otp[0] = GetRandomChar(upperChars, rng);
             otp[1] = GetRandomChar(lowerChars, rng);
             otp[2] = GetRandomChar(digitChars, rng);
-            otp[3] = GetRandomChar(specialChars, rng); 
+            otp[3] = GetRandomChar(specialChars, rng);
             for (int i = 4; i < length; i++)
             {
                 otp[i] = GetRandomChar(allChars, rng);

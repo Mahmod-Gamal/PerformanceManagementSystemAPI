@@ -1,18 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Options;
 using PerformanceManagementSystem.Domain.Entities;
 using PerformanceManagementSystem.Infrastructure.Persistence.Configurations;
 using PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer;
+using PerformanceManagementSystem.Infrastructure.Persistence.Interceptors;
+using System.Reflection;
 
 namespace PerformanceManagementSystem.Infrastructure
 {
     public class PerformanceManagementDbContext : DbContext
     {
         private readonly IDataInitializer _dataInitializer;
+        private readonly AuditingSaveChangesInterceptor _auditingSaveChangesInterceptor;
         public PerformanceManagementDbContext(DbContextOptions<PerformanceManagementDbContext> options
-            , IDataInitializer dataInitializer)
+            , IDataInitializer dataInitializer
+            , AuditingSaveChangesInterceptor auditingInterceptor
+            )
             : base(options)
         {
             _dataInitializer = dataInitializer;
+            _auditingSaveChangesInterceptor = auditingInterceptor;
         }
 
         public DbSet<Competency> Competencies { get; set; }
@@ -36,15 +44,13 @@ namespace PerformanceManagementSystem.Infrastructure
             modelBuilder.Entity<CompetencyType>().HasData(_dataInitializer.CompetencyTypesSeed());
             modelBuilder.Entity<User>().HasData(_dataInitializer.UsersSeed());
 
-            modelBuilder.ApplyConfiguration(new UserTypeConfig());
-            modelBuilder.ApplyConfiguration(new DepartmentConfig());
-            modelBuilder.ApplyConfiguration(new CompetencyConfig());
-            modelBuilder.ApplyConfiguration(new DepartmentCompetencyConfig());
-            modelBuilder.ApplyConfiguration(new UserCompetencyConfig());
-            modelBuilder.ApplyConfiguration(new UserConfig());
-            modelBuilder.ApplyConfiguration(new UserLearningAndDevelopmentPlanConfig());
-            modelBuilder.ApplyConfiguration(new UserTrainingAndDevelopmentSectionConfig());
-            modelBuilder.ApplyConfiguration(new UserObjectiveConfig());
+            // Automatically apply all IEntityTypeConfiguration<T>
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.AddInterceptors(_auditingSaveChangesInterceptor);
         }
     }
 }

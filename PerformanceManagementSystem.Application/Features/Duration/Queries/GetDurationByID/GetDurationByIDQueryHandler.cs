@@ -11,12 +11,9 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Queries.GetD
     {
         public async Task<Result<DurationDtoResponse>> Handle(GetDurationByIDQuery request, CancellationToken cancellationToken)
         {
-            var duration = unitOfWork.DurationRepository.GetByIdAsync(request.ID).Result;
-            if (duration == null)
+            var duration = await unitOfWork.DurationRepository.GetByIdAsync(request.ID);
+            if (duration is null)
                 return Result<DurationDtoResponse>.NotFound("Duration Not found");
-
-            request.Adapt(duration);
-
             return Result<DurationDtoResponse>.Ok(duration.Adapt<DurationDtoResponse>());
         }
     }

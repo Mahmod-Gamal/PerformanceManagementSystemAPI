@@ -19,7 +19,7 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Commands.A
             var competency = request.Adapt<Domain.Entities.Competency>();
 
             await unitOfWork.CompetencyRepository.AddAsync(competency);
-            unitOfWork.CommitAsync();
+            var r = await unitOfWork.CommitAsync();
 
             return Result<DurationDtoResponse>.Ok(competency.Adapt<CompetencyDtoResponse>());
         }

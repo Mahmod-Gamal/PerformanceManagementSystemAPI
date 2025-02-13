@@ -4,7 +4,7 @@
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public DateOnly Start { get; set; }
+        public DateOnly End { get; set; }
     }
 }

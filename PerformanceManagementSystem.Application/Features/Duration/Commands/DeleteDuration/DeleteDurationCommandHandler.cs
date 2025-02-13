@@ -9,17 +9,11 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Del
     {
         public async Task<Result<AcknowledgmentDtoResponse>> Handle(DeleteDurationCommand request, CancellationToken cancellationToken)
         {
-            var Validator = new DeleteDurationCommandValidator();
-            var validationResult = Validator.Validate(request);
-            if (!validationResult.IsValid)
-                return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
-            var duration = unitOfWork.DurationRepository.GetByIdAsync(request.ID).Result;
+            var duration = await unitOfWork.DurationRepository.GetByIdAsync(request.ID);
             if (duration is null)
                 return Result<AcknowledgmentDtoResponse>.NotFound("Duration Not Found");
             unitOfWork.DurationRepository.Remove(duration);
-            unitOfWork.CommitAsync();
-
-            return Result<AcknowledgmentDtoResponse>.Ok(new ("Deleted Successfully"));
+            return Result<AcknowledgmentDtoResponse>.Ok(new("Deleted Successfully"));
         }
     }
 }

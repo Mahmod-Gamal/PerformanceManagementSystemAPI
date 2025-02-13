@@ -10,7 +10,8 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Queries.GetA
     {
         public async Task<Result<IEnumerable<DurationDtoResponse>>> Handle(GetAllDurationsQuery request, CancellationToken cancellationToken)
         {
-            return Result<IEnumerable<DurationDtoResponse>>.Ok(unitOfWork.DurationRepository.GetAllAsync().Result.Adapt<IEnumerable<DurationDtoResponse>>());
+            var durations = await unitOfWork.DurationRepository.GetAllAsync();
+            return Result<IEnumerable<DurationDtoResponse>>.Ok(durations.Adapt<IEnumerable<DurationDtoResponse>>());
         }
     }
 }

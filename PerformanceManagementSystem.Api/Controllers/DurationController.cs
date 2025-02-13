@@ -10,34 +10,30 @@ using PerformanceManagementSystem.Application.Features.Duration.Queries.GetDurat
 
 namespace PerformanceManagementSystem.Api.Controllers
 {
+   // [Authorize]
     public class DurationController(IMediator mediator) : BaseController
     {
 
-        [Authorize]
         [HttpPost("AddDuration")]
         public async Task<ActionResult<DurationDtoResponse>> AddDuration(AddDurationCommand command)
             => HandelResult(await mediator.Send(command));
 
 
-        [Authorize]
         [HttpPut("UpdateDuration")]
         public async Task<ActionResult<DurationDtoResponse>> UpdateDuration(UpdateDurationCommand command)
             => HandelResult(await mediator.Send(command));
 
-        [Authorize]
         [HttpDelete("DeleteDuration")]
         public async Task<ActionResult<AcknowledgmentDtoResponse>> DeleteDuration(DeleteDurationCommand command)
             => HandelResult(await mediator.Send(command));
 
-        [Authorize]
         [HttpGet("GetAllDurations")]
         public async Task<ActionResult<IEnumerable<DurationDtoResponse>>> GetAllDurations()
             => HandelResult(await mediator.Send(new GetAllDurationsQuery()));
 
-        [Authorize]
         [HttpGet("GetDuration/{ID}")]
         public async Task<ActionResult<DurationDtoResponse>> GetDuration(int ID)
-            => HandelResult(await mediator.Send(new GetDurationByIDQuery() {ID = ID}));
+            => HandelResult(await mediator.Send(new GetDurationByIDQuery() { ID = ID }));
 
 
     }

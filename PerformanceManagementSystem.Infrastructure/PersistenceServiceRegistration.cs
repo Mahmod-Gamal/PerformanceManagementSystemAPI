@@ -11,6 +11,8 @@ using PerformanceManagementSystem.Infrastructure.Identity;
 using PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer;
 using PerformanceManagementSystem.Infrastructure.Persistence.Repositories;
 using System.Text;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using PerformanceManagementSystem.Infrastructure.Persistence.Interceptors;
 
 
 namespace PerformanceManagementSystem.Infrastructure
@@ -23,6 +25,8 @@ namespace PerformanceManagementSystem.Infrastructure
 
             services.AddDbContext<PerformanceManagementDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("PerformanceManagementDbConnection")));
+            services.AddSingleton<AuditingSaveChangesInterceptor>();
+
 
             // Build the service provider to resolve the DbContext and initialize the database
             var serviceProvider = services.BuildServiceProvider();

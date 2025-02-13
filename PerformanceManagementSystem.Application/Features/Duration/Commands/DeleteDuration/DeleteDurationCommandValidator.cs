@@ -6,9 +6,8 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Del
     {
         public DeleteDurationCommandValidator()
         {
-
-            //RuleFor(x => x.NewPassword)
-            //    .MinimumLength(8).WithMessage("New password is too short.");
+            RuleFor(x => x.ID)
+           .GreaterThan(0).WithMessage("ID must be greater than 0.");
         }
     }
 }
