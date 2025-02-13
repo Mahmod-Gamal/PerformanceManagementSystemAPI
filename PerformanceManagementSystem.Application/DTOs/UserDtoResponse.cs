@@ -7,13 +7,13 @@
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Phone { get; set; }
-        public UserTypeDto Type { get; set; }
-        public DepartmentDto Department { get; set; }
-        public StatusDto Status { get; set; }
-        public DurationDto Duration { get; set; }
+        public ForeignDto Type { get; set; }
+        public ForeignDto Department { get; set; }
+        public ForeignDto Status { get; set; }
+        public ForeignDto Duration { get; set; }
         public DateTime CreatedAt { get; set; }
-        public UserDto Creator { get; set; }
+        public ForeignDto Creator { get; set; }
         public DateTime? ModifiedAt { get; set; }
-        public UserDto Modifier { get; set; }
+        public ForeignDto Modifier { get; set; }
     }
 }
