@@ -10,7 +10,7 @@ namespace PerformanceManagementSystem.Application.Features.Department.Queries.Ge
     {
         public async Task<Result<DepartmentDtoResponse>> Handle(GetDepartmentByIDQuery request, CancellationToken cancellationToken)
         {
-            var department = unitOfWork.DepartmentRepository.GetByIdAsync(request.ID).Result;
+            var department = unitOfWork.DepartmentRepository.GetDepartmentWithDetails(request.ID).Result;
             if (department == null)
                 return Result<DepartmentDtoResponse>.NotFound("Department Not found");
             return Result<DepartmentDtoResponse>.Ok(department.Adapt<DepartmentDtoResponse>());

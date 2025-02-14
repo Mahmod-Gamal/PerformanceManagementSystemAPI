@@ -5,5 +5,7 @@ namespace PerformanceManagementSystem.Application.Interfaces.Persistence
 {
     public interface IDepartmentRepository : IBaseRepository<Department>
     {
+        Task<IEnumerable<Department>> GetDepartmentsWithDetails();
+        Task<Department> GetDepartmentWithDetails(int ID);
     }
 }

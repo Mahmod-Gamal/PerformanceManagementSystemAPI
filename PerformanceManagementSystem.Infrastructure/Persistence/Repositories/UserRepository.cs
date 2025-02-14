@@ -15,6 +15,18 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
                                   .Include(u => u.UserType)
                                   .FirstOrDefaultAsync();
 
+        public async Task<User> GetUserWithDetails(int ID) =>
+           await context.Users
+               .Include(x => x.Status).Include(x => x.UserType).Include(x=>x.Department)
+               .Include(x => x.Duration).Include(x => x.Creator).Include(x => x.Modifier)
+               .FirstOrDefaultAsync(x => x.ID == ID);
+
+        public async Task<IEnumerable<User>> GetUsersWithDetails() =>
+            await context.Users
+               .Include(x => x.Status).Include(x => x.UserType).Include(x => x.Department)
+               .Include(x => x.Duration).Include(x => x.Creator).Include(x => x.Modifier)
+                .ToListAsync();
+
     }
 }
 

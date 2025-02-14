@@ -10,7 +10,7 @@ namespace PerformanceManagementSystem.Application.Features.User.Queries.GetUserB
     {
         public async Task<Result<UserDtoResponse>> Handle(GetUserByIDQuery request, CancellationToken cancellationToken)
         {
-            var user = unitOfWork.UserRepository.GetByIdAsync(request.ID).Result;
+            var user = unitOfWork.UserRepository.GetUserWithDetails(request.ID).Result;
             if (user == null)
                 return Result<UserDtoResponse>.NotFound("User Not found");
             return Result<UserDtoResponse>.Ok(user.Adapt<UserDtoResponse>());

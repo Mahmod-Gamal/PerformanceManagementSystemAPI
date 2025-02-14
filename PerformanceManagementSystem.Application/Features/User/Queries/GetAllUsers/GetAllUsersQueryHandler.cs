@@ -10,7 +10,7 @@ namespace PerformanceManagementSystem.Application.Features.User.Queries.GetAllUs
     {
         public async Task<Result<IEnumerable<UserDtoResponse>>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            return Result<IEnumerable<UserDtoResponse>>.Ok(unitOfWork.UserRepository.GetAllAsync().Result.Adapt<IEnumerable<UserDtoResponse>>());
+            return Result<IEnumerable<UserDtoResponse>>.Ok(unitOfWork.UserRepository.GetUsersWithDetails().Result.Adapt<IEnumerable<UserDtoResponse>>());
         }
     }
 }

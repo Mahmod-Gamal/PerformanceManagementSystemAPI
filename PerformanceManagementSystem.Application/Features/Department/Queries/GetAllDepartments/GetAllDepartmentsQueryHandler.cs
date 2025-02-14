@@ -10,7 +10,7 @@ namespace PerformanceManagementSystem.Application.Features.Department.Queries.Ge
     {
         public async Task<Result<IEnumerable<DepartmentDtoResponse>>> Handle(GetAllDepartmentsQuery request, CancellationToken cancellationToken)
         {
-            return Result<IEnumerable<DepartmentDtoResponse>>.Ok(unitOfWork.DepartmentRepository.GetAllAsync().Result.Adapt<IEnumerable<DepartmentDtoResponse>>());
+            return Result<IEnumerable<DepartmentDtoResponse>>.Ok(unitOfWork.DepartmentRepository.GetDepartmentsWithDetails().Result.Adapt<IEnumerable<DepartmentDtoResponse>>());
 
         }
     }

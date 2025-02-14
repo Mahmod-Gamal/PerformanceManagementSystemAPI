@@ -10,7 +10,7 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Queries.Ge
     {
         public async Task<Result<IEnumerable<CompetencyDtoResponse>>> Handle(GetAllCompetenciesQuery request, CancellationToken cancellationToken)
         {
-            return Result<IEnumerable<CompetencyDtoResponse>>.Ok(unitOfWork.CompetencyRepository.GetAllAsync().Result.Adapt<IEnumerable<CompetencyDtoResponse>>());
+            return Result<IEnumerable<CompetencyDtoResponse>>.Ok(unitOfWork.CompetencyRepository.GetCompetenciesWithDetails().Result.Adapt<IEnumerable<CompetencyDtoResponse>>());
 
         }
     }

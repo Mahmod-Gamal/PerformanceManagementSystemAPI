@@ -10,7 +10,7 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Queries.Ge
     {
         public async Task<Result<CompetencyDtoResponse>> Handle(GetCompetencyByIDQuery request, CancellationToken cancellationToken)
         {
-            var competency = unitOfWork.CompetencyRepository.GetByIdAsync(request.ID).Result;
+            var competency = unitOfWork.CompetencyRepository.GetCompetencyWithDetails(request.ID).Result;
             if (competency == null)
                 return Result<CompetencyDtoResponse>.NotFound("Competency Not found");
             return Result<CompetencyDtoResponse>.Ok(competency.Adapt<CompetencyDtoResponse>());
