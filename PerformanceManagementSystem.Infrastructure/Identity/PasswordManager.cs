@@ -55,12 +55,23 @@ namespace PerformanceManagementSystem.Infrastructure.Identity
         public string EncodeOTT(string username, string OTP)
         {
             string combinedData = $"{username}:{OTP}";
-            return Encrypt(combinedData);
+
+            // Encrypt the combined data to get the OTP as a Base64 string
+            string encryptedOtp = Encrypt(combinedData);
+
+            // URL-encode the Base64-encoded OTP to ensure safe transmission in the URL
+            return Uri.EscapeDataString(encryptedOtp);
         }
 
         public (string username, string OTP) DecodeOTT(string OTT)
         {
-            string decryptedData = Decrypt(OTT);
+            // URL-decode the OTT before passing it to Decrypt
+            string decodedOTT = Uri.UnescapeDataString(OTT);
+
+            // Decrypt the URL-decoded OTP string
+            string decryptedData = Decrypt(decodedOTT);
+
+            // Split the decrypted data into username and OTP
             string[] parts = decryptedData.Split(':');
 
             if (parts.Length == 2)
@@ -88,7 +99,7 @@ namespace PerformanceManagementSystem.Infrastructure.Identity
             byte[] keyBytes = Encoding.UTF8.GetBytes(_EncryptionKey);
             using Aes aes = Aes.Create();
             aes.Key = keyBytes;
-            aes.IV = new byte[16];
+            aes.IV = new byte[16]; // Zero IV (for simplicity)
 
             using var decryptor = aes.CreateDecryptor();
             byte[] encryptedBytes = Convert.FromBase64String(cipherText);
@@ -96,7 +107,6 @@ namespace PerformanceManagementSystem.Infrastructure.Identity
 
             return Encoding.UTF8.GetString(plainBytes);
         }
-
         private char GetRandomChar(string characterSet, RandomNumberGenerator rng)
         {
             byte[] randomByte = new byte[1];
