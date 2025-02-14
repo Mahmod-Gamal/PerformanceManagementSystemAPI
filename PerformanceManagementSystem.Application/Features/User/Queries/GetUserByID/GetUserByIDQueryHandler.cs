@@ -13,9 +13,6 @@ namespace PerformanceManagementSystem.Application.Features.User.Queries.GetUserB
             var user = unitOfWork.UserRepository.GetByIdAsync(request.ID).Result;
             if (user == null)
                 return Result<UserDtoResponse>.NotFound("User Not found");
-
-            request.Adapt(user);
-
             return Result<UserDtoResponse>.Ok(user.Adapt<UserDtoResponse>());
         }
     }

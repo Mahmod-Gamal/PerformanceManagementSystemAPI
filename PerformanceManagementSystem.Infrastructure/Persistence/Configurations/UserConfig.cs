@@ -21,6 +21,8 @@ namespace  PerformanceManagementSystem.Infrastructure.Persistence.Configurations
                 .HasForeignKey(u => u.StatusID)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Property(u => u.StatusID).HasDefaultValue(1);
+
             builder.HasOne(u => u.Duration)
               .WithMany(u => u.Users)
               .HasForeignKey(u => u.DurationID)

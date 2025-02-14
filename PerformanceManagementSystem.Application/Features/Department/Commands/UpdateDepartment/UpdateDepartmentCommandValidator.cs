@@ -6,9 +6,9 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.U
     {
         public UpdateDepartmentCommandValidator()
         {
-
-            //RuleFor(x => x.NewPassword)
-            //    .MinimumLength(8).WithMessage("New password is too short.");
+            RuleFor(x => x.Name)
+            .NotEmpty().WithMessage("Name is required.")
+            .MaximumLength(50).WithMessage("Name must not exceed 50 characters.");
         }
     }
 }

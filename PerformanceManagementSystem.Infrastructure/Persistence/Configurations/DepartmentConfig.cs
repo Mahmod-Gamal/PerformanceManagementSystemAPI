@@ -13,6 +13,8 @@ namespace  PerformanceManagementSystem.Infrastructure.Persistence.Configurations
                .WithMany(s => s.Departments)
                .HasForeignKey(d => d.StatusID);
 
+            builder.Property(d => d.StatusID).HasDefaultValue(1);
+
             builder.HasOne(d => d.Manager)
                .WithMany(u => u.ManagedDepartments)
                .HasForeignKey(d => d.ManagerId)

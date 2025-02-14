@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PerformanceManagementSystem.Application.DTOs;
 using PerformanceManagementSystem.Application.Features.Competency.Commands.AddCompetency;
+using PerformanceManagementSystem.Application.Features.Competency.Commands.DeleteCompetency;
 using PerformanceManagementSystem.Application.Features.Competency.Commands.UpdateCompetency;
 using PerformanceManagementSystem.Application.Features.Competency.Queries.GetAllCompetencies;
 using PerformanceManagementSystem.Application.Features.Competency.Queries.GetCompetencyByID;
@@ -22,7 +23,7 @@ namespace PerformanceManagementSystem.Api.Controllers
             => HandelResult(await mediator.Send(command));
 
         [HttpDelete("DeleteCompetency")]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> DeleteCompetency(AddCompetencyCommand command)
+        public async Task<ActionResult<AcknowledgmentDtoResponse>> DeleteCompetency(DeleteCompetencyCommand command)
             => HandelResult(await mediator.Send(command));
 
         [HttpGet("GetAllCompetencies")]

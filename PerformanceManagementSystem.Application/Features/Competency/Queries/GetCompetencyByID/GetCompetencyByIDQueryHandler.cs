@@ -13,9 +13,6 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Queries.Ge
             var competency = unitOfWork.CompetencyRepository.GetByIdAsync(request.ID).Result;
             if (competency == null)
                 return Result<CompetencyDtoResponse>.NotFound("Competency Not found");
-
-            request.Adapt(competency);
-
             return Result<CompetencyDtoResponse>.Ok(competency.Adapt<CompetencyDtoResponse>());
         }
     }

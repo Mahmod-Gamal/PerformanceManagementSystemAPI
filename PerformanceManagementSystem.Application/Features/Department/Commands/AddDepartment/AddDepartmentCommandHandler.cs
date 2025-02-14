@@ -13,16 +13,9 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.A
     {
         public async Task<Result<DepartmentDtoResponse>> Handle(AddDepartmentCommand request, CancellationToken cancellationToken)
         {
-            var Validator = new AddDepartmentCommandValidator();
-            var validationResult = Validator.Validate(request);
-            if (!validationResult.IsValid)
-                return Result<DepartmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
-
             var department = request.Adapt<Domain.Entities.Department>();
-
             await unitOfWork.DepartmentRepository.AddAsync(department);
-            await unitOfWork.CommitAsync();
-
+            //await unitOfWork.CommitAsync(cancellationToken);
             return Result<DepartmentDtoResponse>.Ok(department.Adapt<DepartmentDtoResponse>());
         }
     }

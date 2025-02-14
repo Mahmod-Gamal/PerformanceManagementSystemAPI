@@ -13,9 +13,6 @@ namespace PerformanceManagementSystem.Application.Features.Department.Queries.Ge
             var department = unitOfWork.DepartmentRepository.GetByIdAsync(request.ID).Result;
             if (department == null)
                 return Result<DepartmentDtoResponse>.NotFound("Department Not found");
-
-            request.Adapt(department);
-
             return Result<DepartmentDtoResponse>.Ok(department.Adapt<DepartmentDtoResponse>());
         }
     }

@@ -12,11 +12,11 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Configurations
                 .WithMany(ct => ct.Competencies)
                 .HasForeignKey(c => c.CompetenciesTypeID);
 
-
-
             builder.HasOne(c => c.Status)
                 .WithMany(s => s.Competencies)
                 .HasForeignKey(c => c.StatusID);
+
+            builder.Property(c => c.StatusID).HasDefaultValue(1);
 
             builder.HasOne(c => c.Creator)
             .WithMany(u => u.CreatedCompetencies)

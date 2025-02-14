@@ -10,18 +10,10 @@ namespace PerformanceManagementSystem.Application.Features.User.Commands.UpdateU
     {
         public async Task<Result<UserDtoResponse>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            var Validator = new UpdateUserCommandValidator();
-            var validationResult = Validator.Validate(request);
-            if (!validationResult.IsValid)
-                return Result<UserDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
-
             var user = unitOfWork.UserRepository.GetByIdAsync(request.ID).Result;
             if (user == null)
                 return Result<UserDtoResponse>.NotFound("User Not found");
-
             request.Adapt(user);
-            unitOfWork.CommitAsync();
-
             return Result<UserDtoResponse>.Ok(user.Adapt<UserDtoResponse>());
         }
     }

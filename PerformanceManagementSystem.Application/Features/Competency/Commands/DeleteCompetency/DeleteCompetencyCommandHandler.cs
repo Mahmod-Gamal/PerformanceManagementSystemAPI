@@ -9,19 +9,11 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Commands.D
     {
         public async Task<Result<AcknowledgmentDtoResponse>> Handle(DeleteCompetencyCommand request, CancellationToken cancellationToken)
         {
-            var Validator = new DeleteCompetencyCommandValidator();
-            var validationResult = Validator.Validate(request);
-            if (!validationResult.IsValid)
-                return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
-
-
             var competency = unitOfWork.CompetencyRepository.GetByIdAsync(request.ID).Result;
             if (competency is null)
                 return Result<AcknowledgmentDtoResponse>.NotFound("Competency Not Found");
-
             unitOfWork.CompetencyRepository.Remove(competency);
-            unitOfWork.CommitAsync();
-
+            //await unitOfWork.CommitAsync(cancellationToken);
             return Result<AcknowledgmentDtoResponse>.Ok(new("Deleted Successfully"));
         }
     }

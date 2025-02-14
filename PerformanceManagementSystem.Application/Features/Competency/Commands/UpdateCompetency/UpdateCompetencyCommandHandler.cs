@@ -10,18 +10,11 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Commands.U
     {
         public async Task<Result<CompetencyDtoResponse>> Handle(UpdateCompetencyCommand request, CancellationToken cancellationToken)
         {
-            var Validator = new UpdateCompetencyCommandValidator();
-            var validationResult = Validator.Validate(request);
-            if (!validationResult.IsValid)
-                return Result<CompetencyDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
-          
             var competency = unitOfWork.CompetencyRepository.GetByIdAsync(request.ID).Result;
             if (competency == null)
                 return Result<CompetencyDtoResponse>.NotFound("Competency Not found");
-
             request.Adapt(competency);
-            unitOfWork.CommitAsync();
-
+            //await unitOfWork.CommitAsync(cancellationToken);
             return Result<CompetencyDtoResponse>.Ok(competency.Adapt<CompetencyDtoResponse>());
         }
     }
