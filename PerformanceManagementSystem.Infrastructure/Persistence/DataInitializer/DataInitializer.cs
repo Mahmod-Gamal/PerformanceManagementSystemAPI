@@ -39,10 +39,19 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     new Duration
                     {
                         ID = 1,
-                        Name = "Main 2025",
+                        Name = "Main MidYear",
                         Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 1, 1)),  // First day of next year
-                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 1, 31))   // Last day of January next year
-                     }
+                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 1, 31)),   // Last day of January next year
+                        IsPrimary = true
+                    },
+                    new Duration
+                    {
+                        ID = 2,
+                        Name = "Main EndYear",
+                        Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 7, 1)),
+                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 7, 31)),
+                        IsPrimary = true
+                    }
                };
         }
 
@@ -65,7 +74,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     TokenVersion = Guid.NewGuid(),
                     UserTypeId = (int)UserTypes.SuperAdmin,
                     StatusID = 1,
-                    DurationID = 1,
+                    MidYearDurationID = 1,
+                    EndYearDurationID = 2,
                     CreatedAt = DateTime.Now,
                     CreatedBy = 1,
                     ModifiedAt = DateTime.Now,
@@ -83,7 +93,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     TokenVersion = Guid.NewGuid(),
                     UserTypeId = (int)UserTypes.Admin,
                     StatusID = 1,
-                    DurationID = 1,
+                    MidYearDurationID = 1,
+                    EndYearDurationID = 2,
                     CreatedAt = DateTime.Now,
                     CreatedBy = 1,
                     ModifiedAt = DateTime.Now,
@@ -101,7 +112,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     TokenVersion = Guid.NewGuid(),
                     UserTypeId = (int)UserTypes.Manager,
                     StatusID = 1,
-                    DurationID = 1,
+                    MidYearDurationID = 1,
+                    EndYearDurationID = 2,
                     CreatedAt = DateTime.Now,
                     CreatedBy = 1,
                     ModifiedAt = DateTime.Now,
@@ -119,7 +131,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     TokenVersion = Guid.NewGuid(),
                     UserTypeId = (int)UserTypes.Employee,
                     StatusID = 1,
-                    DurationID = 1,
+                    MidYearDurationID = 1,
+                    EndYearDurationID = 2,
                     CreatedAt = DateTime.Now,
                     CreatedBy = 1,
                     ModifiedAt = DateTime.Now,

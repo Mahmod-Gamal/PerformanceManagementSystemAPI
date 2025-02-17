@@ -13,10 +13,10 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Upd
          .NotEmpty().WithMessage("Name is required.")
          .MaximumLength(50).WithMessage("Name must not exceed 50 characters.");
 
-            RuleFor(x => x.Start)
-             .NotEmpty().WithMessage("Start Date is required.")
-            .Must(start => start > DateOnly.FromDateTime(DateTime.Now))
-             .WithMessage("Start Date must be after today.");
+            //RuleFor(x => x.Start)
+            // .NotEmpty().WithMessage("Start Date is required.")
+            //.Must(start => start > DateOnly.FromDateTime(DateTime.Now))
+            // .WithMessage("Start Date must be after today.");
 
             RuleFor(x => x.End)
                 .NotEmpty().WithMessage("End Date is required.")

@@ -6,5 +6,6 @@
         public DateOnly Start {  get; set; }
         public DateOnly End { get; set; }
         public ICollection<User> Users { get; set; }
+        public bool IsPrimary  { get; set; }
     }
 }

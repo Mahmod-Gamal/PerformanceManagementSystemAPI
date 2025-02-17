@@ -13,7 +13,8 @@ namespace PerformanceManagementSystem.Application.Features.User.Commands.AddUser
         public string UserName { get; set; }
         public string Phone { get; set; }
         public int DepartmentID { get; set; }
-        public int DurationID { get; set; }
+        public int MidYearDurationID { get; set; }
+        public int EndYearDurationID { get; set; }
         public int UserTypeId { get; set; }
     }
 }

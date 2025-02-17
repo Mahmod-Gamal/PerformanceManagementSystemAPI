@@ -23,6 +23,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Configurations
             builder.Property(d => d.End)
                 .HasConversion(dateOnlyConverter)
                 .HasColumnType("DATE");
+
+            builder.Property(u => u.IsPrimary).HasDefaultValue(false);
         }
     }
 }
