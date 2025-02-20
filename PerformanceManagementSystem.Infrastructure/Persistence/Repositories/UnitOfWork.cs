@@ -10,10 +10,12 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
         private IDurationRepository _durationRepository;
         private IDepartmentRepository _departmentRepository;
         private ICompetencyRepository _competencyRepository;
+        private ICompetencyTypeRepository _competencyTypeRepository;
         public IUserRepository UserRepository => _userRepository ??= new UserRepository(context);
         public IDurationRepository DurationRepository => _durationRepository ??= new DurationRepository(context);
         public IDepartmentRepository DepartmentRepository => _departmentRepository ??= new DepartmentRepository(context);
         public ICompetencyRepository CompetencyRepository => _competencyRepository ??= new CompetencyRepository(context);
+        public ICompetencyTypeRepository CompetencyTypeRepository => _competencyTypeRepository ??= new CompetencyTypeRepository(context);
         public async Task<int> CommitAsync(CancellationToken cancellationToken = default)
             => await context.SaveChangesAsync(cancellationToken);
          public void Dispose()
