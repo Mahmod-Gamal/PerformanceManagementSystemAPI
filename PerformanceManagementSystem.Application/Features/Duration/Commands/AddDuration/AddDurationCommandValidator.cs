@@ -10,7 +10,7 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Add
             RuleFor(x => x.Name)
            .NotEmpty().WithMessage("Name is required.")
            .MaximumLength(50).WithMessage("Name must not exceed 50 characters.")
-           .Must(x => !unitOfWork.DurationRepository.NameExists(x).Result).WithMessage($"Duration Already Exists");
+           .Must(x => !unitOfWork.DurationRepository.NameExists(x).Result).WithMessage($"Duration Name Already Exists");
 
 
             RuleFor(x => x.End)

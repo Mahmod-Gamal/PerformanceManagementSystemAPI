@@ -6,5 +6,6 @@ namespace PerformanceManagementSystem.Application.Interfaces.Persistence
     public interface IDurationRepository : IBaseRepository<Duration>
     {
         Task<bool> NameExists(string Name);
+        Task<bool> NameExists(int ID, string Name);
     }
 }

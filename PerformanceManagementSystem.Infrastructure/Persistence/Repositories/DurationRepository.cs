@@ -9,5 +9,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
     {
         public async Task<bool> NameExists(string Name)
             => await context.Durations.AnyAsync(x => x.Name == Name);
+        public async Task<bool> NameExists(int ID,string Name)
+            => await context.Durations.Where(x=>x.ID != ID).AnyAsync(x => x.Name == Name);
     }
 }
