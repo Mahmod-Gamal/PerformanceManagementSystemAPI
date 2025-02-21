@@ -1,19 +1,17 @@
 ﻿using FluentValidation;
+using PerformanceManagementSystem.Application.Interfaces.Persistence;
 
 namespace PerformanceManagementSystem.Application.Features.Duration.Commands.AddDuration
 {
     public class AddDurationCommandValidator : AbstractValidator<AddDurationCommand>
     {
-        public AddDurationCommandValidator()
+        public AddDurationCommandValidator(IUnitOfWork unitOfWork)
         {
             RuleFor(x => x.Name)
            .NotEmpty().WithMessage("Name is required.")
-           .MaximumLength(50).WithMessage("Name must not exceed 50 characters.");
+           .MaximumLength(50).WithMessage("Name must not exceed 50 characters.")
+           .Must(x => !unitOfWork.DurationRepository.NameExists(x).Result).WithMessage($"Duration Already Exists");
 
-            //RuleFor(x => x.Start)
-            // .NotEmpty().WithMessage("Start Date is required.")
-            //.Must(start => start > DateOnly.FromDateTime(DateTime.Now))
-            // .WithMessage("Start Date must be after today.");
 
             RuleFor(x => x.End)
                 .NotEmpty().WithMessage("End Date is required.")

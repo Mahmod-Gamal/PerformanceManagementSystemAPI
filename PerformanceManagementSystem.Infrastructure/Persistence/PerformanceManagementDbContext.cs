@@ -28,6 +28,7 @@ namespace PerformanceManagementSystem.Infrastructure
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<DepartmentCompetency> DepartmentCompetencies { get; set; }
+        public DbSet<Duration> Durations { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserCompetency> UserCompetencies { get; set; }

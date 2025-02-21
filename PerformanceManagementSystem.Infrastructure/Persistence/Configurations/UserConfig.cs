@@ -24,12 +24,12 @@ namespace  PerformanceManagementSystem.Infrastructure.Persistence.Configurations
             builder.Property(u => u.StatusID).HasDefaultValue(1);
 
             builder.HasOne(u => u.EndYearDuration)
-              .WithMany(u => u.Users)
+              .WithMany(u => u.EndYearUsers)
               .HasForeignKey(u => u.EndYearDurationID)
               .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(u => u.MidYearDuration)
-              .WithMany(u => u.Users)
+              .WithMany(u => u.MidYearUsers)
               .HasForeignKey(u => u.MidYearDurationID)
               .OnDelete(DeleteBehavior.Restrict);
 
