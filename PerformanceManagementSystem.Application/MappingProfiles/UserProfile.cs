@@ -19,7 +19,7 @@ namespace PerformanceManagementSystem.Application.MappingProfiles
                 .Map(dest => dest.Department, src => src.Department == null ? null : new ForeignDto { ID = src.Department.ID, Name = src.Department.Name })
                 .Map(dest => dest.MidYearDuration, src => src.MidYearDuration == null ? null : new ForeignDto { ID = src.MidYearDurationID, Name = src.MidYearDuration.Name })
                 .Map(dest => dest.EndYearDuration, src => src.EndYearDuration == null ? null : new ForeignDto { ID = src.EndYearDurationID, Name = src.EndYearDuration.Name })
-                .Map(dest => dest.Creator, src => src.Creator == null ? null : new ForeignDto { ID = src.CreatedBy ?? 0, Name = src.Creator.Name })
+                .Map(dest => dest.Creator, src => src.Creator == null ? null : new ForeignDto { ID = src.CreatedBy, Name = src.Creator.Name })
                 .Map(dest => dest.Modifier, src => src.Modifier == null ? null : new ForeignDto { ID = src.ModifiedBy ?? 0, Name = src.Modifier.Name });
         }
     }
