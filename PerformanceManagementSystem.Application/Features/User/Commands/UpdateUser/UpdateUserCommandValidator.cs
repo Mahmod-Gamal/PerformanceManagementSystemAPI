@@ -1,10 +1,11 @@
 using FluentValidation;
+using PerformanceManagementSystem.Application.Interfaces.Persistence;
 
 namespace PerformanceManagementSystem.Application.Features.User.Commands.UpdateUser
 {
     public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
     {
-        public UpdateUserCommandValidator()
+        public UpdateUserCommandValidator(IUnitOfWork unitOfWork)
         {
             RuleFor(x => x.Name)
             .NotEmpty().WithMessage("Name is required.")
@@ -22,6 +23,19 @@ namespace PerformanceManagementSystem.Application.Features.User.Commands.UpdateU
             RuleFor(x => x.UserName)
             .NotEmpty().WithMessage("UserName is required.")
             .MaximumLength(250).WithMessage("UserName must not exceed 250 characters.");
+
+            RuleFor(x => new { x.ID, x.UserName })
+                .Must(x => !unitOfWork.UserRepository.UsernameExists(x.ID,x.UserName).Result)
+                .WithMessage("Username Already Exists");
+
+            RuleFor(x => x.DepartmentID)
+                .Must(x => unitOfWork.DepartmentRepository.Exists(x).Result)
+                .WithMessage("Department does not exist");
+
+            RuleFor(x => x.StatusID)
+                .Must(x => unitOfWork.StatusRepository.Exists(x).Result)
+                .WithMessage("Department does not exist");
+
         }
     }
 }
