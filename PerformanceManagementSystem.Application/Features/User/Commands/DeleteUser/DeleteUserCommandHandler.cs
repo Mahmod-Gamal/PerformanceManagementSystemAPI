@@ -19,7 +19,6 @@ namespace PerformanceManagementSystem.Application.Features.User.Commands.DeleteU
                 return Result<AcknowledgmentDtoResponse>.NotFound("User Not Found");
 
             unitOfWork.UserRepository.Remove(user);
-            unitOfWork.CommitAsync();
 
             return Result<AcknowledgmentDtoResponse>.Ok(new("Deleted Successfully"));
         }
