@@ -3,10 +3,9 @@ using PerformanceManagementSystem.Infrastructure.Persistence.Repositories;
 
 namespace PerformanceManagementSystem.Application.Interfaces.Persistence
 {
-    public interface IDepartmentRepository : IBaseRepository<Department>
+    public interface IStatusRepository : IBaseRepository<Status>
     {
-        Task<IEnumerable<Department>> GetDepartmentsWithDetails();
-        Task<Department> GetDepartmentWithDetails(int ID);
+        Task<bool> Exists(int ID);
         Task<bool> NameExists(string Name);
         Task<bool> NameExists(int ID, string Name);
     }

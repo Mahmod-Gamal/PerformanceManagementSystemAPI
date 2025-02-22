@@ -9,5 +9,7 @@ namespace PerformanceManagementSystem.Application.Interfaces.Persistence
         Task<User> GetUserByEmail(string email);
         Task<IEnumerable<User>> GetUsersWithDetails();
         Task<User> GetUserWithDetails(int ID);
+        Task<bool> UsernameExists(string Username);
+        Task<bool> UsernameExists(int ID, string Username);
     }
 }

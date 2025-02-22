@@ -7,5 +7,7 @@ namespace PerformanceManagementSystem.Application.Interfaces.Persistence
     {
         Task<IEnumerable<Competency>> GetCompetenciesWithDetails();
         Task<Competency> GetCompetencyWithDetails(int ID);
+        Task<bool> NameExists(string Name);
+        Task<bool> NameExists(int ID, string Name);
     }
 }

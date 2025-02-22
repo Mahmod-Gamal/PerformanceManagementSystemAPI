@@ -9,5 +9,10 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
         public async Task<IEnumerable<CompetencyType>> GetCompetencyTypes() =>
             await context.CompetencyTypes
                 .ToListAsync();
+
+        public async Task<bool> NameExists(string Name)
+            => await context.CompetencyTypes.AnyAsync(x => x.Name == Name);
+        public async Task<bool> NameExists(int ID, string Name)
+            => await context.CompetencyTypes.Where(x => x.ID != ID).AnyAsync(x => x.Name == Name);
     }
 }

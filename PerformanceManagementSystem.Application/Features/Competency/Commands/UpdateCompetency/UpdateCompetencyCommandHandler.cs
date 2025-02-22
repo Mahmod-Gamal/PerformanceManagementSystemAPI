@@ -10,7 +10,7 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Commands.U
     {
         public async Task<Result<CompetencyDtoResponse>> Handle(UpdateCompetencyCommand request, CancellationToken cancellationToken)
         {
-            var competency = unitOfWork.CompetencyRepository.GetByIdAsync(request.ID).Result;
+            var competency = unitOfWork.CompetencyRepository.GetCompetencyWithDetails(request.ID).Result;
             if (competency == null)
                 return Result<CompetencyDtoResponse>.NotFound("Competency Not found");
             request.Adapt(competency);

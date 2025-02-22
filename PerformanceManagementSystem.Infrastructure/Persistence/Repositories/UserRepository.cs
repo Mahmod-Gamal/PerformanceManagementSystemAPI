@@ -37,6 +37,12 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
                .Include(x => x.Modifier)
                .ToListAsync();
 
+
+        public async Task<bool> UsernameExists(string Username)
+            => await context.Users.AnyAsync(x => x.UserName == Username);
+        public async Task<bool> UsernameExists(int ID, string Username)
+            => await context.Users.Where(x => x.ID != ID).AnyAsync(x => x.UserName == Username);
+
     }
 }
 
