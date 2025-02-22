@@ -5,6 +5,8 @@ namespace PerformanceManagementSystem.Application.Interfaces.Persistence
 {
     public interface IUserRepository : IBaseRepository<User>
     {
+        Task<bool> Exists(int ID);
+        Task<bool> Exists(int ID, int TypeID);
         Task<User> GetUser(string emailOrUsername);
         Task<User> GetUserByEmail(string email);
         Task<IEnumerable<User>> GetUsersWithDetails();

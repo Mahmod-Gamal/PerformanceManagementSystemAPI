@@ -15,7 +15,12 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.A
         {
             var department = request.Adapt<Domain.Entities.Department>();
             await unitOfWork.DepartmentRepository.AddAsync(department);
-            //await unitOfWork.CommitAsync(cancellationToken);
+            await unitOfWork.CommitAsync(cancellationToken);
+
+            await unitOfWork.DepartmentRepository.AddDepartmentCompetencies(department.ID,request.CompetincyIDs);
+            await unitOfWork.CommitAsync(cancellationToken);
+            
+            department = await unitOfWork.DepartmentRepository.GetDepartmentWithDetails(department.ID);
             return Result<DepartmentDtoResponse>.Ok(department.Adapt<DepartmentDtoResponse>());
         }
     }

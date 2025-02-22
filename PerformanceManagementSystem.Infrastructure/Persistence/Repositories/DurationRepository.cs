@@ -11,5 +11,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
             => await context.Durations.AnyAsync(x => x.Name == Name);
         public async Task<bool> NameExists(int ID,string Name)
             => await context.Durations.Where(x=>x.ID != ID).AnyAsync(x => x.Name == Name);
+        public async Task<bool> Exists(int ID)
+            => await context.Durations.AnyAsync(x => x.ID == ID);
     }
 }

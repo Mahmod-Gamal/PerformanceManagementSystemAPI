@@ -11,5 +11,6 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.U
         public string Name { get; set; }
         public int? ManagerID { get; set; }
         public int StatusID { get; set; }
+        public List<int> CompetincyIDs { get; set; }
     }
 }

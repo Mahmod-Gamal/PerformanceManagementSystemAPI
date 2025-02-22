@@ -42,6 +42,10 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
             => await context.Users.AnyAsync(x => x.UserName == Username);
         public async Task<bool> UsernameExists(int ID, string Username)
             => await context.Users.Where(x => x.ID != ID).AnyAsync(x => x.UserName == Username);
+        public async Task<bool> Exists(int ID)
+            => await context.Users.AnyAsync(x => x.ID == ID);
+        public async Task<bool> Exists(int ID, int TypeID)
+            => await context.Users.AnyAsync(x=>x.UserTypeId == TypeID && x.ID == ID);
 
     }
 }
