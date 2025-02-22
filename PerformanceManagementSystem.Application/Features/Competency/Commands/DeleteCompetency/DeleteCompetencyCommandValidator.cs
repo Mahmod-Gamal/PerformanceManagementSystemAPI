@@ -7,8 +7,6 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Commands.D
         public DeleteCompetencyCommandValidator()
         {
 
-            //RuleFor(x => x.NewPassword)
-            //    .MinimumLength(8).WithMessage("New password is too short.");
         }
     }
 }
