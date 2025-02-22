@@ -43,6 +43,9 @@ namespace  PerformanceManagementSystem.Infrastructure.Persistence.Configurations
               .HasForeignKey(u => u.ModifiedBy)
               .OnDelete(DeleteBehavior.Restrict);
 
+            //To be Deleted:
+
+            builder.Property(u => u.CreatedBy).HasDefaultValue(1);
         }
     }
 }
