@@ -1,6 +1,6 @@
 ﻿namespace PerformanceManagementSystem.Domain.Entities
 {
-    public class User : BaseEntity
+    public class User : BaseEntity, IAuditable
     {
         public string Name { get; set; }
         public string Email { get; set; }
@@ -21,7 +21,7 @@
         public int EndYearDurationID { get; set; }
         public Duration EndYearDuration { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int? CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
         public User Creator { get; set; }
         public DateTime? ModifiedAt { get; set; }
         public int? ModifiedBy { get; set; }
