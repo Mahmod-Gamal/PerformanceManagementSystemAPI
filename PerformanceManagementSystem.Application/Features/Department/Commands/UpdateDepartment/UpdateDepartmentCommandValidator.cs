@@ -19,9 +19,11 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.U
                 .Must(x => unitOfWork.StatusRepository.Exists(x).Result)
                 .WithMessage("Status does not exist");
 
+            /*
             RuleFor(x => x.CompetincyIDs)
                 .Must(x => x.All(c => unitOfWork.CompetencyRepository.Exists(c).Result))
                 .WithMessage("One or more Competencies IDs are not found");
+            */
         }
     }
 }
