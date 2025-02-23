@@ -9,8 +9,8 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.U
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public int? ManagerID { get; set; }
+        public int? ManagerId { get; set; }
         public int StatusID { get; set; }
-        public List<int> CompetincyIDs { get; set; }
+   //     public List<int> CompetincyIDs { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.A
     {
         public string Name { get; set; }
         public int? ManagerId { get; set; }
-        public List<int> CompetincyIDs { get; set; }
+       // public List<int> CompetencyIDs { get; set; }
     }
 }

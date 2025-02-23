@@ -14,9 +14,10 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.U
             if (department == null)
                 return Result<DepartmentDtoResponse>.NotFound("Department Not found");
             request.Adapt(department);
+            department.ManagerId = request.ManagerId;
 
-            await unitOfWork.DepartmentRepository.CleareDepartmentCompetencies(department.ID);
-            await unitOfWork.DepartmentRepository.AddDepartmentCompetencies(department.ID, request.CompetincyIDs);
+            // await unitOfWork.DepartmentRepository.CleareDepartmentCompetencies(department.ID);
+            //await unitOfWork.DepartmentRepository.AddDepartmentCompetencies(department.ID, request.CompetincyIDs);
             await unitOfWork.CommitAsync(cancellationToken);
 
             department = await unitOfWork.DepartmentRepository.GetDepartmentWithDetails(department.ID);

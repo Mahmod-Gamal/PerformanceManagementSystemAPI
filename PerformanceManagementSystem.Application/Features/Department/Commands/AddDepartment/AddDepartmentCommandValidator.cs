@@ -12,9 +12,11 @@ namespace PerformanceManagementSystem.Application.Features.Department.Commands.A
             .MaximumLength(50).WithMessage("Name must not exceed 50 characters.")
             .Must(x => !unitOfWork.DepartmentRepository.NameExists(x).Result).WithMessage($"Department Name Already Exists");
 
+            /*
             RuleFor(x => x.CompetincyIDs)
-                .Must(x => x.All(c => unitOfWork.CompetencyRepository.Exists(c).Result))
+                .Must(x => x == null ||  x.All(c => unitOfWork.CompetencyRepository.Exists(c).Result))
                 .WithMessage("One or more Competencies IDs are not found");
+            */
         }
     }
 }

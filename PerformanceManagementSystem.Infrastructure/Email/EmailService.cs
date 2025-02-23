@@ -24,7 +24,7 @@ namespace PerformanceManagementSystem.Infrastructure.Email
 
                 var mailMessage = new MailMessage
                 {
-                    From = new MailAddress(_smtpSettings.Username),
+                    From = new MailAddress(_smtpSettings.Username, "DEFI"), // Alias name
                     Subject = subject,
                     Body = body,
                     IsBodyHtml = true // Set to true if the body contains HTML
