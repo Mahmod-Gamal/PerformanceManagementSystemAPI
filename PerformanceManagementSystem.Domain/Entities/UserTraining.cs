@@ -1,6 +1,6 @@
 ﻿namespace  PerformanceManagementSystem.Domain.Entities
 {
-    public class UserTrainingAndDevelopmentSection : BaseEntity
+    public class UserTraining : BaseEntity
     {
         public int UserGoalID { get; set; }
         public UserGoal UserGoal { get; set; }

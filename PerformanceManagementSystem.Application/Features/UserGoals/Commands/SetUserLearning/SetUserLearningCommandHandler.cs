@@ -24,7 +24,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
                     Year = DateTime.Now.Year,
                     StageID = 1
                 };
-            userGoals.UserLearningAndDevelopmentPlans = request.Learnings.Select(x => x.Adapt<Domain.Entities.UserLearningAndDevelopmentPlan>()).ToList();
+            userGoals.UserLearnings = request.Learnings.Select(x => x.Adapt<Domain.Entities.UserLearning>()).ToList();
 
             return Result<UserLearningDtoResponse>.Ok(userGoals.Adapt<UserLearningDtoResponse>());
         }

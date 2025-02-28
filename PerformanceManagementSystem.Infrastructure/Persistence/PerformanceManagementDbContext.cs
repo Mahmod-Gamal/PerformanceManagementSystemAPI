@@ -34,8 +34,8 @@ namespace PerformanceManagementSystem.Infrastructure
         public DbSet<UserCompetency> UserCompetencies { get; set; }
         public DbSet<UserGoal> UserGoals { get; set; }
         public DbSet<UserObjective> UserObjectives { get; set; }
-        public DbSet<UserLearningAndDevelopmentPlan> UserLearningAndDevelopmentPlans { get; set; }
-        public DbSet<UserTrainingAndDevelopmentSection> UserTrainingAndDevelopmentSections { get; set; }
+        public DbSet<UserLearning> UserLearnings { get; set; }
+        public DbSet<UserTraining> UserTrainings { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -13,7 +13,7 @@ namespace PerformanceManagementSystem.Domain.Entities
         public int Year { get; set; }
         public int StageID { get; set; }
         public ICollection<UserObjective> UserObjectives { get; set; }
-        public ICollection<UserLearningAndDevelopmentPlan> UserLearningAndDevelopmentPlans { get; set; }
-        public ICollection<UserTrainingAndDevelopmentSection> UserTrainingAndDevelopmentSections { get; set; }
+        public ICollection<UserLearning> UserLearnings { get; set; }
+        public ICollection<UserTraining> UserTrainings { get; set; }
     }
 }

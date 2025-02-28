@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace PerformanceManagementSystem.Infrastructure.Persistence.Configurations
 {
-    public class UserTrainingAndDevelopmentSectionConfig :IEntityTypeConfiguration<UserTrainingAndDevelopmentSection>
+    public class UserTrainingAndDevelopmentSectionConfig :IEntityTypeConfiguration<UserTraining>
     {
-        public void Configure(EntityTypeBuilder<UserTrainingAndDevelopmentSection> builder)
+        public void Configure(EntityTypeBuilder<UserTraining> builder)
         {
             builder.HasOne(utds => utds.UserGoal)
-               .WithMany(u => u.UserTrainingAndDevelopmentSections)
+               .WithMany(u => u.UserTrainings)
                .HasForeignKey(utds => utds.UserGoalID);
         }
     }
