@@ -32,6 +32,7 @@ namespace PerformanceManagementSystem.Infrastructure
         public DbSet<UserType> UserTypes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserCompetency> UserCompetencies { get; set; }
+        public DbSet<UserGoal> UserGoals { get; set; }
         public DbSet<UserObjective> UserObjectives { get; set; }
         public DbSet<UserLearningAndDevelopmentPlan> UserLearningAndDevelopmentPlans { get; set; }
         public DbSet<UserTrainingAndDevelopmentSection> UserTrainingAndDevelopmentSections { get; set; }

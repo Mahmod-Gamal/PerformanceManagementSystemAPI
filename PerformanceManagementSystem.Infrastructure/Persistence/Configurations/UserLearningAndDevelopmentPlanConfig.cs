@@ -9,9 +9,9 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<UserLearningAndDevelopmentPlan> builder)
         {
-            builder.HasOne(uldp => uldp.User)
+            builder.HasOne(uldp => uldp.UserGoal)
                .WithMany(u => u.UserLearningAndDevelopmentPlans)
-               .HasForeignKey(uldp => uldp.UserID);
+               .HasForeignKey(uldp => uldp.UserGoalID);
         }
     }
 }

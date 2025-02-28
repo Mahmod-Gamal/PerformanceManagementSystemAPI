@@ -30,7 +30,6 @@
         // Navigation property to represent departments managed by the user
         public ICollection<Department> ManagedDepartments { get; set; }
         public ICollection<UserCompetency> UserCompetencies { get; set; }
-        public ICollection<UserObjective> UserObjectives { get; set; }
         public ICollection<User> CreatedUsers { get; set; }
         public ICollection<User> ModifiedUsers { get; set; }
         public ICollection<Department> CreatedDepartments { get; set; }
@@ -38,8 +37,9 @@
 
         public ICollection<Competency> CreatedCompetencies{ get; set; }
         public ICollection<Competency> ModifiedCompetencies { get; set; }
-        public ICollection<UserLearningAndDevelopmentPlan> UserLearningAndDevelopmentPlans { get; set; }
-        public ICollection<UserTrainingAndDevelopmentSection> UserTrainingAndDevelopmentSections { get; set; }
+
+        public ICollection<UserGoal> UserGoals { get; set; }
+
 
     }
 }
