@@ -1,9 +1,7 @@
-﻿namespace  PerformanceManagementSystem.Domain.Entities
+﻿namespace PerformanceManagementSystem.Application.DTOs
 {
-    public class UserObjective : BaseEntity
+    public class UserObjectiveDto
     {
-        public int UserGoalID { get; set; }
-        public UserGoal UserGoal { get; set; }
         public string Description { get; set; }
         public string Measure { get; set; }
         public string Target { get; set; }

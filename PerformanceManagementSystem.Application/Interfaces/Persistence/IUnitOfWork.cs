@@ -3,6 +3,7 @@
     public interface IUnitOfWork
     {
         IUserRepository UserRepository { get; }
+        IUserGoalRepository UserGoalRepository { get; }
         IDurationRepository DurationRepository { get; }
         IDepartmentRepository DepartmentRepository { get; }
         IStatusRepository StatusRepository{ get; }
