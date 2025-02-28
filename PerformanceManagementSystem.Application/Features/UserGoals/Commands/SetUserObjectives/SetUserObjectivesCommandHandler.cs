@@ -7,11 +7,11 @@ using PerformanceManagementSystem.Application.Interfaces.Persistence;
 using System;
 using System.Security.Claims;
 
-namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.UpdateUserObjectives
+namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserObjectives
 {
-    public class UpdateUserObjectivesCommandHandler(IUnitOfWork unitOfWork, IHttpContextAccessor contextAccessor) : IRequestHandler<UpdateUserObjectivesCommand, Result<UserObjectivesDtoResponse>>
+    public class SetUserObjectivesCommandHandler(IUnitOfWork unitOfWork, IHttpContextAccessor contextAccessor) : IRequestHandler<SetUserObjectivesCommand, Result<UserObjectivesDtoResponse>>
     {
-        public async Task<Result<UserObjectivesDtoResponse>> Handle(UpdateUserObjectivesCommand request, CancellationToken cancellationToken)
+        public async Task<Result<UserObjectivesDtoResponse>> Handle(SetUserObjectivesCommand request, CancellationToken cancellationToken)
         {
             var userID = contextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await unitOfWork.UserRepository.GetByIdAsync(int.Parse(userID));

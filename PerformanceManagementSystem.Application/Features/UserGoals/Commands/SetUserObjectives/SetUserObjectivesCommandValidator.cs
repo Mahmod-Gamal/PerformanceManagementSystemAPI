@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 using PerformanceManagementSystem.Application.Interfaces.Persistence;
-namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.UpdateUserObjectives
+namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserObjectives
 {
-    public class UpdateUserObjectivesCommandValidator : AbstractValidator<UpdateUserObjectivesCommand>
+    public class SetUserObjectivesCommandValidator : AbstractValidator<SetUserObjectivesCommand>
     {
-        public UpdateUserObjectivesCommandValidator(IUnitOfWork unitOfWork)
+        public SetUserObjectivesCommandValidator(IUnitOfWork unitOfWork)
         {
             RuleFor(x => x.Year)
            .GreaterThan(0).WithMessage("Year is required");

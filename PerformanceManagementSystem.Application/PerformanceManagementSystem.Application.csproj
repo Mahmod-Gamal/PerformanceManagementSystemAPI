@@ -23,8 +23,6 @@
     <Folder Include="Features\Auth\Qureies\" />
     <Folder Include="Features\Department\Commands\" />
     <Folder Include="Features\Department\Queries\" />
-    <Folder Include="Features\UserGoals\Commands\UpdateUserLearning\" />
-    <Folder Include="Features\UserGoals\Commands\UpdateUserTrainings\" />
   </ItemGroup>
 
 </Project>

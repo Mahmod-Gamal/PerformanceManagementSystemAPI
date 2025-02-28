@@ -2,9 +2,9 @@
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
 
-namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.UpdateUserObjectives
+namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserObjectives
 {
-    public class UpdateUserObjectivesCommand : ICommand<Result<UserObjectivesDtoResponse>>
+    public class SetUserObjectivesCommand : ICommand<Result<UserObjectivesDtoResponse>>
     {
         public int Year {  get; set; } 
         public List<Objective> UserObjectives { get; set; }
