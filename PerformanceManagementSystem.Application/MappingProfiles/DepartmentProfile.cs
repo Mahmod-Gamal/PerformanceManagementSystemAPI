@@ -22,7 +22,7 @@ namespace PerformanceManagementSystem.Application.MappingProfiles
                         src => src.DepartmentCompetencies == null ? null
                            : src.DepartmentCompetencies.Select(dc => new ForeignDto
                            {
-                               ID = dc.CompetenciesID,
+                               ID = dc.CompetencyID,
                                Name = dc.Competency.Name
                            }).ToList()
                 );

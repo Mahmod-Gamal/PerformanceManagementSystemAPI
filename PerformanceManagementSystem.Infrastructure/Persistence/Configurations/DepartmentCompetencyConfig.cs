@@ -18,7 +18,7 @@ namespace  PerformanceManagementSystem.Infrastructure.Persistence.Configurations
 
             builder.HasOne(dc => dc.Competency)
                 .WithMany(c => c.DepartmentCompetencies)
-                .HasForeignKey(dc => dc.CompetenciesID)
+                .HasForeignKey(dc => dc.CompetencyID)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

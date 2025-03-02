@@ -32,7 +32,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
             await context.DepartmentCompetencies.AddRangeAsync(competencies.Select(CompetencyID=>new DepartmentCompetency()
             {
                 DepartmentID = DepartmentID,
-                CompetenciesID = CompetencyID
+                CompetencyID = CompetencyID
             } ));
         }
         public async Task CleareDepartmentCompetencies(int DepartmentID)
