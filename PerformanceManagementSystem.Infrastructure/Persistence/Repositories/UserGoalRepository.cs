@@ -9,13 +9,18 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
             => await context.UserGoals.Where(x => x.UserID == UserID && x.Year == Year)
             .Include(x => x.UserLearnings)
             .Include(x => x.UserObjectives)
-            .Include(x => x.UserTrainings).FirstOrDefaultAsync();
+            .Include(x => x.UserTrainings)
+            .Include(x => x.UserCompetencies)
+            .ThenInclude(uc => uc.Competency)
+            .FirstOrDefaultAsync();
 
         public async Task<IEnumerable<UserGoal>> GetAllByUserID(int UserID)
             => await context.UserGoals.Where(x => x.UserID == UserID)
             .Include(x => x.UserLearnings)
             .Include(x => x.UserObjectives)
             .Include(x => x.UserTrainings)
+            .Include(x => x.UserCompetencies)
+            .ThenInclude(uc=>uc.Competency)
             .ToListAsync();
     }
 }
