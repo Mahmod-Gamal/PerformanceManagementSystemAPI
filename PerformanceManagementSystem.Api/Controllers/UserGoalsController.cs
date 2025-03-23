@@ -30,7 +30,7 @@ namespace PerformanceManagementSystem.Api.Controllers
             => HandelResult(await mediator.Send(command));
 
         [HttpPut("SetCompetencies")]
-        [SwaggerOperation(OperationId = nameof(SetLearnings))]
+        [SwaggerOperation(OperationId = nameof(SetCompetencies))]
         public async Task<ActionResult<UserCompetenciesDtoResponse>> SetCompetencies(SetUserCompetenciesCommand command)
                   => HandelResult(await mediator.Send(command));
 
