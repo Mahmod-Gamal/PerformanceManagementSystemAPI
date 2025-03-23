@@ -18,10 +18,10 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
     {
         public CompetenciesValidator(IUnitOfWork unitOfWork)
         {
-            RuleFor(x => x.CurrentLevel)
-                .InclusiveBetween(1, 5).WithMessage("CurrentLevel is not Valis [1-5]");
-            RuleFor(x => x.PerviousLevel)
-                .InclusiveBetween(1, 5).WithMessage("PerviousLevel is not Valis [1-5]");
+            //RuleFor(x => x.CurrentLevel)
+            //    .InclusiveBetween(1, 5).WithMessage("CurrentLevel is not Valis [1-5]");
+            //RuleFor(x => x.PerviousLevel)
+            //    .InclusiveBetween(1, 5).WithMessage("PerviousLevel is not Valis [1-5]");
             RuleFor(x => x.CompetencyID).Must(x => unitOfWork.CompetencyRepository.Exists(x).Result)
                 .WithMessage("CompetencyID not Found");
         }
