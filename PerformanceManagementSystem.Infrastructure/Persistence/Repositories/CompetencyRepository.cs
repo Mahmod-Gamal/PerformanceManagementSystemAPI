@@ -17,6 +17,18 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
                 .Include(x => x.Status).Include(x => x.CompetencyType)
                 .Include(x => x.Creator).Include(x => x.Modifier)
                 .ToListAsync();
+        public async Task<IEnumerable<Competency>> GetBehavioralCompetencies() =>
+            await context.Competencies
+                .Where(c => c.CompetenciesTypeID == 2)
+                .Include(x => x.Status).Include(x => x.CompetencyType)
+                .Include(x => x.Creator).Include(x => x.Modifier)
+                .ToListAsync();
+        public async Task<IEnumerable<Competency>> GetCompetenciesByDepartment(int ID) =>
+            await context.Competencies
+                .Where(c => c.DepartmentCompetencies.Any(dc=>dc.DepartmentID == ID))
+                .Include(x => x.Status).Include(x => x.CompetencyType)
+                .Include(x => x.Creator).Include(x => x.Modifier)
+                .ToListAsync();
 
 
         public async Task<bool> NameExists(string Name)

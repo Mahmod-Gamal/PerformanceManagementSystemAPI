@@ -6,6 +6,8 @@ using PerformanceManagementSystem.Application.Features.Competency.Commands.AddCo
 using PerformanceManagementSystem.Application.Features.Competency.Commands.DeleteCompetency;
 using PerformanceManagementSystem.Application.Features.Competency.Commands.UpdateCompetency;
 using PerformanceManagementSystem.Application.Features.Competency.Queries.GetAllCompetencies;
+using PerformanceManagementSystem.Application.Features.Competency.Queries.GetBehavioralCompetencies;
+using PerformanceManagementSystem.Application.Features.Competency.Queries.GetCompetenciesByDepartmentID;
 using PerformanceManagementSystem.Application.Features.Competency.Queries.GetCompetencyByID;
 
 namespace PerformanceManagementSystem.Api.Controllers
@@ -33,6 +35,14 @@ namespace PerformanceManagementSystem.Api.Controllers
         [HttpGet("GetCompetency/{ID}")]
         public async Task<ActionResult<CompetencyDtoResponse>> GetCompetency(int ID)
             => HandelResult(await mediator.Send(new GetCompetencyByIDQuery() { ID = ID }));
+
+        [HttpGet("GetBehavioralCompetencies")]
+        public async Task<ActionResult<CompetencyDtoResponse>> GetBehavioralCompetencies()
+            => HandelResult(await mediator.Send(new GetBehavioralCompetenciesQuery()));
+
+        [HttpGet("GetCompetenciesByDepartment/{ID}")]
+        public async Task<ActionResult<CompetencyDtoResponse>> GetCompetenciesByDepartment(int ID)
+            => HandelResult(await mediator.Send(new GetCompetenciesByDepartmentIDQuery() { DepartmentID = ID }));
 
 
     }
