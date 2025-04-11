@@ -37,11 +37,11 @@ namespace PerformanceManagementSystem.Api.Controllers
             => HandelResult(await mediator.Send(new GetCompetencyByIDQuery() { ID = ID }));
 
         [HttpGet("GetBehavioralCompetencies")]
-        public async Task<ActionResult<CompetencyDtoResponse>> GetBehavioralCompetencies()
+        public async Task<ActionResult<IEnumerable<CompetencyDtoResponse>>> GetBehavioralCompetencies()
             => HandelResult(await mediator.Send(new GetBehavioralCompetenciesQuery()));
 
         [HttpGet("GetCompetenciesByDepartment/{ID}")]
-        public async Task<ActionResult<CompetencyDtoResponse>> GetCompetenciesByDepartment(int ID)
+        public async Task<ActionResult<IEnumerable<CompetencyDtoResponse>>> GetCompetenciesByDepartment(int ID)
             => HandelResult(await mediator.Send(new GetCompetenciesByDepartmentIDQuery() { DepartmentID = ID }));
 
 
