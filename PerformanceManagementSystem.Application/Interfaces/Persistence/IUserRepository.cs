@@ -7,6 +7,7 @@ namespace PerformanceManagementSystem.Application.Interfaces.Persistence
     {
         Task<bool> Exists(int ID);
         Task<bool> Exists(int ID, int TypeID);
+        Task<IEnumerable<User>> GetManagedUsersByManagerID(int ID);
         Task<User> GetUser(string emailOrUsername);
         Task<User> GetUserByEmail(string email);
         Task<IEnumerable<User>> GetUsersWithDetails();

@@ -26,6 +26,18 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
                .Include(x => x.Modifier)
                .FirstOrDefaultAsync(x => x.ID == ID);
 
+        public async Task<IEnumerable<User>> GetManagedUsersByManagerID(int ID) =>
+            await context.Users
+               .Where(x => x.Department.ManagerId == ID)
+               .Include(x => x.Status)
+               .Include(x => x.UserType)
+               .Include(x => x.Department)
+               .Include(x => x.MidYearDuration)
+               .Include(x => x.EndYearDuration)
+               .Include(x => x.Creator)
+               .Include(x => x.Modifier)
+               .ToListAsync();
+
         public async Task<IEnumerable<User>> GetUsersWithDetails() =>
             await context.Users
                .Include(x => x.Status)
