@@ -89,6 +89,11 @@ namespace PerformanceManagementSystem.Api.Controllers
         public async Task<ActionResult<UserGoalsDtoResponse>> GetUserGoals([FromQuery] GetUserGoalsQuery query)
               => HandelResult(await mediator.Send(query));
 
+        [HttpGet("GetUserGoals/{Id}")]
+        [SwaggerOperation(OperationId = nameof(GetUserGoalsByID))]
+        public async Task<ActionResult<UserGoalsDtoResponse>> GetUserGoalsByID(int ID)
+              => HandelResult(await mediator.Send(new GetUserGoalsByIDQuery() { ID = ID}));
+
 
     }
 }
