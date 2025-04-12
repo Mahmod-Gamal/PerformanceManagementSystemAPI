@@ -7,6 +7,10 @@ using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SelfRe
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SelfReviewUserLearning;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SelfReviewUserObjectives;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SelfReviewUserTrainings;
+using PerformanceManagementSystem.Application.Features.UserGoals.Commands.ManagerReviewUserCompetencies;
+using PerformanceManagementSystem.Application.Features.UserGoals.Commands.ManagerReviewUserLearning;
+using PerformanceManagementSystem.Application.Features.UserGoals.Commands.ManagerReviewUserObjectives;
+using PerformanceManagementSystem.Application.Features.UserGoals.Commands.ManagerReviewUserTrainings;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserCompetencies;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserLearning;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserObjectives;
@@ -56,6 +60,27 @@ namespace PerformanceManagementSystem.Api.Controllers
         [HttpPut("SelfReviewCompetencies")]
         [SwaggerOperation(OperationId = nameof(SelfReviewCompetencies))]
         public async Task<ActionResult<AcknowledgmentDtoResponse>> SelfReviewCompetencies(SelfReviewUserCompetenciesCommand command)
+                  => HandelResult(await mediator.Send(command));
+
+
+        [HttpPut("ManagerReviewObjectives")]
+        [SwaggerOperation(OperationId = nameof(ManagerReviewObjectives))]
+        public async Task<ActionResult<AcknowledgmentDtoResponse>> ManagerReviewObjectives(ManagerReviewUserObjectivesCommand command)
+           => HandelResult(await mediator.Send(command));
+
+        [HttpPut("ManagerReviewTrainings")]
+        [SwaggerOperation(OperationId = nameof(ManagerReviewTrainings))]
+        public async Task<ActionResult<AcknowledgmentDtoResponse>> ManagerReviewTrainings(ManagerReviewUserTrainingsCommand command)
+            => HandelResult(await mediator.Send(command));
+
+        [HttpPut("ManagerReviewLearnings")]
+        [SwaggerOperation(OperationId = nameof(ManagerReviewLearnings))]
+        public async Task<ActionResult<AcknowledgmentDtoResponse>> ManagerReviewLearnings(ManagerReviewUserLearningCommand command)
+            => HandelResult(await mediator.Send(command));
+
+        [HttpPut("ManagerReviewCompetencies")]
+        [SwaggerOperation(OperationId = nameof(ManagerReviewCompetencies))]
+        public async Task<ActionResult<AcknowledgmentDtoResponse>> ManagerReviewCompetencies(ManagerReviewUserCompetenciesCommand command)
                   => HandelResult(await mediator.Send(command));
 
 
