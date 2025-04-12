@@ -1,6 +1,7 @@
 ﻿using PerformanceManagementSystem.Application.Common.Interfaces;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,10 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
 {
     public class SelfReviewUserObjectivesCommand : ICommand<Result<AcknowledgmentDtoResponse>>
     {
-        public List<UserObjectiveReview> userObjectives { get; set; }
+        public List<UserObjectiveSelfReview> userObjectives { get; set; }
     }
-    public class UserObjectiveReview
+
+    public class UserObjectiveSelfReview
     {
         public int ID { get; set; }
         public int Review { get; set; }
