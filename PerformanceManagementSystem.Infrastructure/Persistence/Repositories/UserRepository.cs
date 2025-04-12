@@ -28,7 +28,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<User>> GetManagedUsersByManagerID(int ID) =>
             await context.Users
-               .Where(x => x.Department.ManagerId == ID)
+               .Where(x => x.Department.ManagerId == ID && x.ID != ID)
                .Include(x => x.Status)
                .Include(x => x.UserType)
                .Include(x => x.Department)

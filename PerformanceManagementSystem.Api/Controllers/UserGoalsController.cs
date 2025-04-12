@@ -91,8 +91,8 @@ namespace PerformanceManagementSystem.Api.Controllers
 
         [HttpGet("GetUserGoals/{Id}")]
         [SwaggerOperation(OperationId = nameof(GetUserGoalsByID))]
-        public async Task<ActionResult<UserGoalsDtoResponse>> GetUserGoalsByID(int ID)
-              => HandelResult(await mediator.Send(new GetUserGoalsByIDQuery() { ID = ID}));
+        public async Task<ActionResult<UserGoalsDtoResponse>> GetUserGoalsByID(int Id)
+              => HandelResult(await mediator.Send(new GetUserGoalsByIDQuery() { ID = Id }));
 
 
     }
