@@ -6,8 +6,8 @@
         public UserGoal UserGoal { get; set; }
         public int CompetencyID { get; set; }
         public Competency Competency { get; set; }
-        public int PerviousLevel { get; set; }
         public int CurrentLevel { get; set; }
+        public int ExpectedLevel { get; set; }
         public int Review { get; set; }
         public int ManagerReview { get; set; }
     }

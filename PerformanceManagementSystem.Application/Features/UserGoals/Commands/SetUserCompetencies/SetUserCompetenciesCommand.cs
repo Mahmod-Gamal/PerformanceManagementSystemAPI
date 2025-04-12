@@ -11,8 +11,8 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
     public class Competencies
     {
         public int CompetencyID { get; set; }
-        public int PerviousLevel { get; set; }
         public int CurrentLevel { get; set; }
+        public int ExpectedLevel { get; set; }
     }
 
 }

@@ -24,12 +24,11 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
             var currentYear = DateTime.UtcNow.Year;
 
             var goal = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, currentYear);
-            if (goal is null)
-                return Result<UserGoalsDtoResponse>.NotFound($"No goals found for user in {currentYear}");
+
 
             var userCompetencies = new List<UserCompetencyDto>();
 
-            if (goal.UserCompetencies != null && goal.UserCompetencies.Any())
+            if (goal is not null && goal.UserCompetencies != null && goal.UserCompetencies.Any())
             {
                 userCompetencies = goal.UserCompetencies.Adapt<List<UserCompetencyDto>>();
             }
@@ -42,8 +41,8 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
                 {
                     CompetencyID = c.ID,
                     CompetencyName = c.Name,
-                    PerviousLevel = null,
                     CurrentLevel = null,
+                    ExpectedLevel = null,
                     Review = null,
                     ManagerReview = null
                 }).ToList();
@@ -51,11 +50,11 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
 
             var response = new UserGoalsDtoResponse
             {
-                UserGoal = goal.Adapt<UserGoalDto>(),
+                UserGoal = goal?.Adapt<UserGoalDto>(),
                 UserCompetencies = userCompetencies,
-                UserLearnings = goal.UserLearnings?.Adapt<List<UserLearningDto>>() ?? new(),
-                UserObjectives = goal.UserObjectives?.Adapt<List<UserObjectiveDto>>() ?? new(),
-                UserTrainings = goal.UserTrainings?.Adapt<List<UserTrainingDto>>() ?? new()
+                UserLearnings = goal?.UserLearnings?.Adapt<List<UserLearningDto>>() ?? new(),
+                UserObjectives = goal?.UserObjectives?.Adapt<List<UserObjectiveDto>>() ?? new(),
+                UserTrainings = goal?.UserTrainings?.Adapt<List<UserTrainingDto>>() ?? new()
             };
 
             return Result<UserGoalsDtoResponse>.Ok(response);
