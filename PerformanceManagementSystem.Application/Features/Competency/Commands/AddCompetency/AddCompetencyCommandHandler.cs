@@ -12,7 +12,6 @@ namespace PerformanceManagementSystem.Application.Features.Competency.Commands.A
         {
             var competency = request.Adapt<Domain.Entities.Competency>();
             await unitOfWork.CompetencyRepository.AddAsync(competency);
-            //await unitOfWork.CommitAsync(cancellationToken);
             return Result<CompetencyDtoResponse>.Ok(competency.Adapt<CompetencyDtoResponse>());
         }
     }

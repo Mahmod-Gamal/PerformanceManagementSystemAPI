@@ -16,6 +16,7 @@ using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUse
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserObjectives;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserTrainings;
 using Swashbuckle.AspNetCore.Annotations;
+using PerformanceManagementSystem.Application.Features.UserGoals.Queries.GetUserGoals;
 
 namespace PerformanceManagementSystem.Api.Controllers
 {
@@ -82,6 +83,11 @@ namespace PerformanceManagementSystem.Api.Controllers
         [SwaggerOperation(OperationId = nameof(ManagerReviewCompetencies))]
         public async Task<ActionResult<AcknowledgmentDtoResponse>> ManagerReviewCompetencies(ManagerReviewUserCompetenciesCommand command)
                   => HandelResult(await mediator.Send(command));
+
+        [HttpGet("GetUserGoals")]
+        [SwaggerOperation(OperationId = nameof(GetUserGoals))]
+        public async Task<ActionResult<UserGoalsDtoResponse>> GetUserGoals([FromQuery] GetUserGoalsQuery query)
+              => HandelResult(await mediator.Send(query));
 
 
     }

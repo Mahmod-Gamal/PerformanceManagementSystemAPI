@@ -8,5 +8,11 @@ namespace PerformanceManagementSystem.Application.DTOs
 {
     public class UserCompetencyDto
     {
+        public int CompetencyID { get; set; }
+        public string CompetencyName { get; set; }
+        public int? PerviousLevel { get; set; }
+        public int? CurrentLevel { get; set; }
+        public int? Review { get; set; }
+        public int? ManagerReview { get; set; }
     }
 }

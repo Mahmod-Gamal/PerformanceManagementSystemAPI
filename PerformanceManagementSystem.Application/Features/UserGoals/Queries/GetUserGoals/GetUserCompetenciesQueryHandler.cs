@@ -12,7 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.GetUserCompetencies
+namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.GetUserGoals
 {
     public class GetUserCompetenciesQueryHandler(IUnitOfWork unitOfWork, IHttpContextAccessor contextAccessor) : IRequestHandler<GetUserCompetenciesQuery, Result<UserCompetenciesDtoResponse>>
     {
