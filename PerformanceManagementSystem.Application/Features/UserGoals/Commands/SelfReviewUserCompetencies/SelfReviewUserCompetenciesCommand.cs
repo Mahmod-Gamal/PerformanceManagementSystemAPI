@@ -11,7 +11,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
 {
     public class SelfReviewUserCompetenciesCommand : ICommand<Result<AcknowledgmentDtoResponse>>
     {
-        public List<UserCompetencyReview> userCompetencies;
+        public List<UserCompetencyReview> userCompetencies { get; set; }
     }
     public class UserCompetencyReview
     {
