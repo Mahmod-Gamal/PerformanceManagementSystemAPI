@@ -12,7 +12,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Ma
     public class ManagerReviewUserObjectivesCommand : ICommand<Result<AcknowledgmentDtoResponse>>
     {
         public int UserID { get; set; }
-        public List<UserObjectiveReview> userObjectives;
+        public List<UserObjectiveReview> userObjectives { get; set; }
     }
     public class UserObjectiveReview
     {

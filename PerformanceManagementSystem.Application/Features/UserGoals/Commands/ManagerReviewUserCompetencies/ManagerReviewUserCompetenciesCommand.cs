@@ -12,7 +12,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Ma
     public class ManagerReviewUserCompetenciesCommand : ICommand<Result<AcknowledgmentDtoResponse>>
     {
         public int UserID { get; set; }
-        public List<UserCompetencyReview> userCompetencies;
+        public List<UserCompetencyReview> userCompetencies { get; set; }
     }
     public class UserCompetencyReview
     {
