@@ -2,6 +2,7 @@
 {
     public class UserObjectiveDto
     {
+        public int ObjectiveID { get; set; }
         public string Description { get; set; }
         public string Measure { get; set; }
         public string Target { get; set; }

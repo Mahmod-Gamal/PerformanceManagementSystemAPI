@@ -2,6 +2,7 @@
 {
     public class UserTrainingDto
     {
+        public int TrainingID { get; set; }
         public string TrainingCourse { get; set; }
         public string InstituteOfSource { get; set; }
         public DateTime DateFrom { get; set; }
