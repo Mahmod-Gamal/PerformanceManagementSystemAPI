@@ -12,6 +12,10 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
             .Include(x => x.UserTrainings)
             .Include(x => x.UserCompetencies)
             .ThenInclude(uc => uc.Competency)
+            .Include(x => x.User)
+            .ThenInclude(x => x.MidYearDuration)
+            .Include(x => x.User)
+            .ThenInclude(x => x.EndYearDuration)
             .FirstOrDefaultAsync();
 
         public async Task<IEnumerable<UserGoal>> GetAllByUserID(int UserID)
@@ -21,6 +25,10 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
             .Include(x => x.UserTrainings)
             .Include(x => x.UserCompetencies)
             .ThenInclude(uc=>uc.Competency)
+            .Include(x=>x.User)
+            .ThenInclude(x=>x.MidYearDuration)
+            .Include(x => x.User)
+            .ThenInclude(x => x.EndYearDuration)
             .ToListAsync();
     }
 }
