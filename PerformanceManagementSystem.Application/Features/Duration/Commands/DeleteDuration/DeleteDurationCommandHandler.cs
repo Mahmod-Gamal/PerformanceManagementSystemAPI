@@ -12,6 +12,7 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Del
             var duration = await unitOfWork.DurationRepository.GetByIdAsync(request.ID);
             if (duration is null)
                 return Result<AcknowledgmentDtoResponse>.NotFound("Duration Not Found");
+            await unitOfWork.DurationRepository.UpdateDependenciesToDefaults(request.ID);
             unitOfWork.DurationRepository.Remove(duration);
             return Result<AcknowledgmentDtoResponse>.Ok(new("Deleted Successfully"));
         }

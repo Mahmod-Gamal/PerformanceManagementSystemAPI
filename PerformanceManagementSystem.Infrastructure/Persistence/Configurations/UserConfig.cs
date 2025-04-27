@@ -33,6 +33,11 @@ namespace  PerformanceManagementSystem.Infrastructure.Persistence.Configurations
               .HasForeignKey(u => u.MidYearDurationID)
               .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasOne(u => u.SettingGoalsDuration)
+              .WithMany(u => u.SettingGoalsUsers)
+              .HasForeignKey(u => u.SettingGoalsDurationID)
+              .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasOne(u => u.Creator)
               .WithMany(u => u.CreatedUsers)
               .HasForeignKey(u => u.CreatedBy)

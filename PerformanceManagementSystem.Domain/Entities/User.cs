@@ -16,8 +16,10 @@
         public Department Department { get; set; }
         public int StatusID { get; set; }
         public Status Status { get; set; }
+        public int SettingGoalsDurationID { get; set; }
+        public Duration SettingGoalsDuration { get; set; }
         public int MidYearDurationID { get; set; }
-        public Duration MidYearDuration { get; set; }
+        public Duration MidYearDuration { get; set; } 
         public int EndYearDurationID { get; set; }
         public Duration EndYearDuration { get; set; }
         public DateTime CreatedAt { get; set; }

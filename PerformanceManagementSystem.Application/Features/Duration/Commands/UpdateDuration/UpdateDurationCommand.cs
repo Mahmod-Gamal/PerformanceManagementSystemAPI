@@ -8,7 +8,9 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Upd
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public int Year { get; set; }
         public DateOnly Start { get; set; }
         public DateOnly End { get; set; }
+
     }
 }

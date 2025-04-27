@@ -28,8 +28,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
         public List<CompetencyType> CompetencyTypesSeed()
         {
             return new List<CompetencyType>() {
-                new CompetencyType { ID = 1, Name = "Technical" },
-                new CompetencyType { ID = 2, Name = "Behavioral" }
+                new CompetencyType { ID = 1, Name = "Core" },
+                new CompetencyType { ID = 2, Name = "Functional" }
             };
         }
         public List<Duration> DurationsSeed()
@@ -39,17 +39,28 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     new Duration
                     {
                         ID = 1,
-                        Name = "Main MidYear",
+                        Name = "Main SettingGoals",
                         Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 1, 1)),  // First day of next year
                         End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 1, 31)),   // Last day of January next year
+                        Year = DateTime.Now.Year,
                         IsPrimary = true
                     },
                     new Duration
                     {
                         ID = 2,
-                        Name = "Main EndYear",
+                        Name = "Main MidYear",
                         Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 7, 1)),
                         End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 7, 31)),
+                        Year = DateTime.Now.Year,
+                        IsPrimary = true
+                    },
+                    new Duration
+                    {
+                        ID = 3,
+                        Name = "Main EndYear",
+                        Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 9, 1)),
+                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 9, 30)),
+                        Year = DateTime.Now.Year,
                         IsPrimary = true
                     }
                };

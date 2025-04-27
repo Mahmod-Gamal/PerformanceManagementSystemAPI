@@ -7,6 +7,7 @@ namespace PerformanceManagementSystem.Application.Features.Duration.Commands.Add
     public class AddDurationCommand : ICommand<Result<DurationDtoResponse>>
     {
         public string Name { get; set; }
+        public int Year { get; set; }
         public DateOnly Start{ get; set; }
         public DateOnly End { get; set; }
     }

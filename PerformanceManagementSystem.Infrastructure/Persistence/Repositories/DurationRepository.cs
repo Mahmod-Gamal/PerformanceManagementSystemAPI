@@ -13,5 +13,22 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
             => await context.Durations.Where(x=>x.ID != ID).AnyAsync(x => x.Name == Name);
         public async Task<bool> Exists(int ID)
             => await context.Durations.AnyAsync(x => x.ID == ID);
+        public async Task<bool> IsPrimary(int ID)
+            => await context.Durations.Where(x => x.ID == ID).Select(x => x.IsPrimary).FirstAsync();
+        public async Task UpdateDependenciesToDefaults(int ID)
+        {
+            context.Durations
+                .Where(x => x.ID == ID)
+                .SelectMany(x => x.SettingGoalsUsers)
+                .ForEachAsync(x => x.SettingGoalsDurationID = 1);
+            context.Durations
+                .Where(x => x.ID == ID)
+                .SelectMany(x => x.MidYearUsers)
+                .ForEachAsync(x => x.MidYearDurationID = 2);
+            context.Durations
+                .Where(x => x.ID == ID)
+                .SelectMany(x => x.EndYearUsers)
+                .ForEachAsync(x => x.EndYearDurationID = 3);
+        }
     }
 }
