@@ -8,9 +8,20 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
         public SetUserCompetenciesCommandValidator(IUnitOfWork unitOfWork)
         {
             RuleFor(x => x.Year)
-           .GreaterThan(0).WithMessage("Year is required");
+                .GreaterThan(0).WithMessage("Year is required");
 
-            RuleForEach(x => x.Competenciess).SetValidator(new CompetenciesValidator(unitOfWork));
+            // Validate that CoreCompetenciess has exactly 4 elements
+            RuleFor(x => x.CoreCompetenciess)
+                .Must(x => x != null && x.Count == 4)
+                .WithMessage("CoreCompetenciess must contain exactly 4 competencies.");
+
+            // Validate that FunctionalCompetenciess has exactly 4 elements
+            RuleFor(x => x.FunctionalCompetenciess)
+                .Must(x => x != null && x.Count == 4)
+                .WithMessage("FunctionalCompetenciess must contain exactly 4 competencies.");
+
+            RuleForEach(x => x.CoreCompetenciess).SetValidator(new CompetenciesValidator(unitOfWork));
+            RuleForEach(x => x.FunctionalCompetenciess).SetValidator(new CompetenciesValidator(unitOfWork));
         }
     }
 
@@ -18,12 +29,16 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
     {
         public CompetenciesValidator(IUnitOfWork unitOfWork)
         {
-            //RuleFor(x => x.CurrentLevel)
-            //    .InclusiveBetween(1, 5).WithMessage("CurrentLevel is not Valis [1-5]");
-            //RuleFor(x => x.PerviousLevel)
-            //    .InclusiveBetween(1, 5).WithMessage("PerviousLevel is not Valis [1-5]");
-            RuleFor(x => x.CompetencyID).Must(x => unitOfWork.CompetencyRepository.Exists(x).Result)
+            RuleFor(x => x.CompetencyID)
+                .Must(x => unitOfWork.CompetencyRepository.Exists(x).Result)
                 .WithMessage("CompetencyID not Found");
+
+            // Optional: Uncomment if you want to validate CurrentLevel and ExpectedLevel between 1 and 5
+            // RuleFor(x => x.CurrentLevel)
+            //    .InclusiveBetween(1, 5).WithMessage("CurrentLevel is not Valid [1-5]");
+
+            // RuleFor(x => x.ExpectedLevel)
+            //    .InclusiveBetween(1, 5).WithMessage("ExpectedLevel is not Valid [1-5]");
         }
     }
 }

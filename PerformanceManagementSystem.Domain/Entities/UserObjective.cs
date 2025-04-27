@@ -9,7 +9,9 @@
         public string Target { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
-        public int Review { get; set; }
-        public int ManagerReview { get; set; }
+        public int? Rating { get; set; }
+        public string? Comment { get; set; }
+        public int? ManagerRating { get; set; }
+        public string? ManagerComment { get; set; }
     }
 }

@@ -49,8 +49,10 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
                     CompetencyName = c.Name,
                     CurrentLevel = null,
                     ExpectedLevel = null,
-                    Review = null,
-                    ManagerReview = null
+                    Rating = null,
+                    Comment = null,
+                    ManagerRating = null,
+                    ManagerComment = null
                 }).ToList();
             }
 

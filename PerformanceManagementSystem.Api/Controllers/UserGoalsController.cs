@@ -20,7 +20,7 @@ using PerformanceManagementSystem.Application.Features.UserGoals.Queries.GetUser
 
 namespace PerformanceManagementSystem.Api.Controllers
 {
-    [Authorize]
+  //  [Authorize]
     public class UserGoalsController(IMediator mediator) : BaseController
     {
         [HttpPut("SetObjectives")]

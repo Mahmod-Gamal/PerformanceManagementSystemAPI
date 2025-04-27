@@ -16,6 +16,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
     public class UserCompetencySelfReview
     {
         public int ID { get; set; }
-        public int Review {  get; set; }
+        public int Rating { get; set; }
+        public string Comment { get; set; }
     }
 }

@@ -6,7 +6,9 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
     public class SetUserCompetenciesCommand : ICommand<Result<UserCompetenciesDtoResponse>>
     {
         public int Year { get; set; }
-        public List<Competencies> Competenciess { get; set; }
+        public List<Competencies> CoreCompetenciess { get; set; }
+        public List<Competencies> FunctionalCompetenciess { get; set; }
+
     }
     public class Competencies
     {

@@ -28,7 +28,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             var goals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year);
 
             goals.UserTrainings.ToList().ForEach(ut => {
-                ut.Review = request.userTrainings.Where(x => x.ID == ut.ID).Select(x => x.Review).FirstOrDefault();
+                ut.Rating = request.userTrainings.Where(x => x.ID == ut.ID).Select(x => x.Rating).FirstOrDefault();
             });
 
             return Result<AcknowledgmentDtoResponse>.Ok(new AcknowledgmentDtoResponse("Saved"));
