@@ -41,6 +41,7 @@ namespace PerformanceManagementSystem.Infrastructure
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<UserType>().HasData(_dataInitializer.UserTypesSeed());
+            modelBuilder.Entity<DurationType>().HasData(_dataInitializer.DurationTypesSeed());
             modelBuilder.Entity<Duration>().HasData(_dataInitializer.DurationsSeed());
             modelBuilder.Entity<Status>().HasData(_dataInitializer.StatusesSeed());
             modelBuilder.Entity<CompetencyType>().HasData(_dataInitializer.CompetencyTypesSeed());

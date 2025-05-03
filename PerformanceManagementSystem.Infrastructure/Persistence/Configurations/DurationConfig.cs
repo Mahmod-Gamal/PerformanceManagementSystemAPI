@@ -9,6 +9,13 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Duration> builder)
         {
+
+
+            builder.HasOne(u => u.DurationType)
+               .WithMany(ut => ut.Durations)
+               .HasForeignKey(u => u.DurationTypeID)
+                .OnDelete(DeleteBehavior.Restrict);
+
             // Define conversion for DateOnly <-> DateTime
             var dateOnlyConverter = new ValueConverter<DateOnly, DateTime>(
                 d => d.ToDateTime(TimeOnly.MinValue), // Convert DateOnly to DateTime

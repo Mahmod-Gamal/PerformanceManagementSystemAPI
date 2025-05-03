@@ -9,6 +9,6 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
         List<UserType> UserTypesSeed();
         List<User> UsersSeed();
         List<Duration> DurationsSeed();
-
+        List<DurationType> DurationTypesSeed();
     }
 }

@@ -32,6 +32,16 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                 new CompetencyType { ID = 2, Name = "Functional" }
             };
         }
+        public List<DurationType> DurationTypesSeed()
+        {
+            return new List<DurationType>()
+            {
+                  new DurationType { ID = 1, Name = "Setting Goals" }
+                , new DurationType { ID = 2, Name = "Mid Year" }
+                , new DurationType { ID = 3, Name = "End Year" }
+            };
+        }
+
         public List<Duration> DurationsSeed()
         {
             return new List<Duration>()
@@ -43,6 +53,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                         Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 1, 1)),  // First day of next year
                         End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 1, 31)),   // Last day of January next year
                         Year = DateTime.Now.Year,
+                        DurationTypeID = 1,
                         IsPrimary = true
                     },
                     new Duration
@@ -52,6 +63,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                         Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 7, 1)),
                         End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 7, 31)),
                         Year = DateTime.Now.Year,
+                        DurationTypeID = 2,
                         IsPrimary = true
                     },
                     new Duration
@@ -61,6 +73,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                         Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 9, 1)),
                         End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year + 1, 9, 30)),
                         Year = DateTime.Now.Year,
+                        DurationTypeID = 3,
                         IsPrimary = true
                     }
                };
