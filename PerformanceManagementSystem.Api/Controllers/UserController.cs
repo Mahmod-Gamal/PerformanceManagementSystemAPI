@@ -8,6 +8,7 @@ using PerformanceManagementSystem.Application.Features.User.Commands.DeactivateU
 using PerformanceManagementSystem.Application.Features.User.Commands.DeleteUser;
 using PerformanceManagementSystem.Application.Features.User.Commands.UpdateUser;
 using PerformanceManagementSystem.Application.Features.User.Queries.GetAllUsers;
+using PerformanceManagementSystem.Application.Features.User.Queries.GetDepartmentEmployees;
 using PerformanceManagementSystem.Application.Features.User.Queries.GetManagerEmployees;
 using PerformanceManagementSystem.Application.Features.User.Queries.GetUserByID;
 using Swashbuckle.AspNetCore.Annotations;
@@ -58,6 +59,13 @@ namespace PerformanceManagementSystem.Api.Controllers
         [SwaggerOperation(OperationId = nameof(GetManagedEmployees))]
         public async Task<ActionResult<IEnumerable<UserDtoResponse>>> GetManagedEmployees()
             => HandelResult(await mediator.Send(new GetManagerEmployeesQuery()));
+
+
+        [HttpGet("GetDepartmentEmployees/{ID}")]
+        [SwaggerOperation(OperationId = nameof(GetDepartmentEmployees))]
+        public async Task<ActionResult<UserDtoResponse>> GetDepartmentEmployees(int ID)
+            => HandelResult(await mediator.Send(new GetDepartmentEmployeesQuery() { ID = ID }));
+
 
 
     }

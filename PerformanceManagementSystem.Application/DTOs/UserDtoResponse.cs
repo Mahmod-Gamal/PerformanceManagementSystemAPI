@@ -10,6 +10,7 @@
         public ForeignDto Type { get; set; }
         public ForeignDto Department { get; set; }
         public ForeignDto Status { get; set; }
+        public ForeignDto SettingGoalsDuration { get; set; }
         public ForeignDto MidYearDuration { get; set; }
         public ForeignDto EndYearDuration { get; set; }
         public DateTime CreatedAt { get; set; }
