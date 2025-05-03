@@ -15,6 +15,16 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
             => await context.Durations.AnyAsync(x => x.ID == ID);
         public async Task<bool> IsPrimary(int ID)
             => await context.Durations.Where(x => x.ID == ID).Select(x => x.IsPrimary).FirstAsync();
+
+        public async Task<Duration> GetDurationWithUsers(int ID)
+            => await context.Durations
+            .Include(x=>x.DurationType)
+            .Include(x=>x.SettingGoalsUsers)
+            .Include(x=>x.MidYearUsers)
+            .Include(x=>x.EndYearUsers)
+            .FirstAsync(x=>x.ID == ID);
+
+        
         public async Task UpdateDependenciesToDefaults(int ID)
         {
             context.Durations

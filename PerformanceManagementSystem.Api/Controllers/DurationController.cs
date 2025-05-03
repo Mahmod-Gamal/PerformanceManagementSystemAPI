@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PerformanceManagementSystem.Application.DTOs;
 using PerformanceManagementSystem.Application.Features.Duration.Commands.AddDuration;
 using PerformanceManagementSystem.Application.Features.Duration.Commands.DeleteDuration;
+using PerformanceManagementSystem.Application.Features.Duration.Commands.DurationNotification;
 using PerformanceManagementSystem.Application.Features.Duration.Commands.UpdateDuration;
 using PerformanceManagementSystem.Application.Features.Duration.Queries.GetAllDurations;
 using PerformanceManagementSystem.Application.Features.Duration.Queries.GetDurationByID;
@@ -35,6 +36,10 @@ namespace PerformanceManagementSystem.Api.Controllers
         public async Task<ActionResult<DurationDtoResponse>> GetDuration(int ID)
             => HandelResult(await mediator.Send(new GetDurationByIDQuery() { ID = ID }));
 
+
+        [HttpPut("NotifyDuration/{ID}")]
+        public async Task<ActionResult<AcknowledgmentDtoResponse>> NotifyDuration(int ID)
+            => HandelResult(await mediator.Send(new DurationNotificationCommand() { ID = ID}));
 
     }
 }

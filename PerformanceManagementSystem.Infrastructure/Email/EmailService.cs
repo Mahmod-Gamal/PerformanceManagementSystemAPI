@@ -17,6 +17,11 @@ namespace PerformanceManagementSystem.Infrastructure.Email
 
         public void SendEmail(string toEmail, string subject, string body)
         {
+            this.SendEmail(new List<String> { toEmail }, subject, body);
+        }
+
+        public void SendEmail(List<string> toEmails, string subject, string body)
+        {
             using (var smtpClient = new SmtpClient(_smtpSettings.Server, _smtpSettings.Port))
             {
                 smtpClient.Credentials = new NetworkCredential(_smtpSettings.Username, _smtpSettings.Password);
@@ -28,12 +33,17 @@ namespace PerformanceManagementSystem.Infrastructure.Email
                     Subject = subject,
                     Body = body,
                     IsBodyHtml = true // Set to true if the body contains HTML
-                };
-                mailMessage.To.Add(toEmail);
+                }; 
+                
+                foreach (var email in toEmails)
+                {
+                    mailMessage.To.Add(email);
+                }
 
                 smtpClient.Send(mailMessage);
             }
         }
+
     }
 }
 
