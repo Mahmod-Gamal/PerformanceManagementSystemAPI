@@ -18,7 +18,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ForgetP
                 return Result<AcknowledgmentDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
 
             var user = await unitOfWork.UserRepository.GetUserByEmail(request.Email);
-            if (user is null) return Result<AcknowledgmentDtoResponse>.NotFound("Email not found");
+            if (user is null || user.StatusID != 1) return Result<AcknowledgmentDtoResponse>.NotFound("Email not found");
 
             user.OTP = passwordManager.GenerateRandomOTP();
             string OTT = passwordManager.EncodeOTT(user.UserName, user.OTP);

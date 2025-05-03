@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PerformanceManagementSystem.Application.DTOs;
+using PerformanceManagementSystem.Application.Features.User.Commands.ActivateUser;
 using PerformanceManagementSystem.Application.Features.User.Commands.AddUser;
+using PerformanceManagementSystem.Application.Features.User.Commands.DeactivateUser;
 using PerformanceManagementSystem.Application.Features.User.Commands.DeleteUser;
 using PerformanceManagementSystem.Application.Features.User.Commands.UpdateUser;
 using PerformanceManagementSystem.Application.Features.User.Queries.GetAllUsers;
@@ -24,6 +26,16 @@ namespace PerformanceManagementSystem.Api.Controllers
         [HttpPut("UpdateUser")]
         [SwaggerOperation(OperationId = nameof(UpdateUser))]
         public async Task<ActionResult<UserDtoResponse>> UpdateUser(UpdateUserCommand command)
+            => HandelResult(await mediator.Send(command)); 
+        
+        [HttpPut("ActivateUser")]
+        [SwaggerOperation(OperationId = nameof(ActivateUser))]
+        public async Task<ActionResult<AcknowledgmentDtoResponse>> ActivateUser(ActivateUserCommand command)
+            => HandelResult(await mediator.Send(command)); 
+        
+        [HttpPut("DeactivateUser")]
+        [SwaggerOperation(OperationId = nameof(DeactivateUser))]
+        public async Task<ActionResult<AcknowledgmentDtoResponse>> DeactivateUser(DeactivateUserCommand command)
             => HandelResult(await mediator.Send(command));
 
         [HttpDelete("DeleteUser")]

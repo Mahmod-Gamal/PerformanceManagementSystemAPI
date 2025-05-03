@@ -21,7 +21,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.ChangeP
             var userId = contextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var tokenVersion = Guid.Parse(contextAccessor.HttpContext?.User.FindFirst(ClaimTypes.UserData)?.Value);
             var user = await unitOfWork.UserRepository.GetByIdAsync(int.Parse(userId));
-            if (user is null)
+            if (user is null || user.StatusID != 1)
                 return Result<AcknowledgmentDtoResponse>.UnAuthorized("User not found");
             if (user.TokenVersion != tokenVersion)
                 return Result<AcknowledgmentDtoResponse>.UnAuthorized("Token Expired,Login again");

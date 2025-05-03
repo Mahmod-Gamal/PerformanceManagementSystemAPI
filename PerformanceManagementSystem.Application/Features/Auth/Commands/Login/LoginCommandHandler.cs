@@ -16,7 +16,7 @@ namespace PerformanceManagementSystem.Application.Features.Auth.Commands.Login
             if (!validationResult.IsValid)
                 return Result<LoginDtoResponse>.BadRequest(validationResult.Errors.First().ErrorMessage);
             var user = await unitOfWork.UserRepository.GetUser(request.EmailOrUsername);
-            if (user is null) return Result<LoginDtoResponse>.UnAuthorized("Invalid username or password");
+            if (user is null || user.StatusID != 1) return Result<LoginDtoResponse>.UnAuthorized("Invalid username or password");
 
             if (passwordManager.Verfiy(request.Password, user.PasswordHash, user.PasswordSalt))
             {
