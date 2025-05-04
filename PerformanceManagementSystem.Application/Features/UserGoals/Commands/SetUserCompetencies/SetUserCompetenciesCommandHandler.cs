@@ -28,9 +28,12 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
                 await unitOfWork.UserGoalRepository.AddAsync(userGoal);
             }
 
-            //userGoal.UserCompetencies = request.Competenciess.Select(x => x.Adapt<Domain.Entities.UserCompetency>()).ToList();
+            var allCompetencies = request.FunctionalCompetenciess;
+            allCompetencies.AddRange(request.CoreCompetenciess);
 
-            return Result<UserCompetenciesDtoResponse>.Ok(userGoal.Adapt<UserCompetenciesDtoResponse>());
+            userGoal.UserCompetencies = allCompetencies.Select(x => x.Adapt<Domain.Entities.UserCompetency>()).ToList();
+
+            return Result<UserCompetenciesDtoResponse>.Ok(userGoal.UserCompetencies.Adapt<UserCompetenciesDtoResponse>());
         }
     }
 }

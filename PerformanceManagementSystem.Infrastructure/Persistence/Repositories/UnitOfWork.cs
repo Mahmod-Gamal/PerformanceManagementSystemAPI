@@ -13,6 +13,9 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
         private IStatusRepository _statusRepository;
         private ICompetencyRepository _competencyRepository;
         private ICompetencyTypeRepository _competencyTypeRepository;
+        private IUserLearningRepository _userLearningRepository;
+
+
         public IUserRepository UserRepository => _userRepository ??= new UserRepository(context);
         public IUserGoalRepository UserGoalRepository => _userGoalRepository ??= new UserGoalRepository(context);
         public IDurationRepository DurationRepository => _durationRepository ??= new DurationRepository(context);
@@ -20,10 +23,12 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
         public IStatusRepository StatusRepository => _statusRepository ??= new StatusRepository(context);
         public ICompetencyRepository CompetencyRepository => _competencyRepository ??= new CompetencyRepository(context);
         public ICompetencyTypeRepository CompetencyTypeRepository => _competencyTypeRepository ??= new CompetencyTypeRepository(context);
+        public IUserLearningRepository UserLearningRepository => _userLearningRepository ??= new UserLearningRepository(context);
+
         public async Task<int> CommitAsync(CancellationToken cancellationToken = default)
             => await context.SaveChangesAsync(cancellationToken);
-         public void Dispose()
-           => context.Dispose();
+        public void Dispose()
+          => context.Dispose();
     }
 
 }

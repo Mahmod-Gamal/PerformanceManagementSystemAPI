@@ -26,9 +26,23 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
                 return Result<AcknowledgmentDtoResponse>.UnAuthorized("Out of Duration");
             var goals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year);
 
-            goals.UserLearnings.ToList().ForEach(ul => {
-            ul.Rating = request.userLearnings.Where(x => x.ID == ul.ID).Select(x => x.Rating).FirstOrDefault();
+            goals.UserLearnings.ToList().ForEach(ul =>
+            {
+                ul.Rating = request.userLearnings.Where(x => x.ID == ul.ID).Select(x => x.Rating).FirstOrDefault();
+                ul.Comment = request.userLearnings.Where(x => x.ID == ul.ID).Select(x => x.Comment).FirstOrDefault();
+
+                var userTrainings = request.userLearnings.Where(x => x.ID == ul.ID).Select(x => x.userTrainings).FirstOrDefault();
+                ul.UserTrainings.ToList().ForEach(ut =>
+                {
+                    ut.Rating = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.Rating).FirstOrDefault();
+
+                    ut.Comment = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.Comment).FirstOrDefault();
+
+                });
+
             });
+
+
 
             return Result<AcknowledgmentDtoResponse>.Ok(new AcknowledgmentDtoResponse("Saved"));
         }

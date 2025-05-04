@@ -6,8 +6,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
 {
     public class SetUserTrainingsCommand : ICommand<Result<UserTrainingsDtoResponse>>
     {
-        public int Year { get; set; }
-        public List<Trainings> Trainingss { get; set; }
+        public List<Trainings> Trainings { get; set; }
     }
     public class Trainings
     {

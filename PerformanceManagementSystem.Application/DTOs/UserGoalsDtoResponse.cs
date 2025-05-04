@@ -12,7 +12,6 @@ namespace PerformanceManagementSystem.Application.DTOs
         public List<UserCompetencyDto> UserCompetencies { get; set; }
         public List<UserLearningDto> UserLearnings { get; set; }
         public List<UserObjectiveDto> UserObjectives { get; set; }
-        public List<UserTrainingDto> UserTrainings { get; set; }
         public bool CanSetGoals { get; set; }
         public bool CanSelfReview { get; set; }
         public bool CanManagerReview { get; set; }

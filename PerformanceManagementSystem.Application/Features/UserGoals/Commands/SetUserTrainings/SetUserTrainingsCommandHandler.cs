@@ -16,7 +16,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             var user = await unitOfWork.UserRepository.GetByIdAsync(int.Parse(userID));
             if (user == null)
                 return Result<UserTrainingsDtoResponse>.NotFound("User Not Found");
-            var userGoals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year);
+            var userGoals = await unitOfWork.UserLearningRepostiory.GetByIdAsync(request.);
             if (userGoals == null)
                 userGoals = new Domain.Entities.UserGoal()
                 {
@@ -24,7 +24,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
                     Year = DateTime.Now.Year,
                     StageID = 1
                 };
-            userGoals.UserTrainings = request.Trainingss.Select(x => x.Adapt<Domain.Entities.UserTraining>()).ToList();
+            userGoals.UserTrainings = request.Trainings.Select(x => x.Adapt<Domain.Entities.UserTraining>()).ToList();
 
             return Result<UserTrainingsDtoResponse>.Ok(userGoals.Adapt<UserTrainingsDtoResponse>());
         }

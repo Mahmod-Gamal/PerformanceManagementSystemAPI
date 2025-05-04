@@ -9,6 +9,7 @@
         IStatusRepository StatusRepository{ get; }
         ICompetencyRepository CompetencyRepository { get; }
         ICompetencyTypeRepository CompetencyTypeRepository { get; }
+          IUserLearningRepository UserLearningRepostiory { get; }
         Task<int> CommitAsync(CancellationToken cancellationToken = default);
     }
 }

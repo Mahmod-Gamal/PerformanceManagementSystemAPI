@@ -1,6 +1,7 @@
 ﻿using PerformanceManagementSystem.Application.Common.Interfaces;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
+using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserTrainings;
 namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserLearning
 {
     public class SetUserLearningCommand : ICommand<Result<UserLearningDtoResponse>>
@@ -12,6 +13,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
     {
         public string ImprovementArea { get; set; }
         public string Action { get; set; }
+        public List<Trainings> Trainings { get; set; }
     }
 
 }

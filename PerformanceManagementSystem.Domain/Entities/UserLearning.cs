@@ -10,5 +10,7 @@
         public string? Comment { get; set; }
         public int? ManagerRating { get; set; }
         public string? ManagerComment { get; set; }
+        public ICollection<UserTraining> UserTrainings { get; set; }
+
     }
 }

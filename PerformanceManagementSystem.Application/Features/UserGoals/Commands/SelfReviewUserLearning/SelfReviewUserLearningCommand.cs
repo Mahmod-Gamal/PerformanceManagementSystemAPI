@@ -1,6 +1,7 @@
 ﻿using PerformanceManagementSystem.Application.Common.Interfaces;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
+using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SelfReviewUserTrainings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
         public int ID { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
+        public List<UserTrainingSelfReview> userTrainings { get; set; }
+
     }
 }

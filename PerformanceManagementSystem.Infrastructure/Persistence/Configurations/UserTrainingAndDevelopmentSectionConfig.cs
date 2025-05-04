@@ -1,17 +1,17 @@
-﻿using  PerformanceManagementSystem.Domain.Entities;
+﻿using PerformanceManagementSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 
 namespace PerformanceManagementSystem.Infrastructure.Persistence.Configurations
 {
-    public class UserTrainingAndDevelopmentSectionConfig :IEntityTypeConfiguration<UserTraining>
+    public class UserTrainingAndDevelopmentSectionConfig : IEntityTypeConfiguration<UserTraining>
     {
         public void Configure(EntityTypeBuilder<UserTraining> builder)
         {
-            builder.HasOne(utds => utds.UserGoal)
+            builder.HasOne(utds => utds.UserLearning)
                .WithMany(u => u.UserTrainings)
-               .HasForeignKey(utds => utds.UserGoalID);
+               .HasForeignKey(utds => utds.UserLearningID);
         }
     }
 }
