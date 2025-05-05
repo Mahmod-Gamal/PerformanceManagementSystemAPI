@@ -7,10 +7,10 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
     {
         public SetUserTrainingsCommandValidator(IUnitOfWork unitOfWork)
         {
-            RuleFor(x => x.Year)
-           .GreaterThan(0).WithMessage("Year is required");
+         //   RuleFor(x => x.Year)
+         //  .GreaterThan(0).WithMessage("Year is required");
 
-            RuleForEach(x => x.Trainingss).SetValidator(new TrainingsValidator());
+         //   RuleForEach(x => x.Trainingss).SetValidator(new TrainingsValidator());
         }
     }
 

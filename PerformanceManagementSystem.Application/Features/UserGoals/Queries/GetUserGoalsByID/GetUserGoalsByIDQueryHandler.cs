@@ -62,7 +62,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
                 UserCompetencies = userCompetencies,
                 UserLearnings = goal?.UserLearnings?.Adapt<List<UserLearningDto>>() ?? new(),
                 UserObjectives = goal?.UserObjectives?.Adapt<List<UserObjectiveDto>>() ?? new(),
-                UserTrainings = goal?.UserTrainings?.Adapt<List<UserTrainingDto>>() ?? new(),
+                //UserTrainings = goal?.UserTrainings?.Adapt<List<UserTrainingDto>>() ?? new(),
                 //CanSetGoals = goal?.User?.MidYearDuration?.Start > DateOnly.FromDateTime(DateTime.Now)
                 //&& goal?.User?.EndYearDuration?.Start > DateOnly.FromDateTime(DateTime.Now),
                 //CanSelfReview = DateOnly.FromDateTime(DateTime.Now) >= goal?.User?.MidYearDuration?.Start

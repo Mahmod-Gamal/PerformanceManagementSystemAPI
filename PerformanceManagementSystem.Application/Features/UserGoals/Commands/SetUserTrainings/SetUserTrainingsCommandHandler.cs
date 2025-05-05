@@ -16,7 +16,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             var user = await unitOfWork.UserRepository.GetByIdAsync(int.Parse(userID));
             if (user == null)
                 return Result<UserTrainingsDtoResponse>.NotFound("User Not Found");
-            var userGoals = await unitOfWork.UserLearningRepostiory.GetByIdAsync(request.);
+            var userGoals = new Domain.Entities.UserGoal(); // await unitOfWork.UserLearningRepostiory.GetByIdAsync(request.);
             if (userGoals == null)
                 userGoals = new Domain.Entities.UserGoal()
                 {

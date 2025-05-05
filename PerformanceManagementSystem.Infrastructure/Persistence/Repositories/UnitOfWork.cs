@@ -23,7 +23,9 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
         public IStatusRepository StatusRepository => _statusRepository ??= new StatusRepository(context);
         public ICompetencyRepository CompetencyRepository => _competencyRepository ??= new CompetencyRepository(context);
         public ICompetencyTypeRepository CompetencyTypeRepository => _competencyTypeRepository ??= new CompetencyTypeRepository(context);
-        public IUserLearningRepository UserLearningRepository => _userLearningRepository ??= new UserLearningRepository(context);
+
+
+        public IUserLearningRepository UserLearningRepostiory => _userLearningRepository ??= new UserLearningRepository(context);
 
         public async Task<int> CommitAsync(CancellationToken cancellationToken = default)
             => await context.SaveChangesAsync(cancellationToken);
