@@ -23,7 +23,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             var duration = await unitOfWork.DurationRepository.GetByIdAsync(user.MidYearDurationID);
             if (duration.Start >= DateOnly.FromDateTime(DateTime.Now)
                 || duration.End <= DateOnly.FromDateTime(DateTime.Now))
-                return Result<AcknowledgmentDtoResponse>.UnAuthorized("Out of Duration");
+             return Result<AcknowledgmentDtoResponse>.UnAuthorized("Out of Duration");
             var goals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year);
 
             goals.UserLearnings.ToList().ForEach(ul =>
@@ -37,6 +37,12 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
                     ut.Rating = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.Rating).FirstOrDefault();
 
                     ut.Comment = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.Comment).FirstOrDefault();
+
+                    ut.CertificateValidity = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.CertificateValidity).FirstOrDefault();
+
+                    ut.UploadedCertificate = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.UploadedCertificate).FirstOrDefault();
+
+                    ut.CourseTakenStatus = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.CourseTakenStatus).FirstOrDefault();
 
                 });
 

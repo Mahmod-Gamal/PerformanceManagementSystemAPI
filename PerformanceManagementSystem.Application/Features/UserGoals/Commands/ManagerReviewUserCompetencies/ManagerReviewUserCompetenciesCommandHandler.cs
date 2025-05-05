@@ -35,6 +35,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Ma
 
             goals.UserCompetencies.ToList().ForEach(uc => {
                 uc.ManagerRating = request.userCompetencies.Where(x => x.ID == uc.ID).Select(x => x.Rating).FirstOrDefault();
+                uc.ManagerComment = request.userCompetencies.Where(x => x.ID == uc.ID).Select(x => x.Comment).FirstOrDefault();
             });
 
             return Result<AcknowledgmentDtoResponse>.Ok(new AcknowledgmentDtoResponse("Saved"));

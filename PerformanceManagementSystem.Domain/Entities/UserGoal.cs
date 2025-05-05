@@ -16,6 +16,5 @@ namespace PerformanceManagementSystem.Domain.Entities
         public ICollection<UserCompetency> UserCompetencies { get; set; }
         public ICollection<UserObjective> UserObjectives { get; set; }
         public ICollection<UserLearning> UserLearnings { get; set; }
-        public ICollection<UserTraining> UserTrainings { get; set; }
     }
 }

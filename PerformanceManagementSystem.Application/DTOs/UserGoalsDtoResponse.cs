@@ -9,7 +9,8 @@ namespace PerformanceManagementSystem.Application.DTOs
     public class UserGoalsDtoResponse
     {
         public UserGoalDto UserGoal { get; set; }
-        public List<UserCompetencyDto> UserCompetencies { get; set; }
+        public List<UserCompetencyDto> UserCoreCompetencies { get; set; }
+        public List<UserCompetencyDto> UserFunctionalCompetencies { get; set; }
         public List<UserLearningDto> UserLearnings { get; set; }
         public List<UserObjectiveDto> UserObjectives { get; set; }
         public bool CanSetGoals { get; set; }

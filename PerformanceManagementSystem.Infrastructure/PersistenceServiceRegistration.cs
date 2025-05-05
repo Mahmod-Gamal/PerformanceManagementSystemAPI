@@ -22,6 +22,7 @@ namespace PerformanceManagementSystem.Infrastructure
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IDataInitializer, DataInitializer>();
+            services.AddScoped<IRichDataInitializer, RichDataInitializer>();
 
             services.AddDbContext<PerformanceManagementDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("PerformanceManagementDbConnection")));

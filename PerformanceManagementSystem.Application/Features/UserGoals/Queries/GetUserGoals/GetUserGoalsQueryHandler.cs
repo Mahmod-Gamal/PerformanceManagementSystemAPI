@@ -27,18 +27,30 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
             var goal = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, currentYear);
 
 
-            var userCompetencies = new List<UserCompetencyDto>();
+            var UserCoreCompetencies = new List<UserCompetencyDto>();
+            var UserFunctionalCompetencies = new List<UserCompetencyDto>();
+
 
             if (goal is not null && goal.UserCompetencies != null && goal.UserCompetencies.Any())
             {
-                userCompetencies = goal.UserCompetencies.Adapt<List<UserCompetencyDto>>();
+                UserCoreCompetencies = goal.UserCompetencies.Where(uc => uc.Competency.CompetenciesTypeID == 1).Adapt<List<UserCompetencyDto>>();
+                UserFunctionalCompetencies = goal.UserCompetencies.Where(uc => uc.Competency.CompetenciesTypeID == 2).Adapt<List<UserCompetencyDto>>();
             }
             else
             {
                 // Fetch all competencies and return default values
                 var allCompetencies = await unitOfWork.CompetencyRepository.GetAllAsync();
 
-                userCompetencies = allCompetencies.Select(c => new UserCompetencyDto
+                UserCoreCompetencies = allCompetencies.Where(c => c.CompetenciesTypeID == 1).Select(c => new UserCompetencyDto
+                {
+                    CompetencyID = c.ID,
+                    CompetencyName = c.Name,
+                    CurrentLevel = null,
+                    ExpectedLevel = null,
+                    Rating = null,
+                    ManagerRating = null
+                }).ToList();
+                UserFunctionalCompetencies = allCompetencies.Where(c => c.CompetenciesTypeID == 2).Select(c => new UserCompetencyDto
                 {
                     CompetencyID = c.ID,
                     CompetencyName = c.Name,
@@ -52,10 +64,11 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
             var response = new UserGoalsDtoResponse
             {
                 UserGoal = goal?.Adapt<UserGoalDto>(),
-                UserCompetencies = userCompetencies,
+                UserCoreCompetencies = UserCoreCompetencies,
+                UserFunctionalCompetencies = UserFunctionalCompetencies,
                 UserLearnings = goal?.UserLearnings?.Adapt<List<UserLearningDto>>() ?? new(),
                 UserObjectives = goal?.UserObjectives?.Adapt<List<UserObjectiveDto>>() ?? new(),
-               // UserTrainings = goal?.UserTrainings?.Adapt<List<UserTrainingDto>>() ?? new(),
+                // UserTrainings = goal?.UserTrainings?.Adapt<List<UserTrainingDto>>() ?? new(),
                 //CanSetGoals = goal?.User?.MidYearDuration?.Start > DateOnly.FromDateTime(DateTime.Now)
                 //&& goal?.User?.EndYearDuration?.Start > DateOnly.FromDateTime(DateTime.Now),
                 //CanSelfReview = DateOnly.FromDateTime(DateTime.Now) >= goal?.User?.MidYearDuration?.Start

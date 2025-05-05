@@ -28,6 +28,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
 
             goals.UserObjectives.ToList().ForEach(uo => {
                 uo.Rating = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Rating).FirstOrDefault();
+                uo.Comment = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Comment).FirstOrDefault();
             });
 
             return Result<AcknowledgmentDtoResponse>.Ok(new AcknowledgmentDtoResponse("Saved"));

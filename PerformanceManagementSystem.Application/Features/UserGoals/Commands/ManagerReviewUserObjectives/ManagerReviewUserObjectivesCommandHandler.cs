@@ -35,6 +35,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Ma
 
             goals.UserObjectives.ToList().ForEach(uo => {
                 uo.ManagerRating = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Rating).FirstOrDefault();
+                uo.ManagerComment = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Comment).FirstOrDefault();
             });
 
             return Result<AcknowledgmentDtoResponse>.Ok(new AcknowledgmentDtoResponse("Saved"));

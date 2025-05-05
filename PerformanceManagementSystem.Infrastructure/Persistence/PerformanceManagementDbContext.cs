@@ -11,15 +11,15 @@ namespace PerformanceManagementSystem.Infrastructure
 {
     public class PerformanceManagementDbContext : DbContext
     {
-        private readonly IDataInitializer _dataInitializer;
+        private readonly IRichDataInitializer _richDataInitializer;
         private readonly AuditingSaveChangesInterceptor _auditingSaveChangesInterceptor;
         public PerformanceManagementDbContext(DbContextOptions<PerformanceManagementDbContext> options
-            , IDataInitializer dataInitializer
+            , IRichDataInitializer richDataInitializer
             , AuditingSaveChangesInterceptor auditingInterceptor
             )
             : base(options)
         {
-            _dataInitializer = dataInitializer;
+            _richDataInitializer = richDataInitializer;
             _auditingSaveChangesInterceptor = auditingInterceptor;
         }
 
@@ -40,12 +40,19 @@ namespace PerformanceManagementSystem.Infrastructure
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UserType>().HasData(_dataInitializer.UserTypesSeed());
-            modelBuilder.Entity<DurationType>().HasData(_dataInitializer.DurationTypesSeed());
-            modelBuilder.Entity<Duration>().HasData(_dataInitializer.DurationsSeed());
-            modelBuilder.Entity<Status>().HasData(_dataInitializer.StatusesSeed());
-            modelBuilder.Entity<CompetencyType>().HasData(_dataInitializer.CompetencyTypesSeed());
-            modelBuilder.Entity<User>().HasData(_dataInitializer.UsersSeed());
+            modelBuilder.Entity<UserType>().HasData(_richDataInitializer.UserTypesSeed());
+            modelBuilder.Entity<DurationType>().HasData(_richDataInitializer.DurationTypesSeed());
+            modelBuilder.Entity<Duration>().HasData(_richDataInitializer.DurationsSeed());
+            modelBuilder.Entity<Status>().HasData(_richDataInitializer.StatusesSeed());
+            modelBuilder.Entity<CompetencyType>().HasData(_richDataInitializer.CompetencyTypesSeed());
+            modelBuilder.Entity<User>().HasData(_richDataInitializer.UsersSeed());
+            modelBuilder.Entity<Competency>().HasData(_richDataInitializer.CompetenciesSeed());
+            modelBuilder.Entity<Department>().HasData(_richDataInitializer.DepartmentsSeed());
+            modelBuilder.Entity<UserGoal>().HasData(_richDataInitializer.GoalsSeed());
+            modelBuilder.Entity<UserCompetency>().HasData(_richDataInitializer.UserCompetenciesSeed());
+            modelBuilder.Entity<UserObjective>().HasData(_richDataInitializer.UserObjectivesSeed());
+            modelBuilder.Entity<UserLearning>().HasData(_richDataInitializer.UserLearningSeed());
+            modelBuilder.Entity<UserTraining>().HasData(_richDataInitializer.UserTrainingSeed());
 
             // Automatically apply all IEntityTypeConfiguration<T>
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

@@ -94,7 +94,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     OTP = null,
                     PasswordHash = hash,
                     PasswordSalt = salt,
-                    UserName = "employee",
+                    UserName = "employee1",
                     TokenVersion = Guid.NewGuid(),
                     UserTypeId = (int)UserTypes.Employee,
                     StatusID = 1,
@@ -114,7 +114,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     OTP = null,
                     PasswordHash = hash,
                     PasswordSalt = salt,
-                    UserName = "employee",
+                    UserName = "employee2",
                     TokenVersion = Guid.NewGuid(),
                     UserTypeId = (int)UserTypes.Employee,
                     StatusID = 1,
@@ -152,7 +152,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
             return new List<Department>
             {
                 new Department { ID = 1, Name = "HR", ManagerId = 1, StatusID = 1, CreatedAt = DateTime.Now, CreatedBy = 1, ModifiedAt = DateTime.Now, ModifiedBy = 1 },
-                new Department { ID = 1, Name = "IT", ManagerId = 3, StatusID = 1, CreatedAt = DateTime.Now, CreatedBy = 1, ModifiedAt = DateTime.Now, ModifiedBy = 1 },
+                new Department { ID = 2, Name = "IT", ManagerId = 3, StatusID = 1, CreatedAt = DateTime.Now, CreatedBy = 1, ModifiedAt = DateTime.Now, ModifiedBy = 1 },
             };
 
         }
@@ -179,7 +179,19 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
 
             for (int userGoalId = 1; userGoalId <= 10; userGoalId++)
             {
-                for (int competencyId = 1; competencyId <= 10; competencyId++)
+                for (int competencyId = 1; competencyId <= 4; competencyId++)
+                {
+                    userGoalCompetencies.Add(new UserCompetency
+                    {
+                        ID = id++,
+                        UserGoalID = userGoalId,
+                        CompetencyID = competencyId,
+                        CurrentLevel = 2,
+                        ExpectedLevel = 3
+                    });
+                }
+
+                for (int competencyId = 6; competencyId <= 9; competencyId++)
                 {
                     userGoalCompetencies.Add(new UserCompetency
                     {

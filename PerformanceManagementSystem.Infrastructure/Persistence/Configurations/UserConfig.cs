@@ -12,6 +12,8 @@ namespace  PerformanceManagementSystem.Infrastructure.Persistence.Configurations
                .WithMany(ut => ut.Users)
                .HasForeignKey(u => u.UserTypeId);
 
+            builder.HasIndex(u => u.UserName).IsUnique();
+
             builder.HasOne(u => u.Department)
                 .WithMany(d => d.Users)
                 .HasForeignKey(u => u.DepartmentID);

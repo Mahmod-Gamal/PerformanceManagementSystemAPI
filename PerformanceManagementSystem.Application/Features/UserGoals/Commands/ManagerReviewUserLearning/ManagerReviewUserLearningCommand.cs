@@ -1,12 +1,6 @@
 using PerformanceManagementSystem.Application.Common.Interfaces;
 using PerformanceManagementSystem.Application.Common.Results;
 using PerformanceManagementSystem.Application.DTOs;
-using PerformanceManagementSystem.Application.Features.UserGoals.Commands.ManagerReviewUserTrainings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.ManagerReviewUserLearning
 {
@@ -21,6 +15,14 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Ma
         public int Rating { get; set; }
         public string Comment { get; set; }
         public List<UserTrainingManagerReview> userTrainings { get; set; }
+
+    }
+
+    public class UserTrainingManagerReview
+    {
+        public int ID { get; set; }
+        public int Rating { get; set; }
+        public string Comment { get; set; }
 
     }
 }

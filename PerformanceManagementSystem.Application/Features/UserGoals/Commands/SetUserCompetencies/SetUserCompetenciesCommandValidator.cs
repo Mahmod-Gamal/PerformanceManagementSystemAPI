@@ -13,12 +13,12 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             // Validate that CoreCompetenciess has exactly 4 elements
             RuleFor(x => x.CoreCompetenciess)
                 .Must(x => x != null && x.Count == 4)
-                .WithMessage("CoreCompetenciess must contain exactly 4 competencies.");
+                .WithMessage("Core Competenciess must contain exactly 4 competencies.");
 
             // Validate that FunctionalCompetenciess has exactly 4 elements
             RuleFor(x => x.FunctionalCompetenciess)
                 .Must(x => x != null && x.Count == 4)
-                .WithMessage("FunctionalCompetenciess must contain exactly 4 competencies.");
+                .WithMessage("Functional Competenciess must contain exactly 4 competencies.");
 
             RuleForEach(x => x.CoreCompetenciess).SetValidator(new CompetenciesValidator(unitOfWork));
             RuleForEach(x => x.FunctionalCompetenciess).SetValidator(new CompetenciesValidator(unitOfWork));

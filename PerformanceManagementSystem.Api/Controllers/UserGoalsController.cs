@@ -6,31 +6,23 @@ using PerformanceManagementSystem.Application.Features.User.Commands.UpdateUser;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SelfReviewUserCompetencies;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SelfReviewUserLearning;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SelfReviewUserObjectives;
-using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SelfReviewUserTrainings;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.ManagerReviewUserCompetencies;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.ManagerReviewUserLearning;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.ManagerReviewUserObjectives;
-using PerformanceManagementSystem.Application.Features.UserGoals.Commands.ManagerReviewUserTrainings;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserCompetencies;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserLearning;
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserObjectives;
-using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserTrainings;
 using Swashbuckle.AspNetCore.Annotations;
 using PerformanceManagementSystem.Application.Features.UserGoals.Queries.GetUserGoals;
 
 namespace PerformanceManagementSystem.Api.Controllers
 {
-  //  [Authorize]
+    [Authorize]
     public class UserGoalsController(IMediator mediator) : BaseController
     {
         [HttpPut("SetObjectives")]
         [SwaggerOperation(OperationId = nameof(SetObjectives))]
         public async Task<ActionResult<UserObjectivesDtoResponse>> SetObjectives(SetUserObjectivesCommand command)
-            => HandelResult(await mediator.Send(command));
-       
-        [HttpPut("SetTrainings")]
-        [SwaggerOperation(OperationId = nameof(SetTrainings))]
-        public async Task<ActionResult<UserTrainingsDtoResponse>> SetTrainings(SetUserTrainingsCommand command)
             => HandelResult(await mediator.Send(command));
 
         [HttpPut("SetLearnings")]
@@ -48,10 +40,7 @@ namespace PerformanceManagementSystem.Api.Controllers
         public async Task<ActionResult<AcknowledgmentDtoResponse>> SelfReviewObjectives(SelfReviewUserObjectivesCommand command)
            => HandelResult(await mediator.Send(command));
 
-        [HttpPut("SelfReviewTrainings")]
-        [SwaggerOperation(OperationId = nameof(SelfReviewTrainings))]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> SelfReviewTrainings(SelfReviewUserTrainingsCommand command)
-            => HandelResult(await mediator.Send(command));
+
 
         [HttpPut("SelfReviewLearnings")]
         [SwaggerOperation(OperationId = nameof(SelfReviewLearnings))]
@@ -69,10 +58,7 @@ namespace PerformanceManagementSystem.Api.Controllers
         public async Task<ActionResult<AcknowledgmentDtoResponse>> ManagerReviewObjectives(ManagerReviewUserObjectivesCommand command)
            => HandelResult(await mediator.Send(command));
 
-        [HttpPut("ManagerReviewTrainings")]
-        [SwaggerOperation(OperationId = nameof(ManagerReviewTrainings))]
-        public async Task<ActionResult<AcknowledgmentDtoResponse>> ManagerReviewTrainings(ManagerReviewUserTrainingsCommand command)
-            => HandelResult(await mediator.Send(command));
+
 
         [HttpPut("ManagerReviewLearnings")]
         [SwaggerOperation(OperationId = nameof(ManagerReviewLearnings))]

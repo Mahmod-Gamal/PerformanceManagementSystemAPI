@@ -11,5 +11,10 @@
         public string? Comment { get; set; }
         public int? ManagerRating{ get; set; }
         public string? ManagerComment { get; set; }
+        public int? CourseHour { get; set; }
+        public string? CourseCode { get; set; }
+        public DateTime? CertificateValidity { get; set; }
+        public string? UploadedCertificate { get; set; }
+        public bool? CourseTakenStatus { get; set; } // Indicates if the course was taken or not
     }
 }
