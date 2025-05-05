@@ -51,7 +51,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                         ID = 1,
                         Name = "Main SettingGoals",
                         Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 1, 1)),  // First day of next year
-                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 1, 31)),   // Last day of January next year
+                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 12, 31)),   // Last day of January next year
                         Year = DateTime.Now.Year,
                         DurationTypeID = 1,
                         IsPrimary = true
@@ -60,8 +60,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     {
                         ID = 2,
                         Name = "Main MidYear",
-                        Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 7, 1)),
-                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 7, 31)),
+                        Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 1, 1)),
+                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 12, 31)),
                         Year = DateTime.Now.Year,
                         DurationTypeID = 2,
                         IsPrimary = true
@@ -70,8 +70,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                     {
                         ID = 3,
                         Name = "Main EndYear",
-                        Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 9, 1)),
-                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 9, 30)),
+                        Start = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 1, 1)),
+                        End = DateOnly.FromDateTime(new DateTime(DateTime.Now.Year , 12, 30)),
                         Year = DateTime.Now.Year,
                         DurationTypeID = 3,
                         IsPrimary = true
