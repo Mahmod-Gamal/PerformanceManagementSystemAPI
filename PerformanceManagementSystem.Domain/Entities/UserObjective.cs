@@ -13,5 +13,9 @@
         public string? Comment { get; set; }
         public int? ManagerRating { get; set; }
         public string? ManagerComment { get; set; }
+        public int? Weight { get; set; }
+        public int? Achieved { get; set; }
+
     }
+
 }

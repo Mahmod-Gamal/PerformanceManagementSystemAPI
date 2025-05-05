@@ -74,6 +74,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
                 UserFunctionalCompetencies = UserFunctionalCompetencies,
                 UserLearnings = goal?.UserLearnings?.Adapt<List<UserLearningDto>>() ?? new(),
                 UserObjectives = goal?.UserObjectives?.Adapt<List<UserObjectiveDto>>() ?? new(),
+                ObjectivesScore = goal?.UserObjectives?.Select(uo => (uo.Weight ?? 0) * (uo.Achieved ?? 0) / 100).Sum(),
                 //UserTrainings = goal?.UserTrainings?.Adapt<List<UserTrainingDto>>() ?? new(),
                 //CanSetGoals = goal?.User?.MidYearDuration?.Start > DateOnly.FromDateTime(DateTime.Now)
                 //&& goal?.User?.EndYearDuration?.Start > DateOnly.FromDateTime(DateTime.Now),
