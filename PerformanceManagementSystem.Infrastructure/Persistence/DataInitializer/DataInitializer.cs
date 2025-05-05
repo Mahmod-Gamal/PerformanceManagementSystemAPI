@@ -79,8 +79,6 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                };
         }
 
-
-
         public List<User> UsersSeed()
         {
             //CreatePasswordHash("12345678", out var hash, out var salt);
@@ -169,7 +167,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
             };
         }
 
-        public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512())
             {
@@ -177,7 +175,7 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
-        public string GenerateRandomOTP(int length)
+        private string GenerateRandomOTP(int length)
         {
             const string upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lowerChars = "abcdefghijklmnopqrstuvwxyz";
