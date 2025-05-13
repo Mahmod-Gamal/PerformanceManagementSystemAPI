@@ -37,7 +37,12 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Ma
                 uo.ManagerRating = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Rating).FirstOrDefault();
                 uo.ManagerComment = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Comment).FirstOrDefault();
             });
+            var adminGoals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year, true);
 
+            adminGoals.UserObjectives.ToList().ForEach(uo => {
+                uo.ManagerRating = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Rating).FirstOrDefault();
+                uo.ManagerComment = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Comment).FirstOrDefault();
+            });
             return Result<AcknowledgmentDtoResponse>.Ok(new AcknowledgmentDtoResponse("Saved"));
         }
     }
