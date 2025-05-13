@@ -5,8 +5,8 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.Repositories
 {
     public class UserGoalRepository(PerformanceManagementDbContext context) : BaseRepository<UserGoal>(context), IUserGoalRepository
     {
-        public async Task<UserGoal> GetByUserID(int UserID, int Year)
-            => await context.UserGoals.Where(x => x.UserID == UserID && x.Year == Year)
+        public async Task<UserGoal> GetByUserID(int UserID, int Year, bool ByAdmin)
+            => await context.UserGoals.Where(x => x.UserID == UserID && x.Year == Year && x.ByAdmin == ByAdmin)
             .Include(x => x.UserLearnings)
             .ThenInclude(x => x.UserTrainings)
             .Include(x => x.UserObjectives)

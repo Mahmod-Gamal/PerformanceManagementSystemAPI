@@ -11,7 +11,7 @@ namespace PerformanceManagementSystem.Domain.Entities
         public int UserID { get; set; }
         public User User { get; set; }
         public int Year { get; set; }
-        public int StageID { get; set; }
+        public bool ByAdmin { get; set; }
 
         public ICollection<UserCompetency> UserCompetencies { get; set; }
         public ICollection<UserObjective> UserObjectives { get; set; }

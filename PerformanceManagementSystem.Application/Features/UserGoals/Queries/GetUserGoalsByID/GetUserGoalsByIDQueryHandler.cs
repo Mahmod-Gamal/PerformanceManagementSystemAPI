@@ -29,7 +29,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
 
             var currentYear = DateTime.UtcNow.Year;
 
-            var goal = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, currentYear);
+            var goal = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, currentYear,false);
 
 
             var UserCoreCompetencies = new List<UserCompetencyDto>();

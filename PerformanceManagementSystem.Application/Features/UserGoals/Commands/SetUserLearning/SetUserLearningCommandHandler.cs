@@ -16,13 +16,13 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             var user = await unitOfWork.UserRepository.GetByIdAsync(int.Parse(userID));
             if (user == null)
                 return Result<UserLearningDtoResponse>.NotFound("User Not Found");
-            var userGoals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year);
+            var userGoals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year, false);
             if (userGoals == null)
                 userGoals = new Domain.Entities.UserGoal()
                 {
                     UserID = user.ID,
                     Year = DateTime.Now.Year,
-                    StageID = 1
+                    ByAdmin = false
                 };
             userGoals.UserLearnings = request.Learnings.Adapt<List<Domain.Entities.UserLearning>>();
             return Result<UserLearningDtoResponse>.Ok(userGoals.Adapt<UserLearningDtoResponse>());

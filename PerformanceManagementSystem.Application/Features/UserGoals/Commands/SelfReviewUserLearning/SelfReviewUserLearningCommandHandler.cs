@@ -24,7 +24,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             if (duration.Start >= DateOnly.FromDateTime(DateTime.Now)
                 || duration.End <= DateOnly.FromDateTime(DateTime.Now))
              return Result<AcknowledgmentDtoResponse>.UnAuthorized("Out of Duration");
-            var goals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year);
+            var goals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year,false);
 
             goals.UserLearnings.ToList().ForEach(ul =>
             {
