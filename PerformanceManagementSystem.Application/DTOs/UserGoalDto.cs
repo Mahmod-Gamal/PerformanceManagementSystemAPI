@@ -11,6 +11,6 @@ namespace PerformanceManagementSystem.Application.DTOs
         public int ID { get; set; }
         public int UserID { get; set; }
         public int Year { get; set; }
-        public int StageID { get; set; }
+        public bool ByAdmin { get; set; }
     }
 }

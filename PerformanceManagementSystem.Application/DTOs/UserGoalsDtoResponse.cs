@@ -13,6 +13,8 @@ namespace PerformanceManagementSystem.Application.DTOs
         public List<UserCompetencyDto> UserFunctionalCompetencies { get; set; }
         public List<UserLearningDto> UserLearnings { get; set; }
         public List<UserObjectiveDto> UserObjectives { get; set; }
+        public List<UserLearningDto> UserLearningsByAdmin { get; set; }
+        public List<UserObjectiveDto> UserObjectivesByAdmin { get; set; }
         public int? ObjectivesScore { get; set; }
         public int? CompetenceisScore { get; set; }
         public int? LearningScore { get; set; }
