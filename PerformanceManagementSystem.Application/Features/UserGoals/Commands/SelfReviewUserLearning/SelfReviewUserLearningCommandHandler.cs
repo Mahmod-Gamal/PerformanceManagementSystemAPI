@@ -48,6 +48,28 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
 
             });
 
+            var adminGoals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year, true);
+            adminGoals.UserLearnings.ToList().ForEach(ul =>
+            {
+                ul.Rating = request.userLearnings.Where(x => x.ID == ul.ID).Select(x => x.Rating).FirstOrDefault();
+                ul.Comment = request.userLearnings.Where(x => x.ID == ul.ID).Select(x => x.Comment).FirstOrDefault();
+
+                var userTrainings = request.userLearnings.Where(x => x.ID == ul.ID).Select(x => x.userTrainings).FirstOrDefault();
+                ul.UserTrainings.ToList().ForEach(ut =>
+                {
+                    ut.Rating = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.Rating).FirstOrDefault();
+
+                    ut.Comment = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.Comment).FirstOrDefault();
+
+                    ut.CertificateValidity = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.CertificateValidity).FirstOrDefault();
+
+                    ut.UploadedCertificate = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.UploadedCertificate).FirstOrDefault();
+
+                    ut.CourseTakenStatus = userTrainings.Where(x => x.ID == ut.ID).Select(x => x.CourseTakenStatus).FirstOrDefault();
+
+                });
+
+            });
 
 
             return Result<AcknowledgmentDtoResponse>.Ok(new AcknowledgmentDtoResponse("Saved"));
