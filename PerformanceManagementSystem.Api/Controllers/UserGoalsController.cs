@@ -14,6 +14,8 @@ using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUse
 using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetUserObjectives;
 using Swashbuckle.AspNetCore.Annotations;
 using PerformanceManagementSystem.Application.Features.UserGoals.Queries.GetUserGoals;
+using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetObjectivesForUser;
+using PerformanceManagementSystem.Application.Features.UserGoals.Commands.SetLearningForUser;
 
 namespace PerformanceManagementSystem.Api.Controllers
 {
@@ -34,6 +36,18 @@ namespace PerformanceManagementSystem.Api.Controllers
         [SwaggerOperation(OperationId = nameof(SetCompetencies))]
         public async Task<ActionResult<UserCompetenciesDtoResponse>> SetCompetencies(SetUserCompetenciesCommand command)
                   => HandelResult(await mediator.Send(command));
+
+
+        [HttpPut("SetObjectivesForUser")]
+        [SwaggerOperation(OperationId = nameof(SetObjectivesForUser))]
+        public async Task<ActionResult<UserObjectivesDtoResponse>> SetObjectivesForUser(SetObjectivesForUserCommand command)
+            => HandelResult(await mediator.Send(command));
+
+        [HttpPut("SetLearningsForUser")]
+        [SwaggerOperation(OperationId = nameof(SetLearningsForUser))]
+        public async Task<ActionResult<UserLearningDtoResponse>> SetLearningsForUser(SetLearningForUserCommand command)
+            => HandelResult(await mediator.Send(command));
+
 
         [HttpPut("SelfReviewObjectives")]
         [SwaggerOperation(OperationId = nameof(SelfReviewObjectives))]
