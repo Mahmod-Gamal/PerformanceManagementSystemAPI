@@ -160,16 +160,16 @@ namespace PerformanceManagementSystem.Infrastructure.Persistence.DataInitializer
         public List<UserGoal> GoalsSeed() {
             return new List<UserGoal>
             {
-                new UserGoal { ID = 1, UserID = 1, Year = 2024, StageID = 1 },
-                new UserGoal { ID = 2, UserID = 1, Year = 2025, StageID = 1 },
-                new UserGoal { ID = 3, UserID = 2, Year = 2024, StageID = 1 },
-                new UserGoal { ID = 4, UserID = 2, Year = 2025, StageID = 1 },
-                new UserGoal { ID = 5, UserID = 3, Year = 2024, StageID = 1 },
-                new UserGoal { ID = 6, UserID = 3, Year = 2025, StageID = 1 },
-                new UserGoal { ID = 7, UserID = 4, Year = 2024, StageID = 1 },
-                new UserGoal { ID = 8, UserID = 4, Year = 2025, StageID = 1 },
-                new UserGoal { ID = 9, UserID = 5, Year = 2024, StageID = 1 },
-                new UserGoal { ID = 10, UserID = 5, Year = 2025, StageID = 1 },
+                new UserGoal { ID = 1, UserID = 1, Year = 2024, ByAdmin = false },
+                new UserGoal { ID = 2, UserID = 1, Year = 2025, ByAdmin = false },
+                new UserGoal { ID = 3, UserID = 2, Year = 2024, ByAdmin = false },
+                new UserGoal { ID = 4, UserID = 2, Year = 2025, ByAdmin = false },
+                new UserGoal { ID = 5, UserID = 3, Year = 2024, ByAdmin = false },
+                new UserGoal { ID = 6, UserID = 3, Year = 2025, ByAdmin = false },
+                new UserGoal { ID = 7, UserID = 4, Year = 2024, ByAdmin = false },
+                new UserGoal { ID = 8, UserID = 4, Year = 2025, ByAdmin = false },
+                new UserGoal { ID = 9, UserID = 5, Year = 2024, ByAdmin = false },
+                new UserGoal { ID = 10, UserID = 5, Year = 2025, ByAdmin = false },
             };
         }
         public List<UserCompetency> UserCompetenciesSeed()
