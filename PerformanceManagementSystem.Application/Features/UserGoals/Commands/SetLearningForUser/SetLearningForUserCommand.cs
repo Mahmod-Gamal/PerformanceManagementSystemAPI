@@ -13,16 +13,16 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
     {
         public int Year { get; set; }
         public int UserID { get; set; }
-        public List<Learning> Learnings { get; set; }
+        public List<UserLearning> Learnings { get; set; }
     }
-    public class Learning
+    public class UserLearning
     {
         public string ImprovementArea { get; set; }
         public string Action { get; set; }
-        public List<Trainings> UserTrainings { get; set; }
+        public List<UserTrainings> UserTrainings { get; set; }
     }
 
-    public class Trainings
+    public class UserTrainings
     {
         public string TrainingCourse { get; set; }
         public string InstituteOfSource { get; set; }

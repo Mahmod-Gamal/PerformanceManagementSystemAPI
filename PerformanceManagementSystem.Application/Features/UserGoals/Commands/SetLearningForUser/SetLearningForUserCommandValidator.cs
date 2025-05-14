@@ -22,7 +22,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
         }
     }
 
-    public class LearningValidator : AbstractValidator<Learning>
+    public class LearningValidator : AbstractValidator<UserLearning>
     {
         public LearningValidator()
         {
@@ -39,7 +39,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
         }
     }
 
-    public class TrainingsValidator : AbstractValidator<Trainings>
+    public class TrainingsValidator : AbstractValidator<UserTrainings>
     {
         public TrainingsValidator()
         {

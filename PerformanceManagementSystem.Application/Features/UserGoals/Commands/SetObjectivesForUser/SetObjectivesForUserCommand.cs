@@ -13,9 +13,9 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
     {
         public int Year { get; set; }
         public int UserID { get; set; }
-        public List<Objective> UserObjectives { get; set; }
+        public List<UserObjective> UserObjectives { get; set; }
     }
-    public class Objective
+    public class UserObjective
     {
         public string Description { get; set; }
         public string Measure { get; set; }

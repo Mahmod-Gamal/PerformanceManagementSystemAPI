@@ -19,7 +19,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             RuleForEach(x => x.UserObjectives).SetValidator(new ObjectiveValidator());
         }
     }
-    public class ObjectiveValidator : AbstractValidator<Objective>
+    public class ObjectiveValidator : AbstractValidator<UserObjective>
     {
         public ObjectiveValidator()
         {
