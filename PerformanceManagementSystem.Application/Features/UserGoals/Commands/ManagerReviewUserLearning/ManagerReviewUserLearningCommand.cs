@@ -12,9 +12,9 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Ma
     public class UserLearningManagerReview
     {
         public int ID { get; set; }
-        public int Rating { get; set; }
-        public string Comment { get; set; }
-        public List<UserTrainingManagerReview> userTrainings { get; set; }
+        public int ManagerRating { get; set; }
+        public string ManagerComment { get; set; }
+        //public List<UserTrainingManagerReview> userTrainings { get; set; }
 
     }
 

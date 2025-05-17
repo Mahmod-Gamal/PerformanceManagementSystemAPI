@@ -6,18 +6,18 @@ public class ManagerLearningReviewValidator : AbstractValidator<UserLearningMana
     public ManagerLearningReviewValidator()
     {
         // Rating must be between 1 and 4 (inclusive)
-        RuleFor(x => x.Rating)
+        RuleFor(x => x.ManagerRating)
             .InclusiveBetween(1, 4)
             .WithMessage("Rating must be between 1 and 4.");
 
         // Comment is optional; if provided, it must not exceed 500 characters
-        RuleFor(x => x.Comment)
+        RuleFor(x => x.ManagerComment)
             .MaximumLength(500)
-            .When(x => !string.IsNullOrEmpty(x.Comment))
+            .When(x => !string.IsNullOrEmpty(x.ManagerComment))
             .WithMessage("Comment must not exceed 500 characters.");
 
-        RuleForEach(x => x.userTrainings)
-           .SetValidator(new ManagerTrainingReviewValidator());
+        //RuleForEach(x => x.userTrainings)
+        //   .SetValidator(new ManagerTrainingReviewValidator());
     }
 }
 
