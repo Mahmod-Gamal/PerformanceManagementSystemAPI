@@ -25,6 +25,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
             var currentYear = DateTime.UtcNow.Year;
 
             var goal = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, currentYear, false);
+            var goalsByAdmin = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, currentYear, true);
 
 
             var UserCoreCompetencies = new List<UserCompetencyDto>();
@@ -83,6 +84,8 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
                 UserFunctionalCompetencies = UserFunctionalCompetencies,
                 UserLearnings = goal?.UserLearnings?.Adapt<List<UserLearningDto>>() ?? new(),
                 UserObjectives = goal?.UserObjectives?.Adapt<List<UserObjectiveDto>>() ?? new(),
+                UserLearningsByAdmin = goalsByAdmin?.UserLearnings?.Adapt<List<UserLearningDto>>() ?? new(),
+                UserObjectivesByAdmin = goalsByAdmin?.UserObjectives?.Adapt<List<UserObjectiveDto>>() ?? new(),
                 ObjectivesScore = goal?.UserObjectives?.Select(uo => (uo.Weight ?? 0) * (uo.Achieved ?? 0) / 100).Sum(),
                 // UserTrainings = goal?.UserTrainings?.Adapt<List<UserTrainingDto>>() ?? new(),
                 //CanSetGoals = goal?.User?.MidYearDuration?.Start > DateOnly.FromDateTime(DateTime.Now)
