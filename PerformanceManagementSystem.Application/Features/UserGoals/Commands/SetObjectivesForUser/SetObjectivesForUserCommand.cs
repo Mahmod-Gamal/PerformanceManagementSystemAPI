@@ -20,6 +20,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
         public string Description { get; set; }
         public string Measure { get; set; }
         public string Target { get; set; }
+        public int Weight { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
     }

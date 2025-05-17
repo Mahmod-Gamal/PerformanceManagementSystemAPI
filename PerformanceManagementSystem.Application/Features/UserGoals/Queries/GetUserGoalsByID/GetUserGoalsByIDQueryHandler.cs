@@ -21,8 +21,9 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
             var manager = await unitOfWork.UserRepository.GetByIdAsync(int.Parse(managerId));
             if (manager is null)
                 return Result<UserGoalsDtoResponse>.NotFound("User not found");
-            if (manager.UserTypeId != 3)
-                return Result<UserGoalsDtoResponse>.NotFound("User is not a manager");
+
+            //if (manager.UserTypeId != 3)
+            //    return Result<UserGoalsDtoResponse>.NotFound("User is not a manager");
 
             var user = await unitOfWork.UserRepository.GetByIdAsync(request.ID);
             if (user is null)
