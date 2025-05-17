@@ -5,16 +5,16 @@ public class UserObjectiveSelfReviewValidator : AbstractValidator<UserObjectiveS
 {
     public UserObjectiveSelfReviewValidator()
     {
-        //// Rating must be between 1 and 4 (inclusive)
-        //RuleFor(x => x.Rating)
-        //    .InclusiveBetween(1, 4)
-        //    .WithMessage("Rating must be between 1 and 4.");
+        // Rating must be between 1 and 4 (inclusive)
+        RuleFor(x => x.Rating)
+            .InclusiveBetween(1, 4)
+            .WithMessage("Rating must be between 1 and 4.");
 
-        //// Comment is optional; if provided, it must not exceed 500 characters
-        //RuleFor(x => x.Comment)
-        //    .MaximumLength(500)
-        //    .When(x => !string.IsNullOrEmpty(x.Comment))
-        //    .WithMessage("Comment must not exceed 500 characters.");
+        // Comment is optional; if provided, it must not exceed 500 characters
+        RuleFor(x => x.Comment)
+            .MaximumLength(500)
+            .When(x => !string.IsNullOrEmpty(x.Comment))
+            .WithMessage("Comment must not exceed 500 characters.");
 
         RuleFor(x => x.Achieved)
           .InclusiveBetween(0, 100)

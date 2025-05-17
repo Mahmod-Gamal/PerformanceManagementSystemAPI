@@ -20,8 +20,8 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
     public class UserTrainingSelfReview
     {
         public int ID { get; set; }
-        public int Rating { get; set; }
-        public string Comment { get; set; }
+        //public int Rating { get; set; }
+        //public string Comment { get; set; }
         public DateTime? CertificateValidity { get; set; }
         public string? UploadedCertificate { get; set; }
         public bool? CourseTakenStatus { get; set; } // Indicates if the course was taken or not

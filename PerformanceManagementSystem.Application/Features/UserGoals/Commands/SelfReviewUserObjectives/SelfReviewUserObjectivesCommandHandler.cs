@@ -27,16 +27,16 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             var goals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year, false);
 
             goals.UserObjectives.ToList().ForEach(uo => {
-                //uo.Rating = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Rating).FirstOrDefault();
-                //uo.Comment = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Comment).FirstOrDefault();
+                uo.Rating = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Rating).FirstOrDefault();
+                uo.Comment = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Comment).FirstOrDefault();
                 uo.Achieved = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Achieved).FirstOrDefault();
             }); 
             
             var adminGoals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year, true);
 
             adminGoals?.UserObjectives?.ToList().ForEach(uo => {
-                //uo.Rating = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Rating).FirstOrDefault();
-                //uo.Comment = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Comment).FirstOrDefault();
+                uo.Rating = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Rating).FirstOrDefault();
+                uo.Comment = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Comment).FirstOrDefault();
                 uo.Achieved = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Achieved).FirstOrDefault();
             });
 
