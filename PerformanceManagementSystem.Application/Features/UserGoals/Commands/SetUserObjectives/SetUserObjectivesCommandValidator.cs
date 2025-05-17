@@ -10,6 +10,11 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
            .GreaterThan(0).WithMessage("Year is required");
 
             RuleForEach(x => x.UserObjectives).SetValidator(new ObjectiveValidator());
+
+            // Total weight must equal exactly 100
+            RuleFor(x => x.UserObjectives.Sum(o => o.Weight))
+                .Equal(100)
+                .WithMessage("Total weight of all objectives must be exactly 100.");
         }
     }
 
@@ -31,6 +36,10 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
 
             RuleFor(x => x.DateFrom)
                 .LessThan(x => x.DateTo).WithMessage("DateFrom must be before DateTo");
+
+            RuleFor(x => x.Weight)
+       .InclusiveBetween(1, 100)
+       .WithMessage("Weight must be between 1 and 100.");
         }
     }
 }

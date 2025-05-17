@@ -21,8 +21,8 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Ma
     public class UserTrainingManagerReview
     {
         public int ID { get; set; }
-        public int Rating { get; set; }
-        public string Comment { get; set; }
+     //   public int Rating { get; set; }
+       // public string Comment { get; set; }
 
     }
 }

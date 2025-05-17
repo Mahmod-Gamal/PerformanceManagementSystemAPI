@@ -30,36 +30,51 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Queries.Get
             var UserCoreCompetencies = new List<UserCompetencyDto>();
             var UserFunctionalCompetencies = new List<UserCompetencyDto>();
 
+            // جلب جميع الكفاءات من قاعدة البيانات
+            var allCompetencies = await unitOfWork.CompetencyRepository.GetAllAsync();
 
-            if (goal is not null && goal.UserCompetencies != null && goal.UserCompetencies.Any())
-            {
-                UserCoreCompetencies = goal.UserCompetencies.Where(uc => uc.Competency.CompetenciesTypeID == 1).Adapt<List<UserCompetencyDto>>();
-                UserFunctionalCompetencies = goal.UserCompetencies.Where(uc => uc.Competency.CompetenciesTypeID == 2).Adapt<List<UserCompetencyDto>>();
-            }
-            else
-            {
-                // Fetch all competencies and return default values
-                var allCompetencies = await unitOfWork.CompetencyRepository.GetAllAsync();
+            // استخراج كفاءات المستخدم من الهدف إن وُجد
+            var userCompetencies = goal?.UserCompetencies ?? new List<UserCompetency>();
 
-                UserCoreCompetencies = allCompetencies.Where(c => c.CompetenciesTypeID == 1).Select(c => new UserCompetencyDto
+            // تحويل كفاءات المستخدم إلى Dictionary لتسهيل الوصول السريع
+            var userCompetencyDict = userCompetencies.ToDictionary(uc => uc.CompetencyID);
+
+            // توليد الكفاءات الجوهرية (Core)
+            UserCoreCompetencies = allCompetencies
+                .Where(c => c.CompetenciesTypeID == 1)
+                .Select(c =>
                 {
-                    CompetencyID = c.ID,
-                    CompetencyName = c.Name,
-                    CurrentLevel = null,
-                    ExpectedLevel = null,
-                    Rating = null,
-                    ManagerRating = null
-                }).ToList();
-                UserFunctionalCompetencies = allCompetencies.Where(c => c.CompetenciesTypeID == 2).Select(c => new UserCompetencyDto
+                    userCompetencyDict.TryGetValue(c.ID, out var userComp);
+                    return new UserCompetencyDto
+                    {
+                        CompetencyID = c.ID,
+                        CompetencyName = c.Name,
+                        CurrentLevel = userComp?.CurrentLevel,
+                        ExpectedLevel = userComp?.ExpectedLevel,
+                        Rating = userComp?.Rating,
+                        ManagerRating = userComp?.ManagerRating
+                    };
+                })
+                .ToList();
+
+            // توليد الكفاءات الوظيفية (Functional)
+            UserFunctionalCompetencies = allCompetencies
+                .Where(c => c.CompetenciesTypeID == 2)
+                .Select(c =>
                 {
-                    CompetencyID = c.ID,
-                    CompetencyName = c.Name,
-                    CurrentLevel = null,
-                    ExpectedLevel = null,
-                    Rating = null,
-                    ManagerRating = null
-                }).ToList();
-            }
+                    userCompetencyDict.TryGetValue(c.ID, out var userComp);
+                    return new UserCompetencyDto
+                    {
+                        CompetencyID = c.ID,
+                        CompetencyName = c.Name,
+                        CurrentLevel = userComp?.CurrentLevel,
+                        ExpectedLevel = userComp?.ExpectedLevel,
+                        Rating = userComp?.Rating,
+                        ManagerRating = userComp?.ManagerRating
+                    };
+                })
+                .ToList();
+
 
             var response = new UserGoalsDtoResponse
             {

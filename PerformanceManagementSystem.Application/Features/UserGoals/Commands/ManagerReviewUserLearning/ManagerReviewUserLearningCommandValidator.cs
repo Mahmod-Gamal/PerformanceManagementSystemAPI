@@ -36,6 +36,7 @@ public class ManagerTrainingReviewValidator : AbstractValidator<UserTrainingMana
 {
     public ManagerTrainingReviewValidator()
     {
+        /*
         // Rating must be between 1 and 4 (inclusive)
         RuleFor(x => x.Rating)
             .InclusiveBetween(1, 4)
@@ -46,6 +47,7 @@ public class ManagerTrainingReviewValidator : AbstractValidator<UserTrainingMana
             .MaximumLength(500)
             .When(x => !string.IsNullOrEmpty(x.Comment))
             .WithMessage("Comment must not exceed 500 characters.");
+        */
     }
 }
 

@@ -7,10 +7,10 @@
         public string InstituteOfSource { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
-        public int? Rating { get; set; }
-        public string? Comment { get; set; }
-        public int? ManagerRating{ get; set; }
-        public string? ManagerComment { get; set; }
+      //  public int? Rating { get; set; }
+       // public string? Comment { get; set; }
+       // public int? ManagerRating{ get; set; }
+      //  public string? ManagerComment { get; set; }
         public int? CourseHour { get; set; }
         public string? CourseCode { get; set; }
         public DateTime? CertificateValidity { get; set; }

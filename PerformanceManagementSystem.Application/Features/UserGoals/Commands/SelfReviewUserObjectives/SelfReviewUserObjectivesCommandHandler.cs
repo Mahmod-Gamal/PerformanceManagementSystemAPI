@@ -29,7 +29,6 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             goals.UserObjectives.ToList().ForEach(uo => {
                 uo.Rating = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Rating).FirstOrDefault();
                 uo.Comment = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Comment).FirstOrDefault();
-                uo.Weight = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Weight).FirstOrDefault();
                 uo.Achieved = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Achieved).FirstOrDefault();
             }); 
             
@@ -38,7 +37,6 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
             adminGoals.UserObjectives.ToList().ForEach(uo => {
                 uo.Rating = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Rating).FirstOrDefault();
                 uo.Comment = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Comment).FirstOrDefault();
-                uo.Weight = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Weight).FirstOrDefault();
                 uo.Achieved = request.userObjectives.Where(x => x.ID == uo.ID).Select(x => x.Achieved).FirstOrDefault();
             });
 

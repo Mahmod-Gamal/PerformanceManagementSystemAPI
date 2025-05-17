@@ -20,9 +20,7 @@ public class UserObjectiveSelfReviewValidator : AbstractValidator<UserObjectiveS
           .InclusiveBetween(0, 100)
           .WithMessage("Achieved must be between 0 and 100.");
 
-        RuleFor(x => x.Weight)
-            .InclusiveBetween(1, 100)
-            .WithMessage("Weight must be between 1 and 100.");
+   
     }
 }
 
@@ -34,9 +32,6 @@ public class SelfReviewUserObjectivesCommandValidator : AbstractValidator<SelfRe
         RuleForEach(x => x.userObjectives)
             .SetValidator(new UserObjectiveSelfReviewValidator());
 
-        // Total weight must equal exactly 100
-        RuleFor(x => x.userObjectives.Sum(o => o.Weight))
-            .Equal(100)
-            .WithMessage("Total weight of all objectives must be exactly 100.");
+
     }
 }
