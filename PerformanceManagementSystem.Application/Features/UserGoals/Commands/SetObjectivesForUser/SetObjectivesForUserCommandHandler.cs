@@ -30,7 +30,7 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
                 {
                     UserID = user.ID,
                     Year = DateTime.Now.Year,
-                    ByAdmin = false
+                    ByAdmin = true
                 };
 
             userGoals.UserObjectives = request.UserObjectives.Select(x => x.Adapt<Domain.Entities.UserObjective>()).ToList();
