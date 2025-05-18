@@ -18,12 +18,15 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
                 return Result<UserLearningDtoResponse>.NotFound("User Not Found");
             var userGoals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year, false);
             if (userGoals == null)
+            {
                 userGoals = new Domain.Entities.UserGoal()
                 {
                     UserID = user.ID,
                     Year = DateTime.Now.Year,
                     ByAdmin = false
                 };
+                await unitOfWork.UserGoalRepository.AddAsync(userGoals);
+            }
             userGoals.UserLearnings = request.Learnings.Adapt<List<Domain.Entities.UserLearning>>();
             return Result<UserLearningDtoResponse>.Ok(userGoals.Adapt<UserLearningDtoResponse>());
         }

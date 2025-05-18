@@ -26,12 +26,15 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
 
             var userGoals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year, true);
             if (userGoals == null)
+            {
                 userGoals = new Domain.Entities.UserGoal()
                 {
                     UserID = user.ID,
                     Year = DateTime.Now.Year,
                     ByAdmin = true
                 };
+                await unitOfWork.UserGoalRepository.AddAsync(userGoals);
+            }
 
             userGoals.UserObjectives = request.UserObjectives.Select(x => x.Adapt<Domain.Entities.UserObjective>()).ToList();
             return Result<UserObjectivesDtoResponse>.Ok(userGoals.Adapt<UserObjectivesDtoResponse>());

@@ -31,13 +31,16 @@ namespace PerformanceManagementSystem.Application.Features.UserGoals.Commands.Se
 
             var userGoals = await unitOfWork.UserGoalRepository.GetByUserID(user.ID, DateTime.Now.Year, true);
             if (userGoals == null)
+            {
                 userGoals = new Domain.Entities.UserGoal()
                 {
                     UserID = user.ID,
                     Year = DateTime.Now.Year,
                     ByAdmin = true
                 };
-           
+                await unitOfWork.UserGoalRepository.AddAsync(userGoals);
+            }
+
             userGoals.UserLearnings = request.Learnings.Adapt<List<Domain.Entities.UserLearning>>();
             return Result<UserLearningDtoResponse>.Ok(userGoals.Adapt<UserLearningDtoResponse>());
         }
